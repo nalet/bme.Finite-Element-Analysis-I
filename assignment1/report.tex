@@ -8,7 +8,10 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage{graphicx} %This allows to include eps figures
-
+\usepackage{subcaption}
+\usepackage[section]{placeins}
+\usepackage{layout}
+\usepackage{etoolbox}
 % This is to include code
 \usepackage{listings}
 \usepackage{xcolor}
@@ -55,67 +58,127 @@ Finite Element Analysis I
 
 \maketitle
 
-\section{Regular Tesselation}
-\subsection{}
-  There are three shapes that satisfy the two conditions above: triangles, squares and regular hexagon.
-\subsection{}
-\newtheorem{thm}{Theorem}
-\begin{thm}
-  There are three shapes that satisfy the two conditions above: triangles, squares and regular hexagon.
-\end{thm}
+\section{Theory}
 
-\begin{proof}
-The sum of the angles in a poligon is $180(a-2)$, a is the number of angles. 
-Using the three polygons from above we know that in all three polygons the sum of the angles 
-where the vertices meet is $360$, also point $b$. By that circumstances we can use
-\[ \frac{180(a-2)}{a}b=360 \]
-In a simple matter this leads us to
-\[ (a-2)b=2a \]
-The result of the equation above leads us to 5 solutions: 
-\[ a=-2,b=1;a=1,b=-2,a=3,b=6;a=4,b=4;a=6,b=3 \]
-As can only use the positives integer soultions, we have (b corresponds number of edges) the polygons
-with 3,4 and 6 edges.
-\end{proof}
-\newpage
+\begin{equation}\label{eq:1}
+y(L) = \frac{FL^{2}}{6EI}(3L-L)
+\end{equation}
+With equation \ref{eq:1} we have the possibility to calculate the maximal displacment from beam theory.
+Using thouse values provided in the assignment
 
-\section{Lloyd-Max quantization}
-\subsection{}
-Following the notes quanzization from the lecture: We can compute the partial derivatives with respect to $z_{k}$
-\[ \delta = \sum_{k=1}^{K} \int_{z_{k}}^{z_{k+1}} (z-q_{k})^2p(z) dz  \]
-\[ \frac{\partial \delta}{\partial z_{k}} = (z_{k} - q_{k+1})^2 p(z_{k}) - (z_{k} - q_{k})^2 p(z_{k}) = 0\]
-\[ (z_{k} - q_{k+1})^2 p(z_{k}) - (z_{k} - q_{k})^2 p(z_{k}) = 0\]
-\[ (z_{k} - q_{k+1})^2 - (z_{k} - q_{k})^2 = 0\]
-\[ z_{k}^2 - 2 q_{k+1} z_{k} + q_{k+1}^2 - z_{k}^2 - q_{k}z_{k} + q_{k}^2 = 0\]
-\[ 2 z_{k} ( q_{k+1} - q_{k} ) + q_{k+1}^2 + q_{k}^2 = 0\]
-\[ 2 z_{k} = \frac{q_{k+1}^2 + q_{k}^2}{q_{k+1} - q_{k}} \implies 2 z_{k} = \frac{q_{k-1}^2 + q_{k}^2}{q_{k-1} + q_{k}} \]
-\[ 2 z_{k} = \frac{q_{k-1} + q_{k}}{1} \]
-\[ z_{k} = \frac{q_{k-1} + q_{k}}{2} \]
-\subsection{}
-\[ \delta = \sum_{k=1}^{K} \int_{z_{k}}^{z_{k+1}} (z-q_{k})^2p(z) dz  \]
-\[ \frac{\partial \delta}{\partial q_{k}} = \int_{z_{k}}^{z_{k+1}} (z-q_{k})^2p(z) dz = 0\]
-\[ \frac{\partial \delta}{\partial q_{k}} \int_{z_{k}}^{z_{k+1}} z^2 p(z) - 2q_{k}z p(z)  + q_{k}^2 p(z) dz = 0\]
-\[ \frac{\partial \delta}{\partial q_{k}} (q_{k} \int_{z_{k}}^{z_{k+1}} - 2z p(z) dz + q_{k}^2 \int_{z_{k}}^{z_{k+1}} p(z) dz) = 0\]
-\[ \int_{z_{k}}^{z_{k+1}} - 2z p(z) dz + 2q_{k} \int_{z_{k}}^{z_{k+1}} p(z) dz = 0\]
-\[ q_{k} = \frac{\int_{z_{k}}^{z_{k+1}} 2z p(z) dz} {2 \int_{z_{k}}^{z_{k+1}} p(z) dz}\]
-\[ q_{k} = \frac{\int_{z_{k}}^{z_{k+1}} z p(z) dz}{\int_{z_{k}}^{z_{k+1}} p(z) dz}\]
+$L = 300mm, F = 50N, E = 90e6 \frac{N}{mm^{2}}, I = \frac{b\cdot h^{3}}{12} = \frac{5\cdot 10^{3}}{12} =  416,67mm^{4} $ 
 
-\subsection{}
-lloyd  will give use the converge, but the solution could be a local minimum. The goal is a optimum quantizer, even distributed groups.
-Both equations converge in a coordinate descen fashion.
+we come to the result in \ref{eq:2}
+\begin{equation}\label{eq:2}
+y(300) = \frac{50 \cdot 300^{2}}{6\cdot 90e6 \cdot 416,67}(3\cdot300-300) = 12mm
+\end{equation}
+\pagebreak
+\section{Abaqus}
 
-\section{Chamfer distances}
+\subsection{2 x 12 elments}
+
+\subsubsection{CPS4}
 \begin{figure}[!htb]
   \centering
-  %omit extension of file. pdflatex will convert to pdf automatically.
-  \includegraphics[width=0.8\textwidth]{pics/hw1_ex3_template_chamfer.png}
-  \caption{Result of the chamfer distances in given images.}
-  \end{figure}
-\newpage
-\section{Bilinear interpolation}
+  \includegraphics[width=0.8\textwidth]{pics/2_12_CPS4}
+  \caption{maximal displacment: -3.50 mm}
+\end{figure}
+\FloatBarrier
+\subsubsection{CPS8}
 \begin{figure}[!htb]
   \centering
-  %omit extension of file. pdflatex will convert to pdf automatically.
-  \includegraphics[width=0.8\textwidth]{pics/hw1_ex4_template_bilinear_interp.png}
-  \caption{Result of the bilinear interpolation in the image bird.jpg.}
-  \end{figure}
+  \includegraphics[width=0.8\textwidth]{pics/2_12_CPS8}
+  \caption{maximal displacment: -11.96 mm}
+\end{figure}
+\FloatBarrier
+\pagebreak
+\subsubsection{CPS4R}
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/2_12_CPS4R}
+  \caption{maximal displacment: -15.78 mm}
+\end{figure}
+\FloatBarrier
+\subsubsection{CPS8R}
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/2_12_CPS8R}
+  \caption{maximal displacment: -11.98 mm}
+\end{figure}
+\FloatBarrier
+\pagebreak
+\subsection{4 x 24 elments}
+
+\subsubsection{CPS4}
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/4_24_CPS4}
+  \caption{maximal displacment: -7.46 mm}
+\end{figure}
+\FloatBarrier
+\subsubsection{CPS8}
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/4_24_CPS8}
+  \caption{maximal displacment: -11.99 mm}
+\end{figure}
+\FloatBarrier
+\pagebreak
+\subsubsection{CPS4R}
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/4_24_CPS4R}
+  \caption{maximal displacment: -12.77 mm}
+\end{figure}
+\FloatBarrier
+\subsubsection{CPS8R}
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pics/4_24_CPS8R}
+  \caption{maximal displacment: -12.00 mm}
+\end{figure}
+\FloatBarrier
+\pagebreak
+\section{Disscussion}
+The Discussion refers to the questions in the assignment.
+\begin{quote}
+How do the numerical results change with respect to the analytical
+one? Which mesh \& element configuration's is/are closest to the
+analytical solution? Conversely, which one's is/are farthest from it?
+\end{quote}
+The closest solution calculated to the analytical result can be 
+achieved with an appropriate mesh size (4 x 24).  Also, the correct 
+numerical method can have a positive impact with a lower mesh size (2 x 12). 
+Overall, using low mesh size and linear methods gives the most inaccurate solutions.
+\begin{quote}
+How does changing the number of elements influence the results
+(2x12 vs. 4x24 elms)?
+How does changing the element type influence the results? (CPS4
+vs. CPS8)?
+\end{quote}
+A higher number of elements gives us, in general, more accurate solutions. However, 
+using more nodes also results in more accuracy.
+\begin{quote}
+How does changing 
+the integration method 
+influence the results
+(CPS4 vs. CPS4R; CPS8 vs. CPS8R)?
+\end{quote}
+Reducing the integration method is only effective with enough number of elements. 
+Reducing with a low number of elements will give us inaccurate solutions, as the 
+model will then be "too" reduced.
+\begin{quote}
+Give brief explanations on why the results change with respect to
+different mesh \& element configurations using the terminologies
+explained during the course (i.e. hourglassing, shear locking)?
+\end{quote}
+Inaccurate solutions are caused by the shear looking effect. With a 
+small element size as 2 x 12, and also with further reducing the edges 
+will then not be able to bend and deform, ending in shearing. The 
+desired effect on our beam should be bending.
+
+The hourglassing effect comes up if we apply the reduced integration 
+method on also low element mesh size on our part, with a higher 
+displacement in the result. The elements are too flexible, as 
+the element matrix has insufficient stiffness.
 \end{document}
