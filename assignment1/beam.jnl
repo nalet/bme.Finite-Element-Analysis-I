@@ -1,0 +1,790 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.Model(modelType=STANDARD_EXPLICIT, name='Beam')
+mdb.models['Beam'].ConstrainedSketch(name='__profile__', sheetSize=3.0)
+mdb.models['Beam'].sketches['__profile__'].rectangle(point1=(0.6625, -0.0875), 
+    point2=(-0.75, 0.1125))
+mdb.models['Beam'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    -0.193026006221771, 0.148185431957245), value=3.0, vertex1=
+    mdb.models['Beam'].sketches['__profile__'].vertices[1], vertex2=
+    mdb.models['Beam'].sketches['__profile__'].vertices[2])
+mdb.models['Beam'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    -0.781295895576477, 0.0211693048477173), value=0.1, vertex1=
+    mdb.models['Beam'].sketches['__profile__'].vertices[2], vertex2=
+    mdb.models['Beam'].sketches['__profile__'].vertices[3])
+mdb.models['Beam'].sketches['__profile__'].dragEntity(entity=
+    mdb.models['Beam'].sketches['__profile__'].geometry[3], points=((
+    -0.314570873975754, 0.1125), (-0.3125, 0.1125), (-1.2875, 0.0125), (
+    -1.2625, 0.0125)))
+mdb.models['Beam'].sketches['__profile__'].dragEntity(entity=
+    mdb.models['Beam'].sketches['__profile__'].geometry[4], points=((-0.75, 
+    -0.0485671162605286), (-0.75, -0.05), (-1.4875, 0.0), (-1.5, -0.0125), (
+    -1.5, -0.0125)))
+mdb.models['Beam'].Part(dimensionality=TWO_D_PLANAR, name='Part-1', type=
+    DEFORMABLE_BODY)
+mdb.models['Beam'].parts['Part-1'].BaseShell(sketch=
+    mdb.models['Beam'].sketches['__profile__'])
+del mdb.models['Beam'].sketches['__profile__']
+mdb.models['Beam'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['Beam'].parts['Part-1'].features['Shell planar-1'].sketch)
+mdb.models['Beam'].parts['Part-1'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Beam'].sketches['__edit__'], 
+    upToFeature=mdb.models['Beam'].parts['Part-1'].features['Shell planar-1'])
+del mdb.models['Beam'].sketches['__edit__']
+mdb.models['Beam'].Material(name='Material90_0_3')
+mdb.models['Beam'].materials['Material90_0_3'].Elastic(table=((90.0, 0.3), ))
+mdb.models['Beam'].HomogeneousSolidSection(material='Material90_0_3', name=
+    'Material9003Section', thickness=0.005)
+mdb.models['Beam'].parts['Part-1'].Set(faces=
+    mdb.models['Beam'].parts['Part-1'].faces.getSequenceFromMask(('[#1 ]', ), )
+    , name='Set-1')
+mdb.models['Beam'].parts['Part-1'].SectionAssignment(offset=0.0, offsetField=''
+    , offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Beam'].parts['Part-1'].sets['Set-1'], sectionName=
+    'Material9003Section', thicknessAssignment=FROM_SECTION)
+mdb.models['Beam'].parts.changeKey(fromName='Part-1', toName='Beam')
+mdb.models['Beam'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Beam'].rootAssembly.Instance(dependent=ON, name='Beam-1', part=
+    mdb.models['Beam'].parts['Beam'])
+mdb.models['Beam'].StaticStep(name='BeamLoad', previous='Initial')
+mdb.models['Beam'].fieldOutputRequests['F-Output-1'].setValues(variables=('S', 
+    'U', 'RF', 'NFORC'))
+mdb.models['Beam'].rootAssembly.Set(edges=
+    mdb.models['Beam'].rootAssembly.instances['Beam-1'].edges.getSequenceFromMask(
+    ('[#8 ]', ), ), name='Set-1')
+mdb.models['Beam'].EncastreBC(createStepName='BeamLoad', localCsys=None, name=
+    'FixLeftEnd', region=mdb.models['Beam'].rootAssembly.sets['Set-1'])
+mdb.models['Beam'].rootAssembly.Surface(name='Surf-1', side1Edges=
+    mdb.models['Beam'].rootAssembly.instances['Beam-1'].edges.getSequenceFromMask(
+    ('[#2 ]', ), ))
+mdb.models['Beam'].Pressure(amplitude=UNSET, createStepName='BeamLoad', 
+    distributionType=UNIFORM, field='', magnitude=500000000.0, name=
+    'Pressure Load', region=mdb.models['Beam'].rootAssembly.surfaces['Surf-1'])
+mdb.models['Beam'].parts['Beam'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD, secondOrderAccuracy=OFF, distortionControl=DEFAULT)), 
+    regions=(mdb.models['Beam'].parts['Beam'].faces.getSequenceFromMask((
+    '[#1 ]', ), ), ))
+mdb.models['Beam'].parts['Beam'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Beam'].parts['Beam'].faces.getSequenceFromMask(('[#1 ]', ), ), 
+    ))
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.25)
+mdb.models['Beam'].parts['Beam'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Beam'].parts['Beam'].faces.getSequenceFromMask(('[#1 ]', ), ), 
+    ))
+mdb.models['Beam'].parts['Beam'].generateMesh()
+mdb.models['Beam'].rootAssembly.regenerate()
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Beam', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-1', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-1', 'memory': 24.0})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_COMPLETED, {'time': 'Mon Apr  1 17:57:21 2019', 
+    'jobName': 'Job-1'})
+mdb.models['Beam'].loads['Pressure Load'].setValues(magnitude=50.0)
+del mdb.models['Beam'].loads['Pressure Load']
+mdb.models['Beam'].rootAssembly.Surface(name='Surf-2', side1Edges=
+    mdb.models['Beam'].rootAssembly.instances['Beam-1'].edges.getSequenceFromMask(
+    ('[#2 ]', ), ))
+mdb.models['Beam'].Pressure(amplitude=UNSET, createStepName='BeamLoad', 
+    distributionType=UNIFORM, field='', magnitude=50.0, name='Pressure Load', 
+    region=mdb.models['Beam'].rootAssembly.surfaces['Surf-2'])
+del mdb.models['Beam'].loads['Pressure Load']
+mdb.models['Beam'].rootAssembly.Surface(name='Surf-3', side1Edges=
+    mdb.models['Beam'].rootAssembly.instances['Beam-1'].edges.getSequenceFromMask(
+    ('[#f ]', ), ))
+mdb.models['Beam'].Pressure(amplitude=UNSET, createStepName='BeamLoad', 
+    distributionType=UNIFORM, field='', magnitude=50.0, name='Pressure Load', 
+    region=mdb.models['Beam'].rootAssembly.surfaces['Surf-3'])
+del mdb.models['Beam'].loads['Pressure Load']
+mdb.models['Beam'].ShellEdgeLoad(createStepName='BeamLoad', distributionType=
+    UNIFORM, field='', localCsys=None, magnitude=50.0, name='Load-1', region=
+    mdb.models['Beam'].rootAssembly.surfaces['Surf-2'])
+#* Region must contain only free shell edges.
+mdb.models['Beam'].rootAssembly.DatumPointByOffset(point=
+    mdb.models['Beam'].rootAssembly.instances['Beam-1'].vertices[1], vector=(
+    -0.25, 0.0, 0.0))
+mdb.models['Beam'].parts['Beam'].DatumPointByOffset(point=
+    mdb.models['Beam'].parts['Beam'].vertices[1], vector=(-0.25, 0.0, 0.0))
+mdb.models['Beam'].rootAssembly.regenerate()
+mdb.models['Beam'].parts['Beam'].deleteMesh(regions=
+    mdb.models['Beam'].parts['Beam'].faces.getSequenceFromMask(('[#1 ]', ), ))
+mdb.models['Beam'].parts['Beam'].PartitionEdgeByParam(edges=
+    mdb.models['Beam'].parts['Beam'].edges.getSequenceFromMask(('[#1 ]', ), ), 
+    parameter=0.916900436083476)
+mdb.models['Beam'].parts['Beam'].DatumPointByOffset(point=
+    mdb.models['Beam'].parts['Beam'].vertices[3], vector=(-0.25, 0.0, 0.0))
+mdb.models['Beam'].parts['Beam'].PartitionEdgeByParam(edges=
+    mdb.models['Beam'].parts['Beam'].edges.getSequenceFromMask(('[#8 ]', ), ), 
+    parameter=0.0830995639165242)
+mdb.models['Beam'].rootAssembly.regenerate()
+mdb.models['Beam'].rootAssembly.Surface(name='Surf-4', side1Edges=
+    mdb.models['Beam'].rootAssembly.instances['Beam-1'].edges.getSequenceFromMask(
+    ('[#8 ]', ), ))
+mdb.models['Beam'].Pressure(amplitude=UNSET, createStepName='BeamLoad', 
+    distributionType=UNIFORM, field='', magnitude=50.0, name='Pressure Load', 
+    region=mdb.models['Beam'].rootAssembly.surfaces['Surf-4'])
+mdb.models['Beam'].parts['Beam'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Beam'].parts['Beam'].faces.getSequenceFromMask(('[#1 ]', ), ), 
+    ))
+mdb.models['Beam'].rootAssembly.regenerate()
+mdb.models['Beam'].parts['Beam'].generateMesh()
+mdb.models['Beam'].rootAssembly.regenerate()
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-1', 'memory': 24.0})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_COMPLETED, {'time': 'Mon Apr  1 18:28:58 2019', 
+    'jobName': 'Job-1'})
+mdb.models['Beam'].parts['Beam'].deleteMesh()
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.125)
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.25)
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.2, minSizeFactor=
+    0.1, size=0.25)
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.5, minSizeFactor=
+    0.1, size=0.25)
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.2, minSizeFactor=
+    0.1, size=0.25)
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.5, minSizeFactor=
+    0.1, size=0.25)
+mdb.models['Beam'].parts['Beam'].generateMesh()
+mdb.models['Beam'].parts['Beam'].deleteMesh()
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.15)
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.25)
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.5, size=0.25)
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.25)
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.02)
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.125)
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.01, size=0.125)
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.25)
+mdb.models['Beam'].parts['Beam'].seedEdgeBySize(constraint=FINER, 
+    deviationFactor=0.1, edges=
+    mdb.models['Beam'].parts['Beam'].edges.getSequenceFromMask(('[#24 ]', ), ), 
+    minSizeFactor=0.1, size=0.05)
+mdb.models['Beam'].parts['Beam'].generateMesh()
+# Save by fe1 on 2019_04_01-18.52.10; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Beam'].rootAssembly.regenerate()
+del mdb.models['Beam'].loads['Pressure Load']
+mdb.models['Beam'].rootAssembly.Set(name='Set-2', vertices=
+    mdb.models['Beam'].rootAssembly.instances['Beam-1'].vertices.getSequenceFromMask(
+    ('[#c ]', ), ))
+mdb.models['Beam'].ConcentratedForce(cf2=-50.0, createStepName='BeamLoad', 
+    distributionType=UNIFORM, field='', localCsys=None, name='Pressure Load', 
+    region=mdb.models['Beam'].rootAssembly.sets['Set-2'])
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-1', 'memory': 24.0})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_COMPLETED, {'time': 'Mon Apr  1 19:14:34 2019', 
+    'jobName': 'Job-1'})
+mdb.models['Beam'].parts['Beam'].setValues(space=TWO_D_PLANAR, type=
+    DEFORMABLE_BODY)
+mdb.models['Beam'].parts['Beam'].setValues(space=TWO_D_PLANAR, type=
+    DEFORMABLE_BODY)
+del mdb.models['Beam'].parts['Beam'].features['Datum pt-1']
+del mdb.models['Beam'].parts['Beam'].features['Datum pt-2']
+del mdb.models['Beam'].parts['Beam'].features['Partition edge-2']
+del mdb.models['Beam'].parts['Beam'].features['Partition edge-1']
+mdb.models['Beam'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['Beam'].parts['Beam'].features['Shell planar-1'].sketch)
+mdb.models['Beam'].parts['Beam'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Beam'].sketches['__edit__'], 
+    upToFeature=mdb.models['Beam'].parts['Beam'].features['Shell planar-1'])
+mdb.models['Beam'].sketches['__edit__'].ObliqueDimension(textPoint=(
+    -0.113450646400452, 0.0599129982292652), value=0.3, vertex1=
+    mdb.models['Beam'].sketches['__edit__'].vertices[1], vertex2=
+    mdb.models['Beam'].sketches['__edit__'].vertices[2])
+mdb.models['Beam'].sketches['__edit__'].delete(objectList=(
+    mdb.models['Beam'].sketches['__edit__'].dimensions[2], ))
+mdb.models['Beam'].sketches['__edit__'].delete(objectList=(
+    mdb.models['Beam'].sketches['__edit__'].dimensions[0], ))
+mdb.models['Beam'].sketches['__edit__'].ObliqueDimension(textPoint=(
+    -0.0730299949645996, 0.0620361156761646), value=0.3, vertex1=
+    mdb.models['Beam'].sketches['__edit__'].vertices[1], vertex2=
+    mdb.models['Beam'].sketches['__edit__'].vertices[2])
+mdb.models['Beam'].sketches['__edit__'].delete(objectList=(
+    mdb.models['Beam'].sketches['__edit__'].dimensions[1], ))
+mdb.models['Beam'].sketches['__edit__'].ObliqueDimension(textPoint=(
+    -1.54306411743164, -0.0377523116767406), value=0.01, vertex1=
+    mdb.models['Beam'].sketches['__edit__'].vertices[2], vertex2=
+    mdb.models['Beam'].sketches['__edit__'].vertices[3])
+mdb.models['Beam'].parts['Beam'].features['Shell planar-1'].setValues(sketch=
+    mdb.models['Beam'].sketches['__edit__'])
+del mdb.models['Beam'].sketches['__edit__']
+mdb.models['Beam'].parts['Beam'].regenerate()
+mdb.models['Beam'].rootAssembly.regenerate()
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.025)
+mdb.models['Beam'].parts['Beam'].seedEdgeBySize(constraint=FINER, 
+    deviationFactor=0.1, edges=
+    mdb.models['Beam'].parts['Beam'].edges.getSequenceFromMask(('[#a ]', ), ), 
+    minSizeFactor=0.1, size=0.005)
+mdb.models['Beam'].parts['Beam'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Beam'].parts['Beam'].faces.getSequenceFromMask(('[#1 ]', ), ), 
+    ))
+mdb.models['Beam'].parts['Beam'].generateMesh()
+mdb.models['Beam'].rootAssembly.regenerate()
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-1', 'memory': 24.0})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_COMPLETED, {'time': 'Mon Apr  1 19:26:21 2019', 
+    'jobName': 'Job-1'})
+del mdb.jobs['Job-1']
+del mdb.models['Model-1']
+mdb.models.changeKey(fromName='Beam', toName='Beam123')
+mdb.Model(modelType=STANDARD_EXPLICIT, name='Beam')
+del mdb.models['Beam123']
+mdb.models['Beam'].ConstrainedSketch(name='__profile__', sheetSize=0.4)
+mdb.models['Beam'].sketches['__profile__'].rectangle(point1=(-0.075, 0.0225), 
+    point2=(0.0725, 0.01))
+mdb.models['Beam'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    -0.0395154841244221, 0.0274509862065315), value=0.3, vertex1=
+    mdb.models['Beam'].sketches['__profile__'].vertices[3], vertex2=
+    mdb.models['Beam'].sketches['__profile__'].vertices[0])
+mdb.models['Beam'].sketches['__profile__'].dragEntity(entity=
+    mdb.models['Beam'].sketches['__profile__'].vertices[2], points=((0.0725, 
+    0.01), (0.0725, 0.01), (0.1775, 0.0075), (0.1475, 0.0075), (0.15, 0.0075)))
+mdb.models['Beam'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    -0.160837799310684, 0.0133657455444336), value=0.01, vertex1=
+    mdb.models['Beam'].sketches['__profile__'].vertices[0], vertex2=
+    mdb.models['Beam'].sketches['__profile__'].vertices[1])
+mdb.models['Beam'].Part(dimensionality=TWO_D_PLANAR, name='Beam', type=
+    DEFORMABLE_BODY)
+mdb.models['Beam'].parts['Beam'].BaseShell(sketch=
+    mdb.models['Beam'].sketches['__profile__'])
+del mdb.models['Beam'].sketches['__profile__']
+mdb.models['Beam'].Material(name='BeamMaterial')
+mdb.models['Beam'].materials['BeamMaterial'].Elastic(table=((90000000000.0, 
+    0.3), ))
+mdb.models['Beam'].HomogeneousSolidSection(material='BeamMaterial', name=
+    'BeamSection', thickness=0.005)
+mdb.models['Beam'].parts['Beam'].Set(faces=
+    mdb.models['Beam'].parts['Beam'].faces.getSequenceFromMask(('[#1 ]', ), ), 
+    name='Set-1')
+mdb.models['Beam'].parts['Beam'].SectionAssignment(offset=0.0, offsetField='', 
+    offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Beam'].parts['Beam'].sets['Set-1'], sectionName='BeamSection', 
+    thicknessAssignment=FROM_SECTION)
+mdb.models['Beam'].StaticStep(name='BeamLoad', previous='Initial')
+mdb.models['Beam'].fieldOutputRequests['F-Output-1'].setValues(variables=('S', 
+    'U', 'RF', 'NFORC'))
+mdb.models['Beam'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Beam'].rootAssembly.Instance(dependent=ON, name='Beam-1', part=
+    mdb.models['Beam'].parts['Beam'])
+mdb.models['Beam'].rootAssembly.Set(edges=
+    mdb.models['Beam'].rootAssembly.instances['Beam-1'].edges.getSequenceFromMask(
+    ('[#2 ]', ), ), name='Set-1')
+mdb.models['Beam'].EncastreBC(createStepName='BeamLoad', localCsys=None, name=
+    'FixLeftEnd', region=mdb.models['Beam'].rootAssembly.sets['Set-1'])
+mdb.models['Beam'].rootAssembly.Set(name='Set-2', vertices=
+    mdb.models['Beam'].rootAssembly.instances['Beam-1'].vertices.getSequenceFromMask(
+    ('[#8 ]', ), ))
+mdb.models['Beam'].ConcentratedForce(cf2=-50.0, createStepName='BeamLoad', 
+    distributionType=UNIFORM, field='', localCsys=None, name=
+    'Concentrated Load', region=mdb.models['Beam'].rootAssembly.sets['Set-2'])
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.025)
+mdb.models['Beam'].parts['Beam'].seedEdgeBySize(constraint=FINER, 
+    deviationFactor=0.1, edges=
+    mdb.models['Beam'].parts['Beam'].edges.getSequenceFromMask(('[#a ]', ), ), 
+    minSizeFactor=0.1, size=0.005)
+mdb.models['Beam'].parts['Beam'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Beam'].parts['Beam'].faces.getSequenceFromMask(('[#1 ]', ), ), 
+    ))
+mdb.models['Beam'].parts['Beam'].generateMesh()
+mdb.models['Beam'].rootAssembly.regenerate()
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Beam', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-1', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-1', 'memory': 24.0})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_COMPLETED, {'time': 'Mon Apr  1 19:45:21 2019', 
+    'jobName': 'Job-1'})
+mdb.models['Beam'].parts['Beam'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Beam'].parts['Beam'].faces.getSequenceFromMask(('[#1 ]', ), ), 
+    ))
+mdb.models['Beam'].rootAssembly.regenerate()
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-1', 'memory': 24.0})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_COMPLETED, {'time': 'Mon Apr  1 20:07:50 2019', 
+    'jobName': 'Job-1'})
+mdb.models['Beam'].parts['Beam'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS8, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Beam'].parts['Beam'].faces.getSequenceFromMask(('[#1 ]', ), ), 
+    ))
+mdb.models['Beam'].rootAssembly.regenerate()
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-1', 'memory': 24.0})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_COMPLETED, {'time': 'Mon Apr  1 20:10:24 2019', 
+    'jobName': 'Job-1'})
+mdb.models['Beam'].parts['Beam'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Beam'].parts['Beam'].faces.getSequenceFromMask(('[#1 ]', ), ), 
+    ))
+mdb.models['Beam'].rootAssembly.regenerate()
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-1', 'memory': 24.0})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_COMPLETED, {'time': 'Mon Apr  1 20:11:42 2019', 
+    'jobName': 'Job-1'})
+mdb.models['Beam'].parts['Beam'].deleteMesh()
+mdb.models['Beam'].parts['Beam'].seedEdgeBySize(constraint=FINER, 
+    deviationFactor=0.1, edges=
+    mdb.models['Beam'].parts['Beam'].edges.getSequenceFromMask(('[#a ]', ), ), 
+    minSizeFactor=0.1, size=0.0025)
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.0125)
+mdb.models['Beam'].parts['Beam'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Beam'].parts['Beam'].faces.getSequenceFromMask(('[#1 ]', ), ), 
+    ))
+mdb.models['Beam'].parts['Beam'].generateMesh()
+mdb.models['Beam'].rootAssembly.regenerate()
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-1', 'memory': 24.0})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_COMPLETED, {'time': 'Mon Apr  1 20:14:27 2019', 
+    'jobName': 'Job-1'})
+mdb.models['Beam'].parts['Beam'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD), ElemType(elemCode=CPS3, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Beam'].parts['Beam'].faces.getSequenceFromMask(('[#1 ]', ), ), 
+    ))
+mdb.models['Beam'].parts['Beam'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT, distortionControl=DEFAULT), ElemType(
+    elemCode=CPS3, elemLibrary=STANDARD)), regions=(
+    mdb.models['Beam'].parts['Beam'].faces.getSequenceFromMask(('[#1 ]', ), ), 
+    ))
+mdb.models['Beam'].rootAssembly.regenerate()
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-1', 'memory': 24.0})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_COMPLETED, {'time': 'Mon Apr  1 20:16:13 2019', 
+    'jobName': 'Job-1'})
+mdb.models['Beam'].parts['Beam'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS8, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Beam'].parts['Beam'].faces.getSequenceFromMask(('[#1 ]', ), ), 
+    ))
+mdb.models['Beam'].rootAssembly.regenerate()
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-1', 'memory': 24.0})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_COMPLETED, {'time': 'Mon Apr  1 20:17:17 2019', 
+    'jobName': 'Job-1'})
+mdb.models['Beam'].parts['Beam'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Beam'].parts['Beam'].faces.getSequenceFromMask(('[#1 ]', ), ), 
+    ))
+mdb.models['Beam'].rootAssembly.regenerate()
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-1', 'memory': 24.0})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_COMPLETED, {'time': 'Mon Apr  1 20:18:19 2019', 
+    'jobName': 'Job-1'})
+mdb.models['Beam'].parts['Beam'].deleteMesh()
+mdb.models['Beam'].parts['Beam'].seedEdgeBySize(constraint=FINER, 
+    deviationFactor=0.1, edges=
+    mdb.models['Beam'].parts['Beam'].edges.getSequenceFromMask(('[#a ]', ), ), 
+    minSizeFactor=0.1, size=0.005)
+mdb.models['Beam'].parts['Beam'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.025)
+mdb.models['Beam'].parts['Beam'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS8R, elemLibrary=STANDARD), ElemType(elemCode=CPS6M, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['Beam'].parts['Beam'].faces.getSequenceFromMask(('[#1 ]', ), ), 
+    ))
+mdb.models['Beam'].parts['Beam'].generateMesh()
+mdb.models['Beam'].rootAssembly.regenerate()
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-1', 'memory': 24.0})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_COMPLETED, {'time': 'Mon Apr  1 20:26:35 2019', 
+    'jobName': 'Job-1'})
+# Save by fe1 on 2019_04_01-20.34.33; build 2016 2015_09_24-22.31.09 126547
