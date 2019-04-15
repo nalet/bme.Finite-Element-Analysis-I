@@ -13,6 +13,7 @@
 \usepackage{layout}
 \usepackage{etoolbox}
 \usepackage{mathabx}
+\usepackage{animate}
 % This is to include code
 \usepackage{listings}
 \usepackage{xcolor}
@@ -56,13 +57,18 @@
 \author{Nalet Meinen and Pascal Wyss\\ %replace with your name
 Finite Element Analysis I
 }
-
 \maketitle
 \section*{Abstract}
 This assignment shows how different modeling approaches of a corner can have 
 an impact on the model. Different methods were discussed and implemented to show 
 significant differences. The plots and the models are created with Abaqus, 
 software from Dassault.
+
+\begin{figure}[!htb]
+  \centering
+  \animategraphics[autoplay,loop,width=0.8\linewidth,trim={1mm 1mm 1mm 1mm}]{1}{pics/out/ani-}{1}{62}
+  \caption{Animation of frequency on beam}
+\end{figure}
 
 \tableofcontents
 \pagebreak
@@ -97,12 +103,12 @@ from the calculations of our global model.
   \centering
   \begin{subfigure}{.5\textwidth}
     \centering
-    \includegraphics[width=0.95\linewidth]{pics/CPS8R_NoFillet_Global}
+    \includegraphics[width=0.95\linewidth]{pics/vib_fourier}
     \caption{maximal stress: 603 MPa \\\hspace{\textwidth}minimal stress: 1,24 MPa}
   \end{subfigure}%
   \begin{subfigure}{.5\textwidth}
     \centering
-    \includegraphics[width=0.95\linewidth]{pics/CPS8R_NoFillet_Global_Plot}
+    \includegraphics[width=0.95\linewidth]{pics/vib_fourier}
     \caption{Stress (Mises) in N/m$^{2}$ max. 603 N/m$^{2}$}
    \end{subfigure}
   \caption{Global model with no fillet}
@@ -115,12 +121,12 @@ We, therefore, expect the beam to be plastically deformed in the region of the i
   \centering
   \begin{subfigure}{.5\textwidth}
     \centering
-    \includegraphics[width=0.95\linewidth]{pics/CPS8R_Fillet}
+    \includegraphics[width=0.95\linewidth]{pics/vib_fourier}
     \caption{maximal stress: 553 MPa \\\hspace{\textwidth}minimal stress: 0.21 MPa}
   \end{subfigure}%
   \begin{subfigure}{.5\textwidth}
     \centering
-    \includegraphics[width=0.95\linewidth]{pics/CPS8R_Fillet_Plot}
+    \includegraphics[width=0.95\linewidth]{pics/vib_fourier}
     \caption{Stress (Mises) in N/m$^{2}$ max. 553 N/m$^{2}$}
    \end{subfigure}
   \caption{Submodel with 1mm fillet}
@@ -137,12 +143,12 @@ stress of our material, we still expect it to deform.
   \centering
   \begin{subfigure}{.5\textwidth}
     \centering
-    \includegraphics[width=0.95\linewidth]{pics/CPS8R_Fillet_Plot_Circle}
+    \includegraphics[width=0.95\linewidth]{pics/vib_fourier}
     \caption{Path around the inner corner}
   \end{subfigure}%
   \begin{subfigure}{.5\textwidth}
     \centering
-    \includegraphics[width=0.95\linewidth]{pics/CPS8R_Fillet_Plot_Circle_Plot}
+    \includegraphics[width=0.95\linewidth]{pics/vib_fourier}
     \caption{Stress (Mises) in N/m$^{2}$ around the inner corner max. approx. 550 N/m$^{2}$}
    \end{subfigure}
   \caption{Submodel with 1mm fillet}
@@ -155,12 +161,12 @@ distance. The max stress of 553 Mpa is not reached in this plot because it repre
   \centering
   \begin{subfigure}{.5\textwidth}
     \centering
-    \includegraphics[width=0.95\linewidth]{pics/CPS8R_Fillet_Plot_Circle_Plot_5mm}
+    \includegraphics[width=0.95\linewidth]{pics/vib_fourier}
     \caption{maximal stress: 549 MPa \\\hspace{\textwidth}minimal stress: 0.23 MPa}
   \end{subfigure}%
   \begin{subfigure}{.5\textwidth}
     \centering
-    \includegraphics[width=0.95\linewidth]{pics/CPS8R_Fillet_Plot_Circle_Plot_5mm_plot}
+    \includegraphics[width=0.95\linewidth]{pics/vib_fourier}
     \caption{Stress (Mises) in N/m$^{2}$ around the inner corner max. approx. 500 N/m$^{2}$}
    \end{subfigure}
   \caption{Submodel with 5mm fillet}
