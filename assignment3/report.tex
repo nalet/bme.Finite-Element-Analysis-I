@@ -14,6 +14,7 @@
 \usepackage{etoolbox}
 \usepackage{mathabx}
 \usepackage{animate}
+\usepackage{array}
 % This is to include code
 \usepackage{listings}
 \usepackage{xcolor}
@@ -28,6 +29,10 @@
     stringstyle     = \color{green},
     commentstyle    = \color{red}\ttfamily
 }
+
+\newenvironment{conditions}
+  {\par\vspace{\abovedisplayskip}\noindent\begin{tabular}{>{$}l<{$} @{${}={}$} l}}
+  {\end{tabular}\par\vspace{\belowdisplayskip}}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -44,6 +49,8 @@
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 \newenvironment{corollary}[2][Corollary]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+
 
 \begin{document}
 
@@ -63,23 +70,48 @@ In this assignment we examine the behaviour of a beam after being subjected to a
 The goal is to extract the resonance frequency of the beam with the given dimensions and material coefficients.
 
 
-\begin{figure}[!htb]
-  \centering
-  \animategraphics[autoplay,loop,width=0.8\linewidth,trim={1mm 1mm 1mm 1mm}]{4}{pics/out/ani-}{1}{62}
-  \caption{Animation of frequency on beam}
-\end{figure}
+% \begin{figure}[!htb]
+%   \centering
+%   \animategraphics[autoplay,loop,width=0.8\linewidth,trim={1mm 1mm 1mm 1mm}]{4}{pics/out/ani-}{1}{62}
+%   \caption{Animation of frequency on beam}
+% \end{figure}
 
 \tableofcontents
 \pagebreak
 \section{Introduction}
-We're examining the behavior of an L-beam fixed at one end and subjected 
-to a load at the other end. the region of interest will be the inner 
-corner where we expect the highest stresses. we will examine different 
-setups: no fillet, 1mm fillet, and 5mm fillet.
+The goal of this assignment is the analyzation of a beam attached to a wall 
+and how it is related to its resonance frequencies. We want to show the analytical 
+solution and after the model implemented in Abaqus. An example of this calculation 
+can be used in dental implants, as the beginns to oscillate under given circumstances.
 
 % I'm refering to something\footnote{footnotes working fine \cite{einstein}} .
 
 \section{Methods}
+
+\subsection{Analytical solution}
+Consider a beam with the following dimensions attached to a wall in our case 
+on the left end:
+\begin{equation}\label{eq:1}
+  L=150mm, h=2.5mm, b=20mm, E=10GPa, v=0.3, \rho=7.0E3kg.m^{-3}
+\end{equation}
+The resonance frequencies (inducing a bending in the direction of the dimension h) of
+such a model are given by the formula:
+\begin{equation}\label{eq:2}
+  \frac{1}{2\pi\sqrt{12}}\alpha_i^2\sqrt{\frac{E}{\rho}}\frac{h}{L^2}
+\end{equation}
+Where:
+\begin{conditions}
+  \alpha_0 & $1.875,\alpha_1=4.695,\alpha_2=7.85,...,\alpha_i=(2i+1)\frac{\pi}{2} \enspace  for \, i>2$ \\
+  E     &  Young's modulus \\
+  \rho  &  density of the material \\   
+  h     &  height of the cross-section of the beam \\
+  L     &  length of the beam
+\end{conditions}
+\noindent Using our values for $\alpha_0$:
+\begin{equation}\label{eq:3}
+  f_0 = \frac{1}{2\pi\sqrt{12}}1.875^2\sqrt{\frac{10 \cdot 10^3 Pa}{7\cdot10^3 
+  \frac{kg}{m^3}}}\frac{2.5 \cdot 10^3 m}{(150 \cdot 10^3 m)^2} = 21.451 \, Hz
+\end{equation}
 
 \subsection{Generating an impulse}
 

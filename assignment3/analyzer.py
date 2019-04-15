@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 plt.rcParams['figure.dpi'] = 120
 plt.rcParams['font.size'] = 15
 # Import data using Pandas. Using report I XY data, this line should work
-data = pd.read_csv(os.path.dirname(os.path.abspath(__file__)) + '/assignment3_export.txt',
+data = pd.read_csv(os.path.dirname(os.path.abspath(__file__)) + '/abaqus.rpt',
                    skiprows=5, header=None, delim_whitespace=True)
 data = data.values
 # Fast Fourier Transform
