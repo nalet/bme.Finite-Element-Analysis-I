@@ -3,15 +3,16 @@ import numpy as np
 import pandas as pd
 from scipy.fftpack import fft
 import matplotlib.pyplot as plt
+import sys
 
 plt.rcParams['figure.dpi'] = 120
 plt.rcParams['font.size'] = 15
 # Import data using Pandas. Using report I XY data, this line should work
-data = pd.read_csv(os.path.dirname(os.path.abspath(__file__)) + '/abaqus.5.rpt',
+data = pd.read_csv(os.path.dirname(os.path.abspath(__file__)) + sys.argv[0],
                    skiprows=5, header=None, delim_whitespace=True)
 data = data.values
 # Fast Fourier Transform
-y = fft(data[:, 3])
+y = fft(data[:, sys.argv[1]])
 # Absolute value
 m = np.abs(y)
 # Frequency
