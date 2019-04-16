@@ -8,11 +8,12 @@ import sys
 plt.rcParams['figure.dpi'] = 120
 plt.rcParams['font.size'] = 15
 # Import data using Pandas. Using report I XY data, this line should work
-data = pd.read_csv(os.path.dirname(os.path.abspath(__file__)) + sys.argv[0],
+print(os.path.dirname(os.path.abspath(__file__)) + '\\' + sys.argv[1])
+data = pd.read_csv(os.path.dirname(os.path.abspath(__file__)) + '\\' + sys.argv[1],
                    skiprows=5, header=None, delim_whitespace=True)
 data = data.values
 # Fast Fourier Transform
-y = fft(data[:, sys.argv[1]])
+y = fft(data[:, int(sys.argv[2])])
 
 # Absolute value
 m = np.abs(y)
