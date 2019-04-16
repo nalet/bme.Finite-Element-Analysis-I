@@ -1087,3 +1087,514 @@ mdb.jobs['Job-3']._Message(COMPLETED, {'phase': EXPLICIT_PHASE,
     'message': 'Phase complete', 'jobName': 'Job-3'})
 mdb.jobs['Job-3']._Message(JOB_COMPLETED, {'time': 'Tue Apr 16 09:46:10 2019', 
     'jobName': 'Job-3'})
+mdb.models['Beam'].loads['Load-1'].setValues(cf2=-100.0, distributionType=
+    UNIFORM, field='')
+mdb.jobs['Job-3'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-3']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE REQUEST FOR MISES OUTPUT WILL BE REPLACED BY A REQUEST FOR S OUTPUT', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST CTSHR IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST E IS NOT AVAILABLE IN A NONLINEAR STEP -- LE (LOG STRAIN) WILL BE OUTPUT INSTEAD.', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST MISESONLY IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEMAG IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PRESSONLY IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PS IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST VE IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST VEEQ IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST VS IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE CPS4R', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE CPS4R', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE CPS4R', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST TSHR IS NOT AVAILABLE FOR ELEMENT TYPE CPS4R', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST NFORCSO IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SE IS NOT AVAILABLE FOR ELEMENT TYPE CPS4R', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SF IS NOT AVAILABLE FOR ELEMENT TYPE CPS4R', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SSAVG IS NOT AVAILABLE FOR ELEMENT TYPE CPS4R', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PPRESS IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STARTED, {'phase': PACKAGER_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': PACKAGER_PHASE, 
+    'message': 'There are 20 warning messages in the data (.dat) file.  Please check the data file for possible errors in the input file.', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(COMPLETED, {'phase': PACKAGER_PHASE, 
+    'message': 'Phase complete', 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STARTED, {'phase': EXPLICIT_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.0, 
+    'stableTimeIncrement': 4.3910904423683e-07, 'stepTime': 0.0, 
+    'totalEnergy': 0.0, 'cpuTime': 0.00999999046325684, 'jobName': 'Job-3', 
+    'step': 1, 'increment': 0, 'phase': EXPLICIT_PHASE, 'kineticEnergy': 0.0})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.0200002752244473, 
+    'stableTimeIncrement': 4.39092247006556e-07, 
+    'stepTime': 0.0200002752244473, 'totalEnergy': -3.23803628354824e-09, 
+    'cpuTime': 3.94999980926514, 'jobName': 'Job-3', 'step': 1, 
+    'increment': 45555, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 3.89832202927209e-05})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.0400000400841236, 
+    'stableTimeIncrement': 4.39079286707056e-07, 
+    'stepTime': 0.0400000400841236, 'totalEnergy': -1.9692937058835e-08, 
+    'cpuTime': 8.02000045776367, 'jobName': 'Job-3', 'step': 1, 
+    'increment': 91052, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 2.22422786464449e-05})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 2, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.0500001423060894, 
+    'stableTimeIncrement': 4.39076870861754e-07, 
+    'stepTime': 0.0500001423060894, 'totalEnergy': -3.08246654867617e-08, 
+    'cpuTime': 10.0100002288818, 'jobName': 'Job-3', 'step': 1, 
+    'increment': 113801, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 2.52157860813895e-05})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 3, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.0600002445280552, 
+    'stableTimeIncrement': 4.39081503600391e-07, 
+    'stepTime': 0.0600002445280552, 'totalEnergy': -4.55413733391197e-08, 
+    'cpuTime': 11.9000005722046, 'jobName': 'Job-3', 'step': 1, 
+    'increment': 136550, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 8.86794259713497e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 4, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.0800000056624413, 
+    'stableTimeIncrement': 4.39051348166686e-07, 
+    'stepTime': 0.0800000056624413, 'totalEnergy': -8.31256983246931e-08, 
+    'cpuTime': 15.7100009918213, 'jobName': 'Job-3', 'step': 1, 
+    'increment': 182047, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 1.31528831843752e-05})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 5, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.100000210106373, 
+    'stableTimeIncrement': 4.39050893419335e-07, 'stepTime': 0.100000210106373, 
+    'totalEnergy': -1.34685450348115e-07, 'cpuTime': 19.5599994659424, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 227545, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 1.83977717824746e-05})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 6, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.120000414550304, 
+    'stableTimeIncrement': 4.39056549339512e-07, 'stepTime': 0.120000414550304, 
+    'totalEnergy': -1.99199561734531e-07, 'cpuTime': 23.4400005340576, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 273043, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 1.49637580761919e-05})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 7, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.140000030398369, 
+    'stableTimeIncrement': 4.3905012603318e-07, 'stepTime': 0.140000030398369, 
+    'totalEnergy': -2.66584322616836e-07, 'cpuTime': 27.3500003814697, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 319128, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 8.45196882437449e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 8, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.150000035762787, 
+    'stableTimeIncrement': 4.39053223999508e-07, 'stepTime': 0.150000035762787, 
+    'totalEnergy': -2.97515583724817e-07, 'cpuTime': 29.3199996948242, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 342269, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 1.01705554698128e-05})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 9, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.160000041127205, 
+    'stableTimeIncrement': 4.3905166080549e-07, 'stepTime': 0.160000041127205, 
+    'totalEnergy': -3.18983097713499e-07, 'cpuTime': 31.3099994659424, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 365410, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 6.99119118507951e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 10, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.180000051856041, 
+    'stableTimeIncrement': 4.39053451373184e-07, 'stepTime': 0.180000051856041, 
+    'totalEnergy': -3.49777707242538e-07, 'cpuTime': 35.5599975585938, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 411692, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 5.87858903600136e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 11, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.200000062584877, 
+    'stableTimeIncrement': 4.39049870237795e-07, 'stepTime': 0.200000062584877, 
+    'totalEnergy': -3.6764907918041e-07, 'cpuTime': 39.7599983215332, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 457974, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 3.03523847833276e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 12, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.220000073313713, 
+    'stableTimeIncrement': 4.39053764011987e-07, 'stepTime': 0.220000073313713, 
+    'totalEnergy': -3.77708090582018e-07, 'cpuTime': 43.9199981689453, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 504256, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 7.07416666045901e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 13, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.240000084042549, 
+    'stableTimeIncrement': 4.39050751310788e-07, 'stepTime': 0.240000084042549, 
+    'totalEnergy': -3.83205673415432e-07, 'cpuTime': 47.8400001525879, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 550538, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 1.33353605633602e-05})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 14, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.250000089406967, 
+    'stableTimeIncrement': 4.3905012603318e-07, 'stepTime': 0.250000089406967, 
+    'totalEnergy': -3.82418562594466e-07, 'cpuTime': 49.8199996948242, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 573679, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 5.11288760662865e-07})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 15, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.260000258684158, 
+    'stableTimeIncrement': 4.39050836575916e-07, 'stepTime': 0.260000258684158, 
+    'totalEnergy': -3.8788570577708e-07, 'cpuTime': 51.7699966430664, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 596049, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 1.14658132588374e-05})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 16, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.280000150203705, 
+    'stableTimeIncrement': 4.39052740830448e-07, 'stepTime': 0.280000150203705, 
+    'totalEnergy': -3.91976925584459e-07, 'cpuTime': 55.6199989318848, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 640788, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.9616401156527e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 17, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.300000041723251, 
+    'stableTimeIncrement': 4.39050722889078e-07, 'stepTime': 0.300000041723251, 
+    'totalEnergy': -3.95895739302432e-07, 'cpuTime': 59.5199966430664, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 685527, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 5.61426816148014e-07})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 18, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.320000380277634, 
+    'stableTimeIncrement': 4.39053337686346e-07, 'stepTime': 0.320000380277634, 
+    'totalEnergy': -3.9925348005454e-07, 'cpuTime': 63.3599967956543, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 730267, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 2.5407009616174e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 19, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.34000027179718, 
+    'stableTimeIncrement': 4.39049870237795e-07, 'stepTime': 0.34000027179718, 
+    'totalEnergy': -4.03351265276797e-07, 'cpuTime': 67.3199996948242, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 775006, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 7.7894983405713e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 20, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.349999994039536, 
+    'stableTimeIncrement': 4.3905214397455e-07, 'stepTime': 0.349999994039536, 
+    'totalEnergy': -4.01439365305123e-07, 'cpuTime': 69.2600021362305, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 797375, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 2.52631730290886e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 21, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.360000163316727, 
+    'stableTimeIncrement': 4.39051945022584e-07, 'stepTime': 0.360000163316727, 
+    'totalEnergy': -4.04097932005243e-07, 'cpuTime': 71.2200012207031, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 819745, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 1.0192701665801e-05})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 22, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.380000054836273, 
+    'stableTimeIncrement': 4.39051177636429e-07, 'stepTime': 0.380000054836273, 
+    'totalEnergy': -4.08331572998577e-07, 'cpuTime': 75.1800003051758, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 864484, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 7.40937366572325e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 23, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.400000393390656, 
+    'stableTimeIncrement': 4.39051433431814e-07, 'stepTime': 0.400000393390656, 
+    'totalEnergy': -4.14699627526716e-07, 'cpuTime': 79.0299987792969, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 909224, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 3.21876291309309e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 24, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.420000284910202, 
+    'stableTimeIncrement': 4.39051774492327e-07, 'stepTime': 0.420000284910202, 
+    'totalEnergy': -4.21779617454376e-07, 'cpuTime': 82.8399963378906, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 953963, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 2.93215680358117e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 25, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.440000176429749, 
+    'stableTimeIncrement': 4.39050438671984e-07, 'stepTime': 0.440000176429749, 
+    'totalEnergy': -4.30090182135245e-07, 'cpuTime': 86.7099990844727, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 998702, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 6.79354388921638e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 26, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.45000034570694, 
+    'stableTimeIncrement': 4.39050353406856e-07, 'stepTime': 0.45000034570694, 
+    'totalEnergy': -4.31577944937089e-07, 'cpuTime': 88.629997253418, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1021072, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 2.52431027547573e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 27, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.460000067949295, 
+    'stableTimeIncrement': 4.3905166080549e-07, 'stepTime': 0.460000067949295, 
+    'totalEnergy': -4.36302684647671e-07, 'cpuTime': 90.5599975585938, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1043441, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 9.70828023127979e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 28, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.480000406503677, 
+    'stableTimeIncrement': 4.39050410250275e-07, 'stepTime': 0.480000406503677, 
+    'totalEnergy': -4.42000356315475e-07, 'cpuTime': 94.4300003051758, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1088181, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 7.62856097935583e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 29, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.500000298023224, 
+    'stableTimeIncrement': 4.39051945022584e-07, 'stepTime': 0.500000298023224, 
+    'totalEnergy': -4.50519110017922e-07, 'cpuTime': 98.2799987792969, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1132920, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 2.55451959674247e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 30, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.520000338554382, 
+    'stableTimeIncrement': 4.39051518696942e-07, 'stepTime': 0.520000338554382, 
+    'totalEnergy': -4.6487284066643e-07, 'cpuTime': 102.379997253418, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1180855, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 1.90426681001554e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 31, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.539999961853027, 
+    'stableTimeIncrement': 4.39050609202241e-07, 'stepTime': 0.539999961853027, 
+    'totalEnergy': -4.80126800539438e-07, 'cpuTime': 106.519996643066, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1228789, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.70586769552028e-07})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 32, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.550000190734863, 
+    'stableTimeIncrement': 4.39051774492327e-07, 'stepTime': 0.550000190734863, 
+    'totalEnergy': -4.81681752262375e-07, 'cpuTime': 108.540000915527, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1252757, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 8.37702191347489e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 33, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.560000002384186, 
+    'stableTimeIncrement': 4.39051774492327e-07, 'stepTime': 0.560000002384186, 
+    'totalEnergy': -4.90309844281001e-07, 'cpuTime': 110.610000610352, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1276724, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.48045102530159e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 34, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.580000042915344, 
+    'stableTimeIncrement': 4.3905211555284e-07, 'stepTime': 0.580000042915344, 
+    'totalEnergy': -5.02452394357533e-07, 'cpuTime': 114.73999786377, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1324659, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 6.5413146330684e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 35, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.600000083446503, 
+    'stableTimeIncrement': 4.39051461853524e-07, 'stepTime': 0.600000083446503, 
+    'totalEnergy': -5.15978513249138e-07, 'cpuTime': 119.119995117188, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1372594, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 9.92108653008472e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 36, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.620000123977661, 
+    'stableTimeIncrement': 4.39050978684463e-07, 'stepTime': 0.620000123977661, 
+    'totalEnergy': -5.31022806171677e-07, 'cpuTime': 123.150001525879, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1420529, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 8.60852924233768e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 37, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.64000016450882, 
+    'stableTimeIncrement': 4.39051945022584e-07, 'stepTime': 0.64000016450882, 
+    'totalEnergy': -5.47473177903157e-07, 'cpuTime': 127.290000915527, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1468464, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 6.84089764035889e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 38, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.649999976158142, 
+    'stableTimeIncrement': 4.3905112079301e-07, 'stepTime': 0.649999976158142, 
+    'totalEnergy': -5.58392571292643e-07, 'cpuTime': 129.34001159668, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1492431, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 4.92124991069431e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 39, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.660000205039978, 
+    'stableTimeIncrement': 4.39052314504806e-07, 'stepTime': 0.660000205039978, 
+    'totalEnergy': -5.67487461466953e-07, 'cpuTime': 131.389999389648, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1516399, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 2.65467951976461e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 40, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.680000245571136, 
+    'stableTimeIncrement': 4.39050836575916e-07, 'stepTime': 0.680000245571136, 
+    'totalEnergy': -5.83633777750947e-07, 'cpuTime': 135.490005493164, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1564334, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 9.58260898187291e-07})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 41, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.700000286102295, 
+    'stableTimeIncrement': 4.39051262901557e-07, 'stepTime': 0.700000286102295, 
+    'totalEnergy': -6.00697148911422e-07, 'cpuTime': 139.59001159668, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1612269, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 7.12339669917128e-07})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 42, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.720000326633453, 
+    'stableTimeIncrement': 4.39051746070618e-07, 'stepTime': 0.720000326633453, 
+    'totalEnergy': -6.21838466940972e-07, 'cpuTime': 143.670013427734, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1660204, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 3.57254248228855e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 43, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.740000367164612, 
+    'stableTimeIncrement': 4.39051945022584e-07, 'stepTime': 0.740000367164612, 
+    'totalEnergy': -6.40019322872831e-07, 'cpuTime': 147.730010986328, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1708139, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 6.71043835609453e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 44, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.750000178813934, 
+    'stableTimeIncrement': 4.39051575540361e-07, 'stepTime': 0.750000178813934, 
+    'totalEnergy': -6.44717431441677e-07, 'cpuTime': 149.740005493164, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1732106, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 1.8078600305671e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 45, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.759999990463257, 
+    'stableTimeIncrement': 4.39051234479848e-07, 'stepTime': 0.759999990463257, 
+    'totalEnergy': -6.59402019209665e-07, 'cpuTime': 151.940002441406, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1756073, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 8.99385486263782e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 46, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.780000030994415, 
+    'stableTimeIncrement': 4.39050751310788e-07, 'stepTime': 0.780000030994415, 
+    'totalEnergy': -6.7762903199764e-07, 'cpuTime': 155.970001220703, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1804008, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 8.69197720021475e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 47, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.800000071525574, 
+    'stableTimeIncrement': 4.39051831335746e-07, 'stepTime': 0.800000071525574, 
+    'totalEnergy': -6.95627079494443e-07, 'cpuTime': 160.050003051758, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1851943, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 6.03687340117176e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 48, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.820000112056732, 
+    'stableTimeIncrement': 4.39051234479848e-07, 'stepTime': 0.820000112056732, 
+    'totalEnergy': -7.12122698587336e-07, 'cpuTime': 164.020004272461, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1899878, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 2.78201537184941e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 49, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.840000152587891, 
+    'stableTimeIncrement': 4.39051063949591e-07, 'stepTime': 0.840000152587891, 
+    'totalEnergy': -7.30199758436356e-07, 'cpuTime': 168.130004882812, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1947813, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 3.78496338271361e-07})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 50, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.850000381469727, 
+    'stableTimeIncrement': 4.39051291323267e-07, 'stepTime': 0.850000381469727, 
+    'totalEnergy': -7.45975057725445e-07, 'cpuTime': 170.139999389648, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1971781, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 8.77065122040221e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 51, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.860000193119049, 
+    'stableTimeIncrement': 4.39050410250275e-07, 'stepTime': 0.860000193119049, 
+    'totalEnergy': -7.55569544708123e-07, 'cpuTime': 172.18000793457, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 1995748, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 8.45224576551118e-07})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 52, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.880000233650208, 
+    'stableTimeIncrement': 4.39051859757456e-07, 'stepTime': 0.880000233650208, 
+    'totalEnergy': -7.79464528477547e-07, 'cpuTime': 176.200012207031, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 2043683, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 3.09378356178058e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 53, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.900000274181366, 
+    'stableTimeIncrement': 4.39051063949591e-07, 'stepTime': 0.900000274181366, 
+    'totalEnergy': -7.97718257672386e-07, 'cpuTime': 180.290008544922, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 2091618, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 6.69165819999762e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 54, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.920000314712524, 
+    'stableTimeIncrement': 4.3905112079301e-07, 'stepTime': 0.920000314712524, 
+    'totalEnergy': -8.16628357824811e-07, 'cpuTime': 184.320007324219, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 2139553, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 8.51881213748129e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 55, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.940000355243683, 
+    'stableTimeIncrement': 4.3905114921472e-07, 'stepTime': 0.940000355243683, 
+    'totalEnergy': -8.38387677504215e-07, 'cpuTime': 188.380004882812, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 2187488, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 8.54800327942939e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 56, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.950000166893005, 
+    'stableTimeIncrement': 4.39050523937112e-07, 'stepTime': 0.950000166893005, 
+    'totalEnergy': -8.53478752560477e-07, 'cpuTime': 190.400009155273, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 2211455, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 1.78014045104646e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 57, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.959999978542328, 
+    'stableTimeIncrement': 4.39051063949591e-07, 'stepTime': 0.959999978542328, 
+    'totalEnergy': -8.5818498973822e-07, 'cpuTime': 192.470001220703, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 2235422, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 5.67788174521411e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 58, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 0.980000019073486, 
+    'stableTimeIncrement': 4.39051490275233e-07, 'stepTime': 0.980000019073486, 
+    'totalEnergy': -8.82252550127305e-07, 'cpuTime': 196.490005493164, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 2283357, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 2.67101927420299e-06})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 59, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(STATUS, {'totalTime': 1.0, 
+    'stableTimeIncrement': 4.39050296563437e-07, 'stepTime': 1.0, 
+    'totalEnergy': -9.0856900669678e-07, 'cpuTime': 200.510009765625, 
+    'jobName': 'Job-3', 'step': 1, 'increment': 2331292, 
+    'phase': EXPLICIT_PHASE, 'kineticEnergy': 2.10603374739549e-07})
+mdb.jobs['Job-3']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 'step': 0, 
+    'frame': 60, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(COMPLETED, {'phase': EXPLICIT_PHASE, 
+    'message': 'Phase complete', 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(JOB_COMPLETED, {'time': 'Tue Apr 16 10:01:27 2019', 
+    'jobName': 'Job-3'})
