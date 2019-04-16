@@ -321,3 +321,4 @@ mdb.models['press'].materials['plate_material'].Plastic(table=((220000000.0,
     0.0), ))
 # Save by fe1 on 2019_04_16-10.45.44; build 2016 2015_09_24-22.31.09 126547
 # Save by fe1 on 2019_04_16-10.45.52; build 2016 2015_09_24-22.31.09 126547
+# Save by fe1 on 2019_04_16-15.37.03; build 2016 2015_09_24-22.31.09 126547
