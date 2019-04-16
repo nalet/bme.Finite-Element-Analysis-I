@@ -7,11 +7,11 @@ import matplotlib.pyplot as plt
 plt.rcParams['figure.dpi'] = 120
 plt.rcParams['font.size'] = 15
 # Import data using Pandas. Using report I XY data, this line should work
-data = pd.read_csv(os.path.dirname(os.path.abspath(__file__)) + '/abaqus.rpt',
+data = pd.read_csv(os.path.dirname(os.path.abspath(__file__)) + '/abaqus.5.rpt',
                    skiprows=5, header=None, delim_whitespace=True)
 data = data.values
 # Fast Fourier Transform
-y = fft(data[:, 1])
+y = fft(data[:, 3])
 # Absolute value
 m = np.abs(y)
 # Frequency
