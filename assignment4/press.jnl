@@ -1,0 +1,323 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models.changeKey(fromName='Model-1', toName='press')
+mdb.models['press'].ConstrainedSketch(name='__profile__', sheetSize=1.0)
+mdb.models['press'].sketches['__profile__'].Line(point1=(0.0, 0.0), point2=(
+    0.09, 0.0))
+mdb.models['press'].sketches['__profile__'].HorizontalConstraint(addUndoState=
+    False, entity=mdb.models['press'].sketches['__profile__'].geometry[2])
+mdb.models['press'].sketches['__profile__'].Line(point1=(0.09, 0.0), point2=(
+    0.09, 0.02))
+mdb.models['press'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['press'].sketches['__profile__'].geometry[3])
+mdb.models['press'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['press'].sketches['__profile__'].geometry[2], entity2=
+    mdb.models['press'].sketches['__profile__'].geometry[3])
+mdb.models['press'].sketches['__profile__'].Line(point1=(0.09, 0.02), point2=(
+    0.06, 0.05))
+mdb.models['press'].sketches['__profile__'].Line(point1=(0.06, 0.05), point2=(
+    0.03, 0.05))
+mdb.models['press'].sketches['__profile__'].HorizontalConstraint(addUndoState=
+    False, entity=mdb.models['press'].sketches['__profile__'].geometry[5])
+mdb.models['press'].sketches['__profile__'].Line(point1=(0.03, 0.05), point2=(
+    0.0, 0.02))
+mdb.models['press'].sketches['__profile__'].Line(point1=(0.0, 0.02), point2=(
+    0.0, 0.0))
+mdb.models['press'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['press'].sketches['__profile__'].geometry[7])
+mdb.models['press'].sketches['__profile__'].FilletByRadius(curve1=
+    mdb.models['press'].sketches['__profile__'].geometry[7], curve2=
+    mdb.models['press'].sketches['__profile__'].geometry[5], nearPoint1=(
+    0.00131739675998688, 0.0132260695099831), nearPoint2=(0.0388772934675217, 
+    0.0491085574030876), radius=0.03)
+#* A fillet cannot be created at a vertex shared by more than two entities.
+mdb.models['press'].Part(dimensionality=TWO_D_PLANAR, name='press', type=
+    ANALYTIC_RIGID_SURFACE)
+mdb.models['press'].parts['press'].AnalyticRigidSurf2DPlanar(sketch=
+    mdb.models['press'].sketches['__profile__'])
+del mdb.models['press'].sketches['__profile__']
+mdb.models['press'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['press'].parts['press'].features['2D Analytic rigid shell-1'].sketch)
+mdb.models['press'].parts['press'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['press'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['press'].parts['press'].features['2D Analytic rigid shell-1'])
+mdb.models['press'].sketches['__edit__'].ArcByStartEndTangent(entity=
+    mdb.models['press'].sketches['__edit__'].geometry[6], point1=(0.0, 0.02), 
+    point2=(0.03, 0.05))
+del mdb.models['press'].sketches['__edit__']
+mdb.models['press'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['press'].parts['press'].features['2D Analytic rigid shell-1'].sketch)
+mdb.models['press'].parts['press'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['press'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['press'].parts['press'].features['2D Analytic rigid shell-1'])
+mdb.models['press'].sketches['__edit__'].ArcByCenterEnds(center=(0.0, 0.05), 
+    direction=COUNTERCLOCKWISE, point1=(0.0, 0.02), point2=(0.03, 0.05))
+del mdb.models['press'].sketches['__edit__']
+mdb.models['press'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['press'].parts['press'].features['2D Analytic rigid shell-1'].sketch)
+mdb.models['press'].parts['press'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['press'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['press'].parts['press'].features['2D Analytic rigid shell-1'])
+mdb.models['press'].sketches['__edit__'].delete(objectList=(
+    mdb.models['press'].sketches['__edit__'].geometry[4], 
+    mdb.models['press'].sketches['__edit__'].geometry[6]))
+mdb.models['press'].sketches['__edit__'].ArcByCenterEnds(center=(0.0, 0.05), 
+    direction=COUNTERCLOCKWISE, point1=(0.0, 0.02), point2=(0.03, 0.05))
+mdb.models['press'].sketches['__edit__'].ArcByCenterEnds(center=(0.09, 0.05), 
+    direction=CLOCKWISE, point1=(0.09, 0.02), point2=(0.06, 0.05))
+mdb.models['press'].parts['press'].features['2D Analytic rigid shell-1'].setValues(
+    sketch=mdb.models['press'].sketches['__edit__'])
+del mdb.models['press'].sketches['__edit__']
+mdb.models['press'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['press'].parts['press'].features['2D Analytic rigid shell-1'].sketch)
+mdb.models['press'].parts['press'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['press'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['press'].parts['press'].features['2D Analytic rigid shell-1'])
+del mdb.models['press'].sketches['__edit__']
+mdb.models['press'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['press'].parts['press'].features['2D Analytic rigid shell-1'].sketch)
+mdb.models['press'].parts['press'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['press'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['press'].parts['press'].features['2D Analytic rigid shell-1'])
+del mdb.models['press'].sketches['__edit__']
+mdb.models['press'].parts['press'].regenerate()
+mdb.models['press'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['press'].parts['press'].features['2D Analytic rigid shell-1'].sketch)
+mdb.models['press'].parts['press'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['press'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['press'].parts['press'].features['2D Analytic rigid shell-1'])
+mdb.models['press'].sketches['__edit__'].copyMirror(mirrorLine=
+    mdb.models['press'].sketches['__edit__'].geometry[5], objectList=(
+    mdb.models['press'].sketches['__edit__'].geometry[8], 
+    mdb.models['press'].sketches['__edit__'].geometry[7], 
+    mdb.models['press'].sketches['__edit__'].geometry[2], 
+    mdb.models['press'].sketches['__edit__'].geometry[3], 
+    mdb.models['press'].sketches['__edit__'].geometry[9], 
+    mdb.models['press'].sketches['__edit__'].geometry[5]))
+mdb.models['press'].sketches['__edit__'].Spot(point=(0.0614200886030126, 
+    0.0591207820136406))
+mdb.models['press'].sketches['__edit__'].CoincidentConstraint(addUndoState=
+    False, entity1=mdb.models['press'].sketches['__edit__'].vertices[16], 
+    entity2=mdb.models['press'].sketches['__edit__'].geometry[15])
+mdb.models['press'].sketches['__edit__'].Spot(point=(0.03, 0.05))
+mdb.models['press'].sketches['__edit__'].CoincidentConstraint(addUndoState=
+    False, entity1=mdb.models['press'].sketches['__edit__'].vertices[17], 
+    entity2=mdb.models['press'].sketches['__edit__'].geometry[5])
+mdb.models['press'].sketches['__edit__'].undo()
+mdb.models['press'].sketches['__edit__'].undo()
+mdb.models['press'].sketches['__edit__'].undo()
+mdb.models['press'].sketches['__edit__'].Spot(point=(0.0212132034355964, 
+    0.0287867965644036))
+mdb.models['press'].sketches['__edit__'].CoincidentConstraint(addUndoState=
+    False, entity1=mdb.models['press'].sketches['__edit__'].vertices[8], 
+    entity2=mdb.models['press'].sketches['__edit__'].geometry[8])
+mdb.models['press'].sketches['__edit__'].EqualDistanceConstraint(addUndoState=
+    False, entity1=mdb.models['press'].sketches['__edit__'].vertices[5], 
+    entity2=mdb.models['press'].sketches['__edit__'].vertices[4], midpoint=
+    mdb.models['press'].sketches['__edit__'].vertices[8])
+mdb.models['press'].sketches['__edit__'].copyMove(objectList=(
+    mdb.models['press'].sketches['__edit__'].geometry[5], 
+    mdb.models['press'].sketches['__edit__'].geometry[8], 
+    mdb.models['press'].sketches['__edit__'].geometry[7], 
+    mdb.models['press'].sketches['__edit__'].geometry[2], 
+    mdb.models['press'].sketches['__edit__'].geometry[3], 
+    mdb.models['press'].sketches['__edit__'].geometry[9]), vector=(0.0, 0.1))
+del mdb.models['press'].sketches['__edit__']
+mdb.models['press'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['press'].parts['press'].features['2D Analytic rigid shell-1'].sketch)
+mdb.models['press'].parts['press'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['press'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['press'].parts['press'].features['2D Analytic rigid shell-1'])
+mdb.models['press'].sketches['__edit__'].copyRotate(angle=180.0, centerPoint=(
+    0.045, 0.025), objectList=(
+    mdb.models['press'].sketches['__edit__'].geometry[8], 
+    mdb.models['press'].sketches['__edit__'].geometry[7], 
+    mdb.models['press'].sketches['__edit__'].geometry[2], 
+    mdb.models['press'].sketches['__edit__'].geometry[3], 
+    mdb.models['press'].sketches['__edit__'].geometry[9], 
+    mdb.models['press'].sketches['__edit__'].geometry[5]))
+mdb.models['press'].sketches['__edit__'].move(objectList=(
+    mdb.models['press'].sketches['__edit__'].geometry[2], ), vector=(0.0, 
+    -0.01))
+mdb.models['press'].sketches['__edit__'].move(objectList=(
+    mdb.models['press'].sketches['__edit__'].geometry[10], 
+    mdb.models['press'].sketches['__edit__'].geometry[11], 
+    mdb.models['press'].sketches['__edit__'].geometry[15], 
+    mdb.models['press'].sketches['__edit__'].geometry[12], 
+    mdb.models['press'].sketches['__edit__'].geometry[14], 
+    mdb.models['press'].sketches['__edit__'].geometry[13]), vector=(0.0, 0.07))
+mdb.models['press'].sketches['__edit__'].move(objectList=(
+    mdb.models['press'].sketches['__edit__'].geometry[2], ), vector=(0.0, 
+    0.01))
+# Save by fe1 on 2019_04_16-09.31.15; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['press'].sketches['__edit__'].autoDimension(objectList=(
+    mdb.models['press'].sketches['__edit__'].geometry[8], 
+    mdb.models['press'].sketches['__edit__'].geometry[5], 
+    mdb.models['press'].sketches['__edit__'].geometry[9], 
+    mdb.models['press'].sketches['__edit__'].geometry[7], 
+    mdb.models['press'].sketches['__edit__'].geometry[2], 
+    mdb.models['press'].sketches['__edit__'].geometry[3]))
+mdb.models['press'].sketches['__edit__'].delete(objectList=(
+    mdb.models['press'].sketches['__edit__'].geometry[10], 
+    mdb.models['press'].sketches['__edit__'].geometry[13], 
+    mdb.models['press'].sketches['__edit__'].geometry[14], 
+    mdb.models['press'].sketches['__edit__'].geometry[15], 
+    mdb.models['press'].sketches['__edit__'].geometry[11], 
+    mdb.models['press'].sketches['__edit__'].geometry[9], 
+    mdb.models['press'].sketches['__edit__'].geometry[9], 
+    mdb.models['press'].sketches['__edit__'].geometry[2], 
+    mdb.models['press'].sketches['__edit__'].geometry[3], 
+    mdb.models['press'].sketches['__edit__'].geometry[5], 
+    mdb.models['press'].sketches['__edit__'].geometry[5], 
+    mdb.models['press'].sketches['__edit__'].dimensions[7], 
+    mdb.models['press'].sketches['__edit__'].dimensions[2], 
+    mdb.models['press'].sketches['__edit__'].constraints[30], 
+    mdb.models['press'].sketches['__edit__'].constraints[37], 
+    mdb.models['press'].sketches['__edit__'].constraints[7], 
+    mdb.models['press'].sketches['__edit__'].constraints[7]))
+mdb.models['press'].sketches['__edit__'].delete(objectList=(
+    mdb.models['press'].sketches['__edit__'].geometry[12], 
+    mdb.models['press'].sketches['__edit__'].dimensions[1]))
+mdb.models['press'].sketches['__edit__'].delete(objectList=(
+    mdb.models['press'].sketches['__edit__'].dimensions[6], ))
+mdb.models['press'].sketches['__edit__'].Line(point1=(0.03, 0.05), point2=(
+    0.045, 0.05))
+mdb.models['press'].sketches['__edit__'].HorizontalConstraint(addUndoState=
+    False, entity=mdb.models['press'].sketches['__edit__'].geometry[16])
+mdb.models['press'].parts['press'].features['2D Analytic rigid shell-1'].setValues(
+    sketch=mdb.models['press'].sketches['__edit__'])
+del mdb.models['press'].sketches['__edit__']
+mdb.models['press'].parts['press'].regenerate()
+mdb.models['press'].ConstrainedSketch(name='__profile__', sheetSize=1.0)
+mdb.models['press'].sketches['__profile__'].Line(point1=(0.0, 0.0), point2=(
+    0.1, 0.0))
+mdb.models['press'].sketches['__profile__'].HorizontalConstraint(addUndoState=
+    False, entity=mdb.models['press'].sketches['__profile__'].geometry[2])
+mdb.models['press'].sketches['__profile__'].Line(point1=(0.1, 0.0), point2=(
+    0.1, 0.01))
+mdb.models['press'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['press'].sketches['__profile__'].geometry[3])
+mdb.models['press'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['press'].sketches['__profile__'].geometry[2], entity2=
+    mdb.models['press'].sketches['__profile__'].geometry[3])
+mdb.models['press'].sketches['__profile__'].Line(point1=(0.1, 0.01), point2=(
+    0.0, 0.01))
+mdb.models['press'].sketches['__profile__'].HorizontalConstraint(addUndoState=
+    False, entity=mdb.models['press'].sketches['__profile__'].geometry[4])
+mdb.models['press'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['press'].sketches['__profile__'].geometry[3], entity2=
+    mdb.models['press'].sketches['__profile__'].geometry[4])
+mdb.models['press'].sketches['__profile__'].Line(point1=(0.0, 0.01), point2=(
+    0.0, 0.0))
+mdb.models['press'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['press'].sketches['__profile__'].geometry[5])
+mdb.models['press'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['press'].sketches['__profile__'].geometry[4], entity2=
+    mdb.models['press'].sketches['__profile__'].geometry[5])
+mdb.models['press'].Part(dimensionality=TWO_D_PLANAR, name='plate', type=
+    DEFORMABLE_BODY)
+mdb.models['press'].parts['plate'].BaseShell(sketch=
+    mdb.models['press'].sketches['__profile__'])
+del mdb.models['press'].sketches['__profile__']
+mdb.models['press'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['press'].parts['plate'].features['Shell planar-1'].sketch)
+mdb.models['press'].parts['plate'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['press'].sketches['__edit__'], 
+    upToFeature=mdb.models['press'].parts['plate'].features['Shell planar-1'])
+mdb.models['press'].sketches['__edit__'].autoDimension(objectList=(
+    mdb.models['press'].sketches['__edit__'].geometry[4], 
+    mdb.models['press'].sketches['__edit__'].geometry[3]))
+mdb.models['press'].sketches['__edit__'].dimensions[1].setValues(value=0.05)
+mdb.models['press'].sketches['__edit__'].dimensions[0].setValues(value=0.005)
+mdb.models['press'].parts['plate'].features['Shell planar-1'].setValues(sketch=
+    mdb.models['press'].sketches['__edit__'])
+del mdb.models['press'].sketches['__edit__']
+mdb.models['press'].parts['plate'].regenerate()
+mdb.models['press'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['press'].rootAssembly.Instance(dependent=ON, name='plate-1', part=
+    mdb.models['press'].parts['plate'])
+mdb.models['press'].rootAssembly.Instance(dependent=ON, name='press-1', part=
+    mdb.models['press'].parts['press'])
+mdb.models['press'].rootAssembly.translate(instanceList=('plate-1', ), vector=(
+    -0.005, 0.05, 0.0))
+# Save by fe1 on 2019_04_16-09.49.04; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['press'].rootAssembly.Set(edges=
+    mdb.models['press'].rootAssembly.instances['plate-1'].edges.getSequenceFromMask(
+    ('[#8 ]', ), ), name='Set-1')
+mdb.models['press'].YsymmBC(createStepName='Initial', localCsys=None, name=
+    'plate1', region=mdb.models['press'].rootAssembly.sets['Set-1'])
+mdb.models['press'].rootAssembly.Set(edges=
+    mdb.models['press'].rootAssembly.instances['plate-1'].edges.getSequenceFromMask(
+    ('[#4 ]', ), ), name='Set-2')
+mdb.models['press'].XsymmBC(createStepName='Initial', localCsys=None, name=
+    'plate2', region=mdb.models['press'].rootAssembly.sets['Set-2'])
+# Save by fe1 on 2019_04_16-09.58.54; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['press'].Material(name='plate_material')
+mdb.models['press'].materials['plate_material'].Elastic(table=((70000000000.0, 
+    0.3), ))
+mdb.models['press'].materials['plate_material'].Plastic(table=((220000000.0, 
+    0.0), ))
+# Save by fe1 on 2019_04_16-10.45.44; build 2016 2015_09_24-22.31.09 126547
+# Save by fe1 on 2019_04_16-10.45.52; build 2016 2015_09_24-22.31.09 126547
