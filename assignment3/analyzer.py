@@ -13,6 +13,7 @@ data = pd.read_csv(os.path.dirname(os.path.abspath(__file__)) + sys.argv[0],
 data = data.values
 # Fast Fourier Transform
 y = fft(data[:, sys.argv[1]])
+
 # Absolute value
 m = np.abs(y)
 # Frequency
