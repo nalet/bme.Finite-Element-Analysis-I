@@ -362,3 +362,80 @@ mdb.models['press'].parts['plate'].setMeshControls(elemShape=TRI, regions=
 mdb.models['press'].parts['plate'].generateMesh()
 # Save by fe1 on 2019_04_28-09.23.09; build 2016 2015_09_24-22.31.09 126547
 # Save by fe1 on 2019_04_28-09.26.04; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['press'].rootAssembly.regenerate()
+mdb.models['press'].ContactProperty('IntProp-1')
+mdb.models['press'].interactionProperties['IntProp-1'].TangentialBehavior(
+    formulation=FRICTIONLESS)
+mdb.models['press'].rootAssembly.Surface(name='m_Surf-1', side1Edges=
+    mdb.models['press'].rootAssembly.instances['press-1'].edges.getSequenceFromMask(
+    ('[#7 ]', ), ))
+mdb.models['press'].rootAssembly.Surface(name='s_Surf-1', side1Edges=
+    mdb.models['press'].rootAssembly.instances['plate-1'].edges.getSequenceFromMask(
+    ('[#2 ]', ), ))
+mdb.models['press'].SurfaceToSurfaceContactStd(adjustMethod=NONE, 
+    clearanceRegion=None, createStepName='step1', datumAxis=None, 
+    initialClearance=OMIT, interactionProperty='IntProp-1', master=
+    mdb.models['press'].rootAssembly.surfaces['m_Surf-1'], name='Int-1', slave=
+    mdb.models['press'].rootAssembly.surfaces['s_Surf-1'], sliding=FINITE, 
+    thickness=ON)
+# Save by fe1 on 2019_04_28-09.48.05; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['press'].parts['press'].ReferencePoint(point=
+    mdb.models['press'].parts['press'].InterestingPoint(
+    mdb.models['press'].parts['press'].edges[2], MIDDLE))
+del mdb.models['press'].parts['press'].features['RP']
+mdb.models['press'].parts['press'].ReferencePoint(point=
+    mdb.models['press'].parts['press'].vertices[3])
+# Save by fe1 on 2019_04_28-09.58.22; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['press'].rootAssembly.regenerate()
+mdb.models['press'].rootAssembly.Surface(name='m_Surf-3', side1Edges=
+    mdb.models['press'].rootAssembly.instances['press-1'].edges.getSequenceFromMask(
+    ('[#7 ]', ), ))
+mdb.models['press'].rootAssembly.Surface(name='s_Surf-3', side1Edges=
+    mdb.models['press'].rootAssembly.instances['plate-1'].edges.getSequenceFromMask(
+    ('[#2 ]', ), ))
+mdb.models['press'].Tie(adjust=ON, master=
+    mdb.models['press'].rootAssembly.surfaces['m_Surf-3'], name='Constraint-1', 
+    positionToleranceMethod=COMPUTED, slave=
+    mdb.models['press'].rootAssembly.surfaces['s_Surf-3'], thickness=ON, 
+    tieRotations=ON)
+del mdb.models['press'].constraints['Constraint-1']
+# Save by fe1 on 2019_04_28-10.03.08; build 2016 2015_09_24-22.31.09 126547
