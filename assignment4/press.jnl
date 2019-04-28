@@ -322,3 +322,43 @@ mdb.models['press'].materials['plate_material'].Plastic(table=((220000000.0,
 # Save by fe1 on 2019_04_16-10.45.44; build 2016 2015_09_24-22.31.09 126547
 # Save by fe1 on 2019_04_16-10.45.52; build 2016 2015_09_24-22.31.09 126547
 # Save by fe1 on 2019_04_16-15.37.03; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['press'].HomogeneousSolidSection(material='plate_material', name=
+    'Section-1', thickness=0.2)
+mdb.models['press'].StaticStep(name='step1', nlgeom=ON, previous='Initial')
+mdb.models['press'].parts['plate'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.005)
+mdb.models['press'].parts['plate'].seedPart(deviationFactor=0.1, minSizeFactor=
+    0.1, size=0.0005)
+mdb.models['press'].parts['plate'].generateMesh()
+mdb.models['press'].parts['plate'].setElementType(elemTypes=(ElemType(
+    elemCode=CPE8R, elemLibrary=STANDARD), ElemType(elemCode=CPE6M, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['press'].parts['plate'].faces.getSequenceFromMask(('[#1 ]', ), 
+    ), ))
+mdb.models['press'].parts['plate'].setElementType(elemTypes=(ElemType(
+    elemCode=CPE8H, elemLibrary=STANDARD), ElemType(elemCode=CPE6M, 
+    elemLibrary=STANDARD)), regions=(
+    mdb.models['press'].parts['plate'].faces.getSequenceFromMask(('[#1 ]', ), 
+    ), ))
+mdb.models['press'].parts['plate'].deleteMesh(regions=
+    mdb.models['press'].parts['plate'].faces.getSequenceFromMask(('[#1 ]', ), 
+    ))
+mdb.models['press'].parts['plate'].setMeshControls(elemShape=TRI, regions=
+    mdb.models['press'].parts['plate'].faces.getSequenceFromMask(('[#1 ]', ), 
+    ))
+mdb.models['press'].parts['plate'].generateMesh()
+# Save by fe1 on 2019_04_28-09.23.09; build 2016 2015_09_24-22.31.09 126547
+# Save by fe1 on 2019_04_28-09.26.04; build 2016 2015_09_24-22.31.09 126547
