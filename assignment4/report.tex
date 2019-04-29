@@ -79,38 +79,59 @@ The goal is to extract the resonance frequency of the beam with the given dimens
 \tableofcontents
 \pagebreak
 \section{Introduction}
-The goal of this assignment is the analyzation of a beam attached to a wall 
-and how it is related to its resonance frequencies. We want to show the analytical 
-solution and after the model implemented in Abaqus. An example of this calculation 
-can be used in dental implants, as the beginns to oscillate under given circumstances.
+Measuring the uniaxial true stress/strain relation is the most fundamental task before any plastic
+analysis can be made. It defines the strain hardening of a material and determines the general
+stress-strain relation when plastic deformation is taking place. Plane strain test is a method of
+choice to obtain this information.
 
-% I'm refering to something\footnote{footnotes working fine \cite{einstein}} .
+During plane strain compression test, a narrow band of the material is compressed by narrow
+plates (see Figure). The constraints on each side of the plate prevent deformations of the
+material in the width dimension.
 
+\begin{figure}[!htb]\label{fig:1}
+  \centering
+  \includegraphics[width=0.6\linewidth]{pics/shematics}
+  \caption{Compression of the aluminum plate}
+\end{figure}
+\newpage
 \section{Methods}
 
 \subsection{Analytical solution}
-Consider a beam with the following dimensions attached to a wall in our case 
-on the left end:
+In order to ensure the validity of the plane strain assumption, the following relationships have to
+be fulfilled:
 \begin{equation}\label{eq:1}
-  L=150mm, h=2.5mm, b=20mm, E=10GPa, v=0.3, \rho=7.0E3kg.m^{-3}
+  w > 5h, \, w > 5b,\, 2h < b < 4h
 \end{equation}
-The resonance frequencies (inducing a bending in the direction of the dimension h) of
-such a model are given by the formula:
+The variables in (\ref{eq:1}) are the same as in Figure \ref{fig:1}
+
+In our situation, the true stress and true strain are given by:
 \begin{equation}\label{eq:2}
-  \frac{1}{2\pi\sqrt{12}}\alpha_i^2\sqrt{\frac{E}{\rho}}\frac{h}{L^2}
+  \varepsilon_{1}=-\varepsilon_{2},\,\varepsilon_{2}=ln(\frac{h}{h_{x}}),\,\varepsilon_{3}=0,\,
+  \sigma_{1}=0,\,\sigma_{2}=\frac{P}{wb},\,\sigma_{3}=\frac{\sigma_{2}}{2}
+\end{equation}
+And the equivalent (Mises) stress and strain are defined as:
+\begin{equation}\label{eq:3}
+  \bar{\varepsilon}=\frac{2}{\sqrt{3}}\varepsilon_{2},\,\bar{\sigma}=\frac{\sqrt{3}}{2}\sigma_{2}
+\end{equation}
+Plastic deformation of aluminium. In this case, the stress-strain relation is given by:
+\begin{equation}\label{eq:4}
+  \bar{\varepsilon} = 
+  \begin{cases} 
+    \frac{\bar{\sigma}}{E} & ,\bar{\sigma} < \sigma_{0} \\
+    \frac{\sigma_{0}}{E}+\frac{\sigma_{0}}{B}(\frac{\bar{\sigma}}{\sigma_{0}}-1)^{n} & ,\bar{\sigma} >= \sigma_{0}
+  \end{cases}
 \end{equation}
 Where:
 \begin{conditions}
-  \alpha_0 & $1.875,\alpha_1=4.695,\alpha_2=7.85,...,\alpha_i=(2i+1)\frac{\pi}{2} \enspace  for \, i>2$ \\
-  E     &  Young's modulus \\
-  \rho  &  density of the material \\   
-  h     &  height of the cross-section of the beam \\
-  L     &  length of the beam
+  E           & 70 GPa \\
+  \sigma_{0}  & 220 MPa \\   
+  B           & 3 GPa \\
+  n           & 3.2 \\
+  v           & 0.3
 \end{conditions}
-\noindent Using our values for $\alpha_0$:
-\begin{equation}\label{eq:3}
-  f_0 = \frac{1}{2\pi\sqrt{12}}1.875^2\sqrt{\frac{10 \cdot 10^3 Pa}{7\cdot10^3 
-  \frac{kg}{m^3}}}\frac{2.5 \cdot 10^3 m}{(150 \cdot 10^3 m)^2} = 21.451 \, Hz
+\noindent Using our values for $\bar{\sigma} >= \sigma_{0}$ in equation \ref{eq:4}:
+\begin{equation}
+  \frac{2}{\sqrt{3}}ln(\frac{h}{h_{x}}) = \frac{220 \cdot 10^6 Pa}{70 \cdot 10^9 Pa}+\frac{220 \cdot 10^6 Pa}{3 \cdot 10^9 Pa}(\frac{\bar{\sigma}}{220 \cdot 10^6 Pa}-1)^{3.2}
 \end{equation}
 \newpage
 \subsection{Frequency mode on Beam}
