@@ -195,8 +195,14 @@ stress/strain ration, as energy of the compression gets lost in friction.
 during modelling, we ran into troubles with the simulation due to the sharp corner of the press.
 Thus we introduced a small 1mm fillet to smoothen the process. This worked out fine and the results 
 got better and were calculated more quickly.
+The stress/strain ratio calculations which allowed for small sliding show a 
+higher stress per strain ratio. By allowing sliding of the plate, we would expect the stress value to be 
+higher for a given strain, as the material is more free to move away under compression.
+This is therefore a reasonable result. 
+Finite sliding / Surface-to-Surface is the most accurate (accoring to our analytical solution).
+The surface-to-surface simulation is the preferrable one in this case, as we actually make contact
+between two surfaces.
 
-The stress/strain ratio calculations which allowed for small sliding show a higher stress per strain ratio.
 
 
 \pagebreak
