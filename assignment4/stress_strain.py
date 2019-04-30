@@ -39,48 +39,44 @@ while current >= h_max - step_size:
     print('{:.4e}'.format(c_sigma),'{:.4e}'.format(c_epsilon),sep="\t")
     current = current - step_size
 
-# Import data using Pandas. Using report I XY data, this line should work
-data = pd.read_csv(os.path.dirname(os.path.abspath(__file__)) + '\\' + "data.2.nofric",
-                   skiprows=5, header=None, delim_whitespace=True)
-data_nofric = data.values
+def read_data(filename) :
+    # Import data using Pandas. Using report I XY data, this line should work
+    data = pd.read_csv(os.path.dirname(os.path.abspath(__file__)) + '\\' + filename,
+                    skiprows=5, header=None, delim_whitespace=True)
+    data_nofric = data.values
 
-x_f = []
-y_f = []
+    x_f = []
+    y_f = []
 
-for line in data_nofric:
-    current3 = line[1]
-    current2 = line[2]
-    calc2 = h - current2
-    c_epsilon2 = (2/np.sqrt(3))*np.log(h/calc2)
-    c_sigma2 = (current3 / w * b) * (np.sqrt(3)/2) * (1e4 / 2)
-    x_f.append(c_sigma2)
-    y_f.append(c_epsilon2)
+    for line in data_nofric:
+        current3 = line[1]
+        current2 = line[2]
+        calc2 = h - current2
+        c_epsilon2 = (2/np.sqrt(3))*np.log(h/calc2)
+        c_sigma2 = (current3 / w * b) * (np.sqrt(3)/2) * (1e4 / 2)
+        x_f.append(c_sigma2)
+        y_f.append(c_epsilon2)
 
-# Import data using Pandas. Using report I XY data, this line should work
-data = pd.read_csv(os.path.dirname(os.path.abspath(__file__)) + '\\' + "data.2.withfric",
-                   skiprows=5, header=None, delim_whitespace=True)
-data_withfric = data.values
+    return x_f, y_f
 
-x_wf = []
-y_wf = []
+x_f , y_f = read_data("data.2.nofric")
+x_wf, y_wf = read_data("data.2.withfric")
 
-for line in data_withfric:
-    current3 = line[1]
-    current2 = line[2]
-    calc2 = h - current2
-    c_epsilon2 = (2/np.sqrt(3))*np.log(h/calc2)
-    c_sigma2 = (current3 / w * b) * (np.sqrt(3)/2) * (1e4 / 2)
-    x_wf.append(c_sigma2)
-    y_wf.append(c_epsilon2)
-
+x_1f, y_1f = read_data("data.1.nofric.nosliding.nodetonode")
+x_2f, y_2f = read_data("data.1.nofric.smallsliding")
+x_3f, y_3f = read_data("data.1.nofric.smallsliding.nodetonode")
 
 # Plot
 plt.grid()
 plt.plot(y, x, linewidth=2, color='firebrick', label="Analytical Solution")
-plt.plot(y_f, x_f, linewidth=2, color='blue', label="Finite Sliding - No Friction")
-plt.plot(y_wf, x_wf, linewidth=2, color='red', label="Finite Sliding - With Friction")
+plt.plot(y_f, x_f, linewidth=2, color='blue', label="Finite Sliding - Surface to Surface - No Friction")
+plt.plot(y_wf, x_wf, linewidth=2, color='red', label="Finite Sliding - Surface to Surface - With Friction")
+plt.plot(y_1f, x_1f, linewidth=2, color='green', label="Finite Sliding  - Node to Node - No Friction")
+plt.plot(y_2f, x_2f, linewidth=2, color='black', label="Small Sliding - Surface to Surface -No Friction")
+plt.plot(y_3f, x_3f, linewidth=2, color='purple', label="Small Sliding - Node to Node - No Friction")
 plt.xlabel('Strain')
 plt.ylabel('Stress (Pa)')
 plt.ylim(bottom=0)
 plt.legend()
 plt.show()
+
