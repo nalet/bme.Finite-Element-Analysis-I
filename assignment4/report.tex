@@ -75,8 +75,15 @@ Finite Element Analysis I
 \newpage
 
 \section*{Abstract}
-In this assignment we examine the behaviour of a beam after being subjected to an impulse.
-The goal is to extract the resonance frequency of the beam with the given dimensions and material coefficients.
+In this assignment we examine the behaviour of a metal plate under compression.
+A rigid press, modelled as an analytical surface, squeezes the plate together.
+By retrieving the force and displacement values over time, we can determine the plastic 
+behaviour of our specimen. 
+This experimental data is then compared to the analytical solution,
+which was calculated with given material constants.
+Several different simulation methods were used, e.g. prohibiting the plate from sliding or allowing friction.
+The experimental results are overall similar to the analytical ones.
+
 
 
 % \begin{figure}[!htb]
@@ -88,13 +95,8 @@ The goal is to extract the resonance frequency of the beam with the given dimens
 \tableofcontents
 \pagebreak
 \section{Introduction}
-The goal of this assignment is to examine contact forces and the behaviour of a 
-certain material under compression.
-The plate (some kind of metal / aluminium) is being squeezed by a press stamp. Due to 
-the given material characteristics,
-certain forces are excerted on the surface of the press and the plate. 
-Using this forces, and the respective deformation, we can reverse engineer 
-the material characteristics and compare it with the analytical solutions.
+The plate is mounted in a setup shown in \ref(figure1). The press then compresses the plate to half its
+original height. 
 
 
 \begin{figure}[!htb]
@@ -187,11 +189,15 @@ gave us the best result, so we stick with that.
 \pagebreak
 \section{Results and Discussion}
 
-In the submodel with the 1mm fillet, we observe an evenly distributed stress pattern. Also,
-the maximum value for stress has decreased by about 50 MPa. From a mechanical point of view, 
-the round corner offers a smoother distribution of internal stresses because the lines of 
-forces in a material are not interrupted. However, the maximum stress is still the yield 
-stress of our material, we still expect it to deform.
+The analytical and the experimental results are similar.
+Logically the experiment with introduced friction (friciton coefficien 0.2) results in a higher
+stress/strain ration, as energy of the compression gets lost in friction. 
+during modelling, we ran into troubles with the simulation due to the sharp corner of the press.
+Thus we introduced a small 1mm fillet to smoothen the process. This worked out fine and the results 
+got better and were calculated more quickly.
+
+The stress/strain ratio calculations which allowed for small sliding show a higher stress per strain ratio.
+
 
 \pagebreak
 \begin{thebibliography}{9}
