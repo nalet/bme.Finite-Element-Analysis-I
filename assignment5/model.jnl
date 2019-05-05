@@ -464,3 +464,78 @@ mdb.models['Model-1'].parts['plate'].seedPart(deviationFactor=0.1,
 mdb.models['Model-1'].parts['plate'].generateMesh()
 # Save by fe1 on 2019_05_05-12.39.47; build 2016 2015_09_24-22.31.09 126547
 # Save by fe1 on 2019_05_05-12.39.48; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].rootAssembly.regenerate()
+# Save by fe1 on 2019_05_05-12.45.26; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].rootAssembly.Set(name='m_Set-1', vertices=
+    mdb.models['Model-1'].rootAssembly.instances['plate-1'].vertices.getSequenceFromMask(
+    ('[#20 ]', ), ))
+mdb.models['Model-1'].rootAssembly.Surface(name='s_Surf-1', side1Faces=
+    mdb.models['Model-1'].rootAssembly.instances['press-1'].faces.getSequenceFromMask(
+    ('[#24 ]', ), ))
+mdb.models['Model-1'].Coupling(controlPoint=
+    mdb.models['Model-1'].rootAssembly.sets['m_Set-1'], couplingType=KINEMATIC, 
+    influenceRadius=WHOLE_SURFACE, localCsys=None, name='Constraint-1', 
+    surface=mdb.models['Model-1'].rootAssembly.surfaces['s_Surf-1'], u1=ON, u2=
+    ON, u3=ON, ur1=ON, ur2=ON, ur3=ON)
+mdb.models['Model-1'].rootAssembly.Set(cells=
+    mdb.models['Model-1'].rootAssembly.instances['plate-1'].cells.getSequenceFromMask(
+    ('[#1 ]', ), ), name='Set-2')
+mdb.models['Model-1'].rootAssembly.Set(cells=
+    mdb.models['Model-1'].rootAssembly.instances['plate-1'].cells.getSequenceFromMask(
+    ('[#e ]', ), ), name='Set-2')
+mdb.models['Model-1'].MaterialAssignment(assignmentList=((
+    mdb.models['Model-1'].rootAssembly.sets['Set-2'], (1, )), (
+    mdb.models['Model-1'].rootAssembly.sets['Set-2'], (0, ))), instanceList=(
+    mdb.models['Model-1'].rootAssembly.instances['plate-1'], ), name=
+    'Predefined Field-1', useFields=False)
+mdb.models['Model-1'].SmoothStepAmplitude(data=((0.0, 0.0), (0.001, 1.0)), 
+    name='Amp-1', timeSpan=STEP)
+mdb.models['Model-1'].rootAssembly.Set(name='Set-3', referencePoints=(
+    mdb.models['Model-1'].rootAssembly.referencePoints[6], ))
+mdb.models['Model-1'].DisplacementBC(amplitude=UNSET, createStepName='Initial', 
+    distributionType=UNIFORM, fieldName='', localCsys=None, name='displacement'
+    , region=mdb.models['Model-1'].rootAssembly.sets['Set-3'], u1=UNSET, u2=SET
+    , u3=UNSET, ur1=UNSET, ur2=UNSET, ur3=UNSET)
+# Save by fe1 on 2019_05_05-13.01.40; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].boundaryConditions['displacement'].setValues(localCsys=
+    None)
+# Save by fe1 on 2019_05_05-13.02.37; build 2016 2015_09_24-22.31.09 126547

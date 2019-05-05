@@ -595,3 +595,111 @@ mdb.save()
 #: The model database has been saved to "/home/fe1/bme.Finite-Element-Analysis-I/assignment5/model.cae".
 mdb.save()
 #: The model database has been saved to "/home/fe1/bme.Finite-Element-Analysis-I/assignment5/model.cae".
+p1 = mdb.models['Model-1'].parts['plate']
+session.viewports['Viewport: 1'].setValues(displayedObject=p1)
+a = mdb.models['Model-1'].rootAssembly
+a.regenerate()
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+session.viewports['Viewport: 1'].assemblyDisplay.setValues(mesh=ON, 
+    interactions=OFF, constraints=OFF, connectors=OFF, engineeringFeatures=OFF)
+session.viewports['Viewport: 1'].assemblyDisplay.meshOptions.setValues(
+    meshTechnique=ON)
+mdb.save()
+#: The model database has been saved to "/home/fe1/bme.Finite-Element-Analysis-I/assignment5/model.cae".
+session.viewports['Viewport: 1'].partDisplay.setValues(mesh=OFF)
+session.viewports['Viewport: 1'].partDisplay.meshOptions.setValues(
+    meshTechnique=OFF)
+session.viewports['Viewport: 1'].partDisplay.geometryOptions.setValues(
+    referenceRepresentation=ON)
+p = mdb.models['Model-1'].parts['plate']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+p = mdb.models['Model-1'].parts['press']
+session.viewports['Viewport: 1'].setValues(displayedObject=p)
+a = mdb.models['Model-1'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+session.viewports['Viewport: 1'].assemblyDisplay.setValues(mesh=OFF)
+session.viewports['Viewport: 1'].assemblyDisplay.meshOptions.setValues(
+    meshTechnique=OFF)
+session.viewports['Viewport: 1'].assemblyDisplay.setValues(interactions=ON, 
+    constraints=ON, connectors=ON, engineeringFeatures=ON)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=0.238869, 
+    farPlane=0.33291, width=0.0216407, height=0.00930543, 
+    viewOffsetX=-0.028624, viewOffsetY=0.0176302)
+session.viewports['Viewport: 1'].assemblyDisplay.setValues(step='Initial')
+session.viewports['Viewport: 1'].assemblyDisplay.setValues(interactions=OFF, 
+    constraints=OFF, connectors=OFF, engineeringFeatures=OFF, 
+    adaptiveMeshConstraints=ON)
+session.viewports['Viewport: 1'].assemblyDisplay.setValues(interactions=ON, 
+    constraints=ON, connectors=ON, engineeringFeatures=ON, 
+    adaptiveMeshConstraints=OFF)
+a = mdb.models['Model-1'].rootAssembly
+v1 = a.instances['plate-1'].vertices
+verts1 = v1.getSequenceFromMask(mask=('[#20 ]', ), )
+region1=a.Set(vertices=verts1, name='m_Set-1')
+a = mdb.models['Model-1'].rootAssembly
+s1 = a.instances['press-1'].faces
+side1Faces1 = s1.getSequenceFromMask(mask=('[#24 ]', ), )
+region2=a.Surface(side1Faces=side1Faces1, name='s_Surf-1')
+mdb.models['Model-1'].Coupling(name='Constraint-1', controlPoint=region1, 
+    surface=region2, influenceRadius=WHOLE_SURFACE, couplingType=KINEMATIC, 
+    localCsys=None, u1=ON, u2=ON, u3=ON, ur1=ON, ur2=ON, ur3=ON)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=0.237845, 
+    farPlane=0.333935, width=0.0336491, height=0.014469, 
+    viewOffsetX=-0.0231676, viewOffsetY=0.016464)
+session.viewports['Viewport: 1'].partDisplay.setValues(sectionAssignments=ON, 
+    engineeringFeatures=ON)
+session.viewports['Viewport: 1'].partDisplay.geometryOptions.setValues(
+    referenceRepresentation=OFF)
+p1 = mdb.models['Model-1'].parts['press']
+session.viewports['Viewport: 1'].setValues(displayedObject=p1)
+a = mdb.models['Model-1'].rootAssembly
+session.viewports['Viewport: 1'].setValues(displayedObject=a)
+session.viewports['Viewport: 1'].assemblyDisplay.setValues(loads=ON, bcs=ON, 
+    predefinedFields=ON, interactions=OFF, constraints=OFF, 
+    engineeringFeatures=OFF)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=0.233372, 
+    farPlane=0.338408, width=0.0821964, height=0.0353442, 
+    viewOffsetX=-0.0326603, viewOffsetY=0.0197969)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=0.233227, 
+    farPlane=0.338553, width=0.0821454, height=0.0353223, 
+    viewOffsetX=0.00685191, viewOffsetY=0.00351922)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=0.233227, 
+    farPlane=0.338553, width=0.0821454, height=0.0353223, 
+    viewOffsetX=0.0144609, viewOffsetY=-0.00286885)
+a = mdb.models['Model-1'].rootAssembly
+instList = (a.instances['plate-1'], )
+a = mdb.models['Model-1'].rootAssembly
+c1 = a.instances['plate-1'].cells
+cells1 = c1.getSequenceFromMask(mask=('[#1 ]', ), )
+rgn1 = a.Set(cells=cells1, name='Set-2')
+a = mdb.models['Model-1'].rootAssembly
+c1 = a.instances['plate-1'].cells
+cells1 = c1.getSequenceFromMask(mask=('[#e ]', ), )
+rgn2 = a.Set(cells=cells1, name='Set-2')
+fract1 = (1, )
+fract2 = (0, )
+mdb.models['Model-1'].MaterialAssignment(name='Predefined Field-1', 
+    instanceList=instList, useFields=False, assignmentList=((rgn1, fract1), (
+    rgn2, fract2), ))
+mdb.models['Model-1'].SmoothStepAmplitude(name='Amp-1', timeSpan=STEP, data=((
+    0.0, 0.0), (0.001, 1.0)))
+session.viewports['Viewport: 1'].view.setValues(nearPlane=0.233227, 
+    width=0.0821454, height=0.0353223, viewOffsetX=-0.0189224, 
+    viewOffsetY=0.0204288)
+a = mdb.models['Model-1'].rootAssembly
+r1 = a.referencePoints
+refPoints1=(r1[6], )
+region = a.Set(referencePoints=refPoints1, name='Set-3')
+mdb.models['Model-1'].DisplacementBC(name='displacement', 
+    createStepName='Initial', region=region, u1=UNSET, u2=SET, u3=UNSET, 
+    ur1=UNSET, ur2=UNSET, ur3=UNSET, amplitude=UNSET, distributionType=UNIFORM, 
+    fieldName='', localCsys=None)
+session.viewports['Viewport: 1'].view.setValues(nearPlane=0.239682, 
+    farPlane=0.332098, width=0.0131595, height=0.00565857, 
+    viewOffsetX=-0.0350634, viewOffsetY=0.0191741)
+mdb.save()
+#: The model database has been saved to "/home/fe1/bme.Finite-Element-Analysis-I/assignment5/model.cae".
+mdb.models['Model-1'].boundaryConditions['displacement'].setValues(
+    localCsys=None)
+mdb.save()
+#: The model database has been saved to "/home/fe1/bme.Finite-Element-Analysis-I/assignment5/model.cae".
