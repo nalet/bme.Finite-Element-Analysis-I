@@ -539,3 +539,552 @@ from connectorBehavior import *
 mdb.models['Model-1'].boundaryConditions['displacement'].setValues(localCsys=
     None)
 # Save by fe1 on 2019_05_05-13.02.37; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].boundaryConditions['displacement'].setValuesInStep(
+    amplitude='Amp-1', stepName='Step-1', u2=-0.0025)
+mdb.models['Model-1'].rootAssembly.Set(faces=
+    mdb.models['Model-1'].rootAssembly.instances['plate-1'].faces.getSequenceFromMask(
+    ('[#10 ]', ), ), name='Set-4')
+mdb.models['Model-1'].XsymmBC(createStepName='Initial', localCsys=None, name=
+    'symmetryX', region=mdb.models['Model-1'].rootAssembly.sets['Set-4'])
+mdb.models['Model-1'].rootAssembly.Set(faces=
+    mdb.models['Model-1'].rootAssembly.instances['plate-1'].faces.getSequenceFromMask(
+    ('[#10000 ]', ), ), name='Set-5')
+mdb.models['Model-1'].YsymmBC(createStepName='Initial', localCsys=None, name=
+    'symmetryY', region=mdb.models['Model-1'].rootAssembly.sets['Set-5'])
+mdb.models['Model-1'].rootAssembly.Set(faces=
+    mdb.models['Model-1'].rootAssembly.instances['plate-1'].faces.getSequenceFromMask(
+    ('[#40080 ]', ), ), name='Set-6')
+mdb.models['Model-1'].DisplacementBC(amplitude=UNSET, createStepName='Initial', 
+    distributionType=UNIFORM, fieldName='', localCsys=None, name='planeFix', 
+    region=mdb.models['Model-1'].rootAssembly.sets['Set-6'], u1=UNSET, u2=UNSET
+    , u3=SET, ur1=UNSET, ur2=UNSET, ur3=UNSET)
+mdb.Job(activateLoadBalancing=False, atTime=None, contactPrint=OFF, 
+    description='', echoPrint=OFF, explicitPrecision=SINGLE, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-1', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numDomains=1, parallelizationMethodExplicit=DOMAIN, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.models['Model-1'].predefinedFields['Predefined Field-1'].setValues(
+    assignmentList=((
+    mdb.models['Model-1'].rootAssembly.instances['plate-1'].sets['Set-1'], (1, 
+    )), (mdb.models['Model-1'].rootAssembly.sets['Set-2'], (0, ))))
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'SPECIFIED SURFACE ASSEMBLY_S_SURF-1 DOES NOT EXIST. THIS SURFACE MUST BE DEFINED.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN ERROR HAS OCCURRED WHILE PROCESSING THE COUPLING OPTION. PLEASE CHECK THE DATA FILE FOR THE APPROPRIATE ERROR MESSAGES.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'SPECIFIED SURFACE ASSEMBLY_S_SURF-1 DOES NOT EXIST. THIS SURFACE MUST BE DEFINED.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN ERROR HAS OCCURRED WHILE PROCESSING THE COUPLING OPTION. PLEASE CHECK THE DATA FILE FOR THE APPROPRIATE ERROR MESSAGES.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SET-3 HAS NO MEMBERS AND WILL BE IGNORED.  NODES DEFINED IN THIS SET MAY HAVE BEEN DELETED BECAUSE THEY WERE NOT CONNECTED TO ANY ELEMENTS.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-3 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OPTION *BOUNDARY,TYPE=DISPLACEMENT HAS BEEN USED; CHECK STATUS FILE BETWEEN STEPS FOR WARNINGS ON ANY JUMPS PRESCRIBED ACROSS THE STEPS IN DISPLACEMENT VALUES OF TRANSLATIONAL DOF. FOR ROTATIONAL DOF MAKE SURE THAT THERE ARE NO SUCH JUMPS. ALL JUMPS IN DISPLACEMENTS ACROSS STEPS ARE IGNORED', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-3 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SET-3 HAS NOT BEEN DEFINED', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/bme.Finite-Element-Analysis-I/Job-1.odb', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+# Save by fe1 on 2019_05_05-13.12.23; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+del mdb.models['Model-1'].constraints['Constraint-1']
+mdb.models['Model-1'].parts['press'].Surface(name='pressSurface', side12Faces=
+    mdb.models['Model-1'].parts['press'].faces.getSequenceFromMask(('[#3f ]', 
+    ), ), side1Edges=
+    mdb.models['Model-1'].parts['press'].edges.getSequenceFromMask(('[#11 ]', 
+    ), ))
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].Coupling(controlPoint=
+    mdb.models['Model-1'].rootAssembly.sets['m_Set-1'], couplingType=KINEMATIC, 
+    influenceRadius=WHOLE_SURFACE, localCsys=None, name='Constraint-1', 
+    surface=
+    mdb.models['Model-1'].rootAssembly.instances['press-1'].surfaces['pressSurface']
+    , u1=ON, u2=ON, u3=ON, ur1=ON, ur2=ON, ur3=ON)
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'SPECIFIED SURFACE ASSEMBLY_PRESS-1_PRESSSURFACE DOES NOT EXIST. THIS SURFACE MUST BE DEFINED.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN ERROR HAS OCCURRED WHILE PROCESSING THE COUPLING OPTION. PLEASE CHECK THE DATA FILE FOR THE APPROPRIATE ERROR MESSAGES.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'SPECIFIED SURFACE ASSEMBLY_PRESS-1_PRESSSURFACE DOES NOT EXIST. THIS SURFACE MUST BE DEFINED.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN ERROR HAS OCCURRED WHILE PROCESSING THE COUPLING OPTION. PLEASE CHECK THE DATA FILE FOR THE APPROPRIATE ERROR MESSAGES.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SET-3 HAS NO MEMBERS AND WILL BE IGNORED.  NODES DEFINED IN THIS SET MAY HAVE BEEN DELETED BECAUSE THEY WERE NOT CONNECTED TO ANY ELEMENTS.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-3 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OPTION *BOUNDARY,TYPE=DISPLACEMENT HAS BEEN USED; CHECK STATUS FILE BETWEEN STEPS FOR WARNINGS ON ANY JUMPS PRESCRIBED ACROSS THE STEPS IN DISPLACEMENT VALUES OF TRANSLATIONAL DOF. FOR ROTATIONAL DOF MAKE SURE THAT THERE ARE NO SUCH JUMPS. ALL JUMPS IN DISPLACEMENTS ACROSS STEPS ARE IGNORED', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-3 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SET-3 HAS NOT BEEN DEFINED', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/bme.Finite-Element-Analysis-I/Job-1.odb', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+mdb.models['Model-1'].constraints['Constraint-1'].setValues(controlPoint=
+    mdb.models['Model-1'].rootAssembly.sets['Set-3'], surface=
+    mdb.models['Model-1'].rootAssembly.instances['press-1'].surfaces['pressSurface'])
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'SPECIFIED SURFACE ASSEMBLY_PRESS-1_PRESSSURFACE DOES NOT EXIST. THIS SURFACE MUST BE DEFINED.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN ERROR HAS OCCURRED WHILE PROCESSING THE COUPLING OPTION. PLEASE CHECK THE DATA FILE FOR THE APPROPRIATE ERROR MESSAGES.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'SPECIFIED SURFACE ASSEMBLY_PRESS-1_PRESSSURFACE DOES NOT EXIST. THIS SURFACE MUST BE DEFINED.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN ERROR HAS OCCURRED WHILE PROCESSING THE COUPLING OPTION. PLEASE CHECK THE DATA FILE FOR THE APPROPRIATE ERROR MESSAGES.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SET-3 HAS NO MEMBERS AND WILL BE IGNORED.  NODES DEFINED IN THIS SET MAY HAVE BEEN DELETED BECAUSE THEY WERE NOT CONNECTED TO ANY ELEMENTS.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-3 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OPTION *BOUNDARY,TYPE=DISPLACEMENT HAS BEEN USED; CHECK STATUS FILE BETWEEN STEPS FOR WARNINGS ON ANY JUMPS PRESCRIBED ACROSS THE STEPS IN DISPLACEMENT VALUES OF TRANSLATIONAL DOF. FOR ROTATIONAL DOF MAKE SURE THAT THERE ARE NO SUCH JUMPS. ALL JUMPS IN DISPLACEMENTS ACROSS STEPS ARE IGNORED', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-3 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SET-3 HAS NOT BEEN DEFINED', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/bme.Finite-Element-Analysis-I/Job-1.odb', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+del mdb.models['Model-1'].rootAssembly.surfaces['s_Surf-1']
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'SPECIFIED SURFACE ASSEMBLY_PRESS-1_PRESSSURFACE DOES NOT EXIST. THIS SURFACE MUST BE DEFINED.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN ERROR HAS OCCURRED WHILE PROCESSING THE COUPLING OPTION. PLEASE CHECK THE DATA FILE FOR THE APPROPRIATE ERROR MESSAGES.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'SPECIFIED SURFACE ASSEMBLY_PRESS-1_PRESSSURFACE DOES NOT EXIST. THIS SURFACE MUST BE DEFINED.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN ERROR HAS OCCURRED WHILE PROCESSING THE COUPLING OPTION. PLEASE CHECK THE DATA FILE FOR THE APPROPRIATE ERROR MESSAGES.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SET-3 HAS NO MEMBERS AND WILL BE IGNORED.  NODES DEFINED IN THIS SET MAY HAVE BEEN DELETED BECAUSE THEY WERE NOT CONNECTED TO ANY ELEMENTS.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-3 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OPTION *BOUNDARY,TYPE=DISPLACEMENT HAS BEEN USED; CHECK STATUS FILE BETWEEN STEPS FOR WARNINGS ON ANY JUMPS PRESCRIBED ACROSS THE STEPS IN DISPLACEMENT VALUES OF TRANSLATIONAL DOF. FOR ROTATIONAL DOF MAKE SURE THAT THERE ARE NO SUCH JUMPS. ALL JUMPS IN DISPLACEMENTS ACROSS STEPS ARE IGNORED', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-3 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SET-3 HAS NOT BEEN DEFINED', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/bme.Finite-Element-Analysis-I/Job-1.odb', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+mdb.Job(activateLoadBalancing=False, atTime=None, contactPrint=OFF, 
+    description='', echoPrint=OFF, explicitPrecision=SINGLE, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-2', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numDomains=1, parallelizationMethodExplicit=DOMAIN, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+del mdb.jobs['Job-1']
+mdb.jobs['Job-2'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-2']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'SPECIFIED SURFACE ASSEMBLY_PRESS-1_PRESSSURFACE DOES NOT EXIST. THIS SURFACE MUST BE DEFINED.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN ERROR HAS OCCURRED WHILE PROCESSING THE COUPLING OPTION. PLEASE CHECK THE DATA FILE FOR THE APPROPRIATE ERROR MESSAGES.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'SPECIFIED SURFACE ASSEMBLY_PRESS-1_PRESSSURFACE DOES NOT EXIST. THIS SURFACE MUST BE DEFINED.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN ERROR HAS OCCURRED WHILE PROCESSING THE COUPLING OPTION. PLEASE CHECK THE DATA FILE FOR THE APPROPRIATE ERROR MESSAGES.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SET-3 HAS NO MEMBERS AND WILL BE IGNORED.  NODES DEFINED IN THIS SET MAY HAVE BEEN DELETED BECAUSE THEY WERE NOT CONNECTED TO ANY ELEMENTS.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-3 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OPTION *BOUNDARY,TYPE=DISPLACEMENT HAS BEEN USED; CHECK STATUS FILE BETWEEN STEPS FOR WARNINGS ON ANY JUMPS PRESCRIBED ACROSS THE STEPS IN DISPLACEMENT VALUES OF TRANSLATIONAL DOF. FOR ROTATIONAL DOF MAKE SURE THAT THERE ARE NO SUCH JUMPS. ALL JUMPS IN DISPLACEMENTS ACROSS STEPS ARE IGNORED', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-3 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SET-3 HAS NOT BEEN DEFINED', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/bme.Finite-Element-Analysis-I/Job-2.odb', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2'].submit(consistencyChecking=OFF, datacheckJob=True)
+mdb.jobs['Job-2']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'SPECIFIED SURFACE ASSEMBLY_PRESS-1_PRESSSURFACE DOES NOT EXIST. THIS SURFACE MUST BE DEFINED.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN ERROR HAS OCCURRED WHILE PROCESSING THE COUPLING OPTION. PLEASE CHECK THE DATA FILE FOR THE APPROPRIATE ERROR MESSAGES.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'SPECIFIED SURFACE ASSEMBLY_PRESS-1_PRESSSURFACE DOES NOT EXIST. THIS SURFACE MUST BE DEFINED.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN ERROR HAS OCCURRED WHILE PROCESSING THE COUPLING OPTION. PLEASE CHECK THE DATA FILE FOR THE APPROPRIATE ERROR MESSAGES.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SET-3 HAS NO MEMBERS AND WILL BE IGNORED.  NODES DEFINED IN THIS SET MAY HAVE BEEN DELETED BECAUSE THEY WERE NOT CONNECTED TO ANY ELEMENTS.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-3 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OPTION *BOUNDARY,TYPE=DISPLACEMENT HAS BEEN USED; CHECK STATUS FILE BETWEEN STEPS FOR WARNINGS ON ANY JUMPS PRESCRIBED ACROSS THE STEPS IN DISPLACEMENT VALUES OF TRANSLATIONAL DOF. FOR ROTATIONAL DOF MAKE SURE THAT THERE ARE NO SUCH JUMPS. ALL JUMPS IN DISPLACEMENTS ACROSS STEPS ARE IGNORED', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-3 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SET-3 HAS NOT BEEN DEFINED', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/bme.Finite-Element-Analysis-I/Job-2.odb', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-2'})
+# Save by fe1 on 2019_05_05-13.26.33; build 2016 2015_09_24-22.31.09 126547
+# Save by fe1 on 2019_05_05-13.27.38; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].predefinedFields['Predefined Field-1'].setValues(
+    assignmentList=((
+    mdb.models['Model-1'].rootAssembly.instances['plate-1'].sets['Set-1'], (1, 
+    )), (mdb.models['Model-1'].rootAssembly.sets['Set-2'], (0, ))))
+mdb.jobs['Job-2'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-2']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'SPECIFIED SURFACE ASSEMBLY_PRESS-1_PRESSSURFACE DOES NOT EXIST. THIS SURFACE MUST BE DEFINED.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN ERROR HAS OCCURRED WHILE PROCESSING THE COUPLING OPTION. PLEASE CHECK THE DATA FILE FOR THE APPROPRIATE ERROR MESSAGES.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'SPECIFIED SURFACE ASSEMBLY_PRESS-1_PRESSSURFACE DOES NOT EXIST. THIS SURFACE MUST BE DEFINED.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN ERROR HAS OCCURRED WHILE PROCESSING THE COUPLING OPTION. PLEASE CHECK THE DATA FILE FOR THE APPROPRIATE ERROR MESSAGES.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SET-3 HAS NO MEMBERS AND WILL BE IGNORED.  NODES DEFINED IN THIS SET MAY HAVE BEEN DELETED BECAUSE THEY WERE NOT CONNECTED TO ANY ELEMENTS.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-3 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OPTION *BOUNDARY,TYPE=DISPLACEMENT HAS BEEN USED; CHECK STATUS FILE BETWEEN STEPS FOR WARNINGS ON ANY JUMPS PRESCRIBED ACROSS THE STEPS IN DISPLACEMENT VALUES OF TRANSLATIONAL DOF. FOR ROTATIONAL DOF MAKE SURE THAT THERE ARE NO SUCH JUMPS. ALL JUMPS IN DISPLACEMENTS ACROSS STEPS ARE IGNORED', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-3 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SET-3 HAS NOT BEEN DEFINED', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/bme.Finite-Element-Analysis-I/Job-2.odb', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-2'})
+mdb.jobs['Job-2']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-2'})
+del mdb.models['Model-1'].interactions['Int-1']
+mdb.models['Model-1'].ContactExp(createStepName='Step-1', name='Int-1')
+mdb.models['Model-1'].interactions['Int-1'].includedPairs.setValuesInStep(
+    stepName='Step-1', useAllstar=ON)
+mdb.models['Model-1'].interactions['Int-1'].contactPropertyAssignments.appendInStep(
+    assignments=((GLOBAL, SELF, 'IntProp-1'), ), stepName='Step-1')
+mdb.models['Model-1'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['Model-1'].parts['plate'].features['Solid extrude-1'].sketch)
+mdb.models['Model-1'].parts['plate'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['Model-1'].parts['plate'].features['Solid extrude-1'])
+del mdb.models['Model-1'].sketches['__edit__']
+del mdb.models['Model-1'].rootAssembly.features['RP-1']
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('press-1', ), 
+    vector=(0.0, 0.0075, 0.0))
+mdb.models['Model-1'].rootAssembly.ReferencePoint(point=
+    mdb.models['Model-1'].rootAssembly.instances['press-1'].vertices[0])
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('press-1', ), 
+    vector=(0.0, -0.0075, 0.0))
+mdb.models['Model-1'].constraints['Constraint-1'].setValues(controlPoint=
+    mdb.models['Model-1'].rootAssembly.sets['m_Set-1'])
+mdb.Job(activateLoadBalancing=False, atTime=None, contactPrint=OFF, 
+    description='', echoPrint=OFF, explicitPrecision=SINGLE, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-3', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numDomains=1, parallelizationMethodExplicit=DOMAIN, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['Job-3'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-3']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'in keyword *BOUNDARY, file "Job-3.inp", line 6994: Unknown assembly node set SET-3', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'in keyword *BOUNDARY, file "Job-3.inp", line 7024: Unknown assembly node set SET-3', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'SPECIFIED SURFACE ASSEMBLY_PRESS-1_PRESSSURFACE DOES NOT EXIST. THIS SURFACE MUST BE DEFINED.', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN ERROR HAS OCCURRED WHILE PROCESSING THE COUPLING OPTION. PLEASE CHECK THE DATA FILE FOR THE APPROPRIATE ERROR MESSAGES.', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'SPECIFIED SURFACE ASSEMBLY_PRESS-1_PRESSSURFACE DOES NOT EXIST. THIS SURFACE MUST BE DEFINED.', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'AN ERROR HAS OCCURRED WHILE PROCESSING THE COUPLING OPTION. PLEASE CHECK THE DATA FILE FOR THE APPROPRIATE ERROR MESSAGES.', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-3 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OPTION *BOUNDARY,TYPE=DISPLACEMENT HAS BEEN USED; CHECK STATUS FILE BETWEEN STEPS FOR WARNINGS ON ANY JUMPS PRESCRIBED ACROSS THE STEPS IN DISPLACEMENT VALUES OF TRANSLATIONAL DOF. FOR ROTATIONAL DOF MAKE SURE THAT THERE ARE NO SUCH JUMPS. ALL JUMPS IN DISPLACEMENTS ACROSS STEPS ARE IGNORED', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-3 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SET-3 HAS NOT BEEN DEFINED', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/bme.Finite-Element-Analysis-I/Job-3.odb', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-3'})
+mdb.models['Model-1'].parts['press'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=0.001)
+mdb.models['Model-1'].parts['press'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.jobs['Job-3'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-3']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'in keyword *BOUNDARY, file "Job-3.inp", line 7241: Unknown assembly node set SET-3', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'in keyword *BOUNDARY, file "Job-3.inp", line 7271: Unknown assembly node set SET-3', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-3 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OPTION *BOUNDARY,TYPE=DISPLACEMENT HAS BEEN USED; CHECK STATUS FILE BETWEEN STEPS FOR WARNINGS ON ANY JUMPS PRESCRIBED ACROSS THE STEPS IN DISPLACEMENT VALUES OF TRANSLATIONAL DOF. FOR ROTATIONAL DOF MAKE SURE THAT THERE ARE NO SUCH JUMPS. ALL JUMPS IN DISPLACEMENTS ACROSS STEPS ARE IGNORED', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-3 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SET-3 HAS NOT BEEN DEFINED', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/bme.Finite-Element-Analysis-I/Job-3.odb', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-3'})
+mdb.jobs['Job-3']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-3'})
+mdb.models['Model-1'].boundaryConditions['displacement'].setValues(region=
+    mdb.models['Model-1'].rootAssembly.instances['press-1'].sets['Set-1'])
+del mdb.models['Model-1'].boundaryConditions['displacement']
+mdb.models['Model-1'].parts['press'].Set(name='Set-2', nodes=
+    mdb.models['Model-1'].parts['press'].nodes.getSequenceFromMask(mask=(
+    '[#1 ]', ), ))
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].rootAssembly.Set(name='Set-7', referencePoints=(
+    mdb.models['Model-1'].rootAssembly.referencePoints[15], ))
+mdb.models['Model-1'].DisplacementBC(amplitude=UNSET, createStepName='Initial', 
+    distributionType=UNIFORM, fieldName='', localCsys=None, name='displacement'
+    , region=mdb.models['Model-1'].rootAssembly.sets['Set-7'], u1=UNSET, u2=SET
+    , u3=UNSET, ur1=UNSET, ur2=UNSET, ur3=UNSET)
+mdb.models['Model-1'].boundaryConditions['displacement'].setValuesInStep(
+    amplitude='Amp-1', stepName='Step-1', u2=-0.0025)
+mdb.Job(activateLoadBalancing=False, atTime=None, contactPrint=OFF, 
+    description='', echoPrint=OFF, explicitPrecision=SINGLE, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-4', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numDomains=1, parallelizationMethodExplicit=DOMAIN, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['Job-4'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-4']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SET-7 HAS NO MEMBERS AND WILL BE IGNORED.  NODES DEFINED IN THIS SET MAY HAVE BEEN DELETED BECAUSE THEY WERE NOT CONNECTED TO ANY ELEMENTS.', 
+    'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-7 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OPTION *BOUNDARY,TYPE=DISPLACEMENT HAS BEEN USED; CHECK STATUS FILE BETWEEN STEPS FOR WARNINGS ON ANY JUMPS PRESCRIBED ACROSS THE STEPS IN DISPLACEMENT VALUES OF TRANSLATIONAL DOF. FOR ROTATIONAL DOF MAKE SURE THAT THERE ARE NO SUCH JUMPS. ALL JUMPS IN DISPLACEMENTS ACROSS STEPS ARE IGNORED', 
+    'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-7 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SET-7 HAS NOT BEEN DEFINED', 
+    'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/bme.Finite-Element-Analysis-I/Job-4.odb', 
+    'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-4'})
+mdb.jobs['Job-4']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-4'})
+# Save by fe1 on 2019_05_05-17.20.01; build 2016 2015_09_24-22.31.09 126547
