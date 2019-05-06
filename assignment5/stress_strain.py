@@ -59,21 +59,49 @@ def read_data(filename) :
 
     return x_f, y_f
 
+def read_data2(filename) :
+    # Import data using Pandas. Using report I XY data, this line should work
+    data = pd.read_csv(os.path.dirname(os.path.abspath(__file__)) + '\\' + filename,
+                    skiprows=5, header=None, delim_whitespace=True)
+    data_nofric = data.values
+
+    x_f = []
+    y_f = []
+
+    lh = 0.005
+    lw = 0.0007
+    lb = 0.015
+
+    for line in data_nofric:
+        current3 = line[1] * -1
+        current2 = line[2] * -1
+        calc2 = h - current2
+        c_epsilon2 = (2/np.sqrt(3))*np.log(lh/calc2)
+        c_sigma2 = (current3 / lw * lb) * (np.sqrt(3)/2) * (1e4 / 2)
+        x_f.append(c_sigma2)
+        y_f.append(c_epsilon2)
+
+    return x_f, y_f
+
 x_f , y_f = read_data("../assignment4/data.2.nofric")
 x_wf, y_wf = read_data("../assignment4/data.2.withfric")
 
 x_1f, y_1f = read_data("../assignment4/data.1.nofric.nosliding.nodetonode")
 x_2f, y_2f = read_data("../assignment4/data.1.nofric.smallsliding")
 x_3f, y_3f = read_data("../assignment4/data.1.nofric.smallsliding.nodetonode")
+x_4f, y_4f = read_data2("model_data1_nofriction.rpt")
+x_5f, y_5f = read_data2("model_data1_withfriction.rpt")
 
 # Plot
 plt.grid()
-plt.plot(y, x, linewidth=2,  label="Analytical Solution")
-plt.plot(y_f, x_f, linewidth=2,  label="Finite Sliding - Surface to Surface - No Friction")
-plt.plot(y_wf, x_wf, linewidth=2,  label="Finite Sliding - Surface to Surface - With Friction")
-plt.plot(y_1f, x_1f, linewidth=2,  label="Finite Sliding  - Node to Node - No Friction")
-plt.plot(y_2f, x_2f, linewidth=2,  label="Small Sliding - Surface to Surface -No Friction")
-plt.plot(y_3f, x_3f, linewidth=2,  label="Small Sliding - Node to Node - No Friction")
+plt.plot(y, x, linewidth=2, label="Analytical Solution")
+plt.plot(y_f, x_f, linewidth=1, alpha=0.5, label="Finite Sliding - Surface to Surface - No Friction")
+plt.plot(y_wf, x_wf, linewidth=1, alpha=0.5, label="Finite Sliding - Surface to Surface - With Friction")
+plt.plot(y_1f, x_1f, linewidth=1, alpha=0.5, label="Finite Sliding  - Node to Node - No Friction")
+plt.plot(y_2f, x_2f, linewidth=1, alpha=0.5, label="Small Sliding - Surface to Surface -No Friction")
+plt.plot(y_3f, x_3f, linewidth=1, alpha=0.5, label="Small Sliding - Node to Node - No Friction")
+plt.plot(y_4f, x_4f, linewidth=2, label="Eulerian - No Friction")
+plt.plot(y_5f, x_5f, linewidth=2, label="Eulerian - With Friction")
 plt.xlabel('Strain')
 plt.ylabel('Stress (Pa)')
 plt.ylim(bottom=0)
