@@ -1,0 +1,13 @@
+Abaqus/Explicit 3DEXPERIENCE R2016x              DATE 05-May-2019  TIME 21:28:55
+-------------------------------------------------------------------------------
+ PREPROCESSOR WARNING MESSAGES
+-------------------------------------------------------------------------------
+
+
+***WARNING: There are 2 warning messages in the data (.dat) file.  Please
+            check the data file for possible errors in the input file.
+
+
+
+***ERROR: MPC-TYPE CONSTRAINS CAN NOT BE IMPOSED ON EULERIAN NODES.
+
