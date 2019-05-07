@@ -2,7 +2,7 @@
 #
 # Abaqus/CAE Release 2016 replay file
 # Internal Version: 2015_09_24-22.31.09 126547
-# Run by fe1 on Sun May  5 21:13:46 2019
+# Run by fe1 on Tue May  7 09:33:24 2019
 #
 
 # from driverUtils import executeOnCaeGraphicsStartup
@@ -23,56 +23,103 @@ Mdb()
 #: A new model database has been created.
 #: The model "Model-1" has been created.
 session.viewports['Viewport: 1'].setValues(displayedObject=None)
-openMdb(
-    pathName='/home/fe1/bme.Finite-Element-Analysis-I/assignment5/model.cae')
-#: The model database "/home/fe1/bme.Finite-Element-Analysis-I/assignment5/model.cae" has been opened.
-session.viewports['Viewport: 1'].setValues(displayedObject=None)
-p = mdb.models['Model-1'].parts['plate']
+s = mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=1.0)
+g, v, d, c = s.geometry, s.vertices, s.dimensions, s.constraints
+s.setPrimaryObject(option=STANDALONE)
+s.Line(point1=(0.0, 0.0), point2=(0.003, 0.0))
+s.HorizontalConstraint(entity=g[2], addUndoState=False)
+s.Line(point1=(0.003, 0.0), point2=(0.015, 0.003))
+s.undo()
+s.unsetPrimaryObject()
+del mdb.models['Model-1'].sketches['__profile__']
+s1 = mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=1.0)
+g, v, d, c = s1.geometry, s1.vertices, s1.dimensions, s1.constraints
+s1.setPrimaryObject(option=STANDALONE)
+s1.Line(point1=(0.0, 0.0), point2=(0.003, 0.0))
+s1.HorizontalConstraint(entity=g[2], addUndoState=False)
+s1.Line(point1=(0.003, 0.0), point2=(0.003, 0.015))
+s1.VerticalConstraint(entity=g[3], addUndoState=False)
+s1.PerpendicularConstraint(entity1=g[2], entity2=g[3], addUndoState=False)
+s1.Line(point1=(0.003, 0.015), point2=(0.0, 0.015))
+s1.HorizontalConstraint(entity=g[4], addUndoState=False)
+s1.PerpendicularConstraint(entity1=g[3], entity2=g[4], addUndoState=False)
+s1.Line(point1=(0.0, 0.015), point2=(0.0, 0.0))
+s1.VerticalConstraint(entity=g[5], addUndoState=False)
+s1.PerpendicularConstraint(entity1=g[4], entity2=g[5], addUndoState=False)
+p = mdb.models['Model-1'].Part(name='sample', dimensionality=TWO_D_PLANAR, 
+    type=DEFORMABLE_BODY)
+p = mdb.models['Model-1'].parts['sample']
+p.BaseShell(sketch=s1)
+s1.unsetPrimaryObject()
+p = mdb.models['Model-1'].parts['sample']
 session.viewports['Viewport: 1'].setValues(displayedObject=p)
-a = mdb.models['Model-1'].rootAssembly
-session.viewports['Viewport: 1'].setValues(displayedObject=a)
-session.viewports['Viewport: 1'].assemblyDisplay.setValues(
-    optimizationTasks=OFF, geometricRestrictions=OFF, stopConditions=OFF)
-mdb.Job(name='Job-5', model='Model-1', description='', type=ANALYSIS, 
-    atTime=None, waitMinutes=0, waitHours=0, queue=None, memory=90, 
-    memoryUnits=PERCENTAGE, explicitPrecision=SINGLE, 
-    nodalOutputPrecision=SINGLE, echoPrint=OFF, modelPrint=OFF, 
-    contactPrint=OFF, historyPrint=OFF, userSubroutine='', scratch='', 
-    resultsFormat=ODB, parallelizationMethodExplicit=DOMAIN, numDomains=1, 
-    activateLoadBalancing=False, multiprocessingMode=DEFAULT, numCpus=1)
-mdb.jobs['Job-5'].submit(consistencyChecking=OFF)
-#: The job input file "Job-5.inp" has been submitted for analysis.
-#: Error in job Job-5: A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-7 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL
-#: Error in job Job-5: A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SET-7 BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL
-#: Error in job Job-5: NODE SET ASSEMBLY_SET-7 HAS NOT BEEN DEFINED
-#: Job Job-5: Analysis Input File Processor aborted due to errors.
-#: Error in job Job-5: Analysis Input File Processor exited with an error.
-#: Job Job-5 aborted due to errors.
-session.viewports['Viewport: 1'].view.setValues(nearPlane=0.229992, 
-    farPlane=0.348538, width=0.155422, height=0.0668311, 
-    viewOffsetX=0.00437775, viewOffsetY=0.00255648)
-session.viewports['Viewport: 1'].view.setValues(nearPlane=0.235311, 
-    farPlane=0.343219, width=0.0940418, height=0.0404377, 
-    viewOffsetX=-0.0124417, viewOffsetY=0.00831935)
-session.viewports['Viewport: 1'].assemblyDisplay.setValues(loads=ON, bcs=ON, 
-    predefinedFields=ON, connectors=ON)
-a = mdb.models['Model-1'].rootAssembly
-region = a.sets['m_Set-1']
-mdb.models['Model-1'].boundaryConditions['displacement'].setValues(
-    region=region)
-session.viewports['Viewport: 1'].assemblyDisplay.setValues(loads=OFF, bcs=OFF, 
-    predefinedFields=OFF, connectors=OFF)
-mdb.jobs['Job-5'].submit(consistencyChecking=OFF)
-#: The job input file "Job-5.inp" has been submitted for analysis.
-#: Job Job-5: Analysis Input File Processor completed successfully.
-session.viewports['Viewport: 1'].assemblyDisplay.setValues(loads=ON, bcs=ON, 
-    predefinedFields=ON, connectors=ON)
-#: Error in job Job-5: MPC-TYPE CONSTRAINS CAN NOT BE IMPOSED ON EULERIAN NODES.
-#: Job Job-5: Abaqus/Explicit Packager aborted due to errors.
-#: Error in job Job-5: Abaqus/Explicit Packager exited with an error - Please see the  status file for possible error messages if the file exists.
-#: Job Job-5 aborted due to errors.
-session.viewports['Viewport: 1'].assemblyDisplay.setValues(loads=OFF, bcs=OFF, 
-    predefinedFields=OFF, interactions=ON, constraints=ON, 
-    engineeringFeatures=ON)
+del mdb.models['Model-1'].sketches['__profile__']
+session.viewports['Viewport: 1'].view.setValues(nearPlane=0.0271003, 
+    farPlane=0.034088, width=0.033783, height=0.0145266, viewOffsetX=0.0002762, 
+    viewOffsetY=0.000194083)
+p = mdb.models['Model-1'].parts['sample']
+v1, e, d1, n = p.vertices, p.edges, p.datums, p.nodes
+p.ReferencePoint(point=p.InterestingPoint(edge=e[3], rule=MIDDLE))
+p = mdb.models['Model-1'].parts['sample']
+r = p.referencePoints
+refPoints=(r[2], )
+p.Set(referencePoints=refPoints, name='RP-Pull')
+#: The set 'RP-Pull' has been created (1 reference point).
+p = mdb.models['Model-1'].parts['sample']
+p.DatumCsysByThreePoints(name='Fiber-CSYS', coordSysType=CARTESIAN, origin=(
+    0.0, 0.0, 0.0), line1=(1.0, 0.0, 0.0), line2=(0.0, 1.0, 0.0))
+p = mdb.models['Model-1'].parts['sample']
+p.DatumAxisByPrincipalAxis(principalAxis=YAXIS)
+p = mdb.models['Model-1'].parts['sample']
+v2, d2 = p.vertices, p.datums
+p.DatumAxisByRotation(line=d2[5], point=v2[1], angle=45.0)
+p = mdb.models['Model-1'].parts['sample']
+del p.features['Datum axis-2']
+p = mdb.models['Model-1'].parts['sample']
+v1, d1 = p.vertices, p.datums
+p.DatumAxisByRotation(line=d1[5], point=v1[1], angle=-45.0)
+p = mdb.models['Model-1'].parts['sample']
+p.deleteFeatures(('Datum axis-1', 'Datum axis-2', ))
+mdb.saveAs(
+    pathName='/home/fe1/bme.Finite-Element-Analysis-I/assignment6/model')
+#: The model database has been saved to "/home/fe1/bme.Finite-Element-Analysis-I/assignment6/model.cae".
+p = mdb.models['Model-1'].parts['sample']
+del p.features['Fiber-CSYS']
+p = mdb.models['Model-1'].parts['sample']
+e1 = p.edges
+p.DatumCsysByTwoLines(CARTESIAN, line1=e1[1], line2=e1[0], name='Fiber-CSYS')
+p = mdb.models['Model-1'].parts['sample']
+del p.features['Fiber-CSYS']
+p = mdb.models['Model-1'].parts['sample']
+p.DatumAxisByPrincipalAxis(principalAxis=YAXIS)
+p = mdb.models['Model-1'].parts['sample']
+v2, d2 = p.vertices, p.datums
+p.DatumAxisByRotation(line=d2[9], point=v2[1], angle=45.0)
+p = mdb.models['Model-1'].parts['sample']
+v1, d1 = p.vertices, p.datums
+p.DatumAxisByRotation(line=d1[9], point=v1[1], angle=-45.0)
+p = mdb.models['Model-1'].parts['sample']
+d2 = p.datums
+p.DatumCsysByTwoLines(CARTESIAN, line1=d2[10], line2=d2[11], name='Fiber-CSYS')
 mdb.save()
-#: The model database has been saved to "/home/fe1/bme.Finite-Element-Analysis-I/assignment5/model.cae".
+#: The model database has been saved to "/home/fe1/bme.Finite-Element-Analysis-I/assignment6/model.cae".
+session.viewports['Viewport: 1'].partDisplay.setValues(sectionAssignments=ON, 
+    engineeringFeatures=ON)
+session.viewports['Viewport: 1'].partDisplay.geometryOptions.setValues(
+    referenceRepresentation=OFF)
+mdb.models['Model-1'].Material(name='sample_material')
+mdb.models['Model-1'].materials['sample_material'].Hyperelastic(
+    materialType=ANISOTROPIC, anisotropicType=HOLZAPFEL, localDirections=2, 
+    table=((55000.0, 1e-08, 65000000.0, 85.0, 0.2), ))
+p = mdb.models['Model-1'].parts['sample']
+f = p.faces
+faces = f.getSequenceFromMask(mask=('[#1 ]', ), )
+region = regionToolset.Region(faces=faces)
+orientation = mdb.models['Model-1'].parts['sample'].datums[12]
+mdb.models['Model-1'].parts['sample'].MaterialOrientation(region=region, 
+    orientationType=SYSTEM, axis=AXIS_3, localCsys=orientation, fieldName='', 
+    additionalRotationType=ROTATION_NONE, angle=0.0, 
+    additionalRotationField='', stackDirection=STACK_3)
+#: Specified material orientation has been assigned to the selected regions.
+mdb.save()
+#: The model database has been saved to "/home/fe1/bme.Finite-Element-Analysis-I/assignment6/model.cae".
