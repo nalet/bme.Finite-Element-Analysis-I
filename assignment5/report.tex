@@ -77,11 +77,10 @@ Finite Element Analysis I
 
 \section*{Abstract}
 In this assignment, we examine the behavior of a metal plate under compression.
-A rigid press, modeled as an analytical surface, squeezes the plate together.
-By retrieving the force and displacement values over time, we can determine the plastic behavior of our specimen.
-
-In this assignment, we use the findings from the previous assignment 4 and instead of using a Lagrangian 
-formulation we are using a Eulerian.
+A rigid press, modeled as a 3D shell, squeezes the plate together.
+By retrieving the force and displacement values over time, we can determine the plastic behavior 
+of our specimen. In this assignment, we use the findings from the previous assignment 4 and 
+instead of using a Lagrangian formulation we are using a Eulerian.
 
 
 % \begin{figure}[!htb]
@@ -93,7 +92,14 @@ formulation we are using a Eulerian.
 \tableofcontents
 \pagebreak
 \section{Introduction}
-Like in the previous assignment 4, the plate is once more compressed. Eulerian modeling can only be achieved in the 3D. As the previous model was in 2D, in this assignment we remodeled the parts in 3D once again. However, the calculations for the plasticity are the same for the material as before. Actually, the new Model is 2D alike, as we create a 2D model with a small depth so only one mesh unit is needed for the calculations. In the end, we are working with a 2D model except using the 3D Eulerian parts. 
+Like in the previous assignment 4, the plate is compressed from both sides. Symmetry is used to keeep
+computation time low. 
+Eulerian modeling can only be done on 3D models. As the previous model was in 2D, 
+for this assignment we remodeled the parts in 3D. We use the same material coefficients
+as in the previous assignment. 
+Despite using 3D-modelling, our specimen consits of only one element in depth
+with encastered front and back surfaces. The behaviour is therefore
+2D-alike.
 
 \begin{figure}[!htb]
   \centering
@@ -102,15 +108,22 @@ Like in the previous assignment 4, the plate is once more compressed. Eulerian m
   \label{fig:1}
 \end{figure}
 
-\noindent As shown in Figure \ref{fig:1}, the model of the plate has to be segmented. We have to set the distribution of the material, as Abaqus needs us to define where the material will be "flowing". Again, only a 4th of the model has to be sketched.
+\noindent As shown in Figure \ref{fig:1}, the model of the plate has to be partitioned. 
+We have to anticipate the final distribution of the material (white ares), as Abaqus needs us to define the are/volume 
+where the original material (shaded area) will be "flowing" during simulation. 
+Again, only a quarter of the model has to be sketched due to symmetry.
 
 \newpage
 \section{Methods}
 
 \subsection{Coupled Lagrangian-Eulerian Analysis in Abacus}
 
-We created a model with CPS4R mesh type. Based on the last assignments, the reduced integration
-gave us the best result, so we stick with that.
+In this assignment we used eularian parts. The most obvious difference to the previous Lagrangian
+simulations is the behaviour of the mesh during simulation. Whereas lagrangian meshes deform and compress 
+with the part, eularian meshes stay intact. This, however, needs to be taken into account 
+when meshing the part in the first place, as there has to be enough "meshed space" around the model,
+where the material can flow into. This material flow is then measured to draw conclusions
+about the material characteristics.
 
 \begin{figure}[!htb]
   \centering
@@ -130,14 +143,9 @@ gave us the best result, so we stick with that.
 \pagebreak
 \section{Results and Discussion}
 
-The analytical and the experimental results are similar.
-Logically the experiment with introduced friction (friciton coefficien 0.2) results in a higher
-stress/strain ration, as energy of the compression gets lost in friction. 
-during modelling, we ran into troubles with the simulation due to the sharp corner of the press.
-Thus we introduced a small 1mm fillet to smoothen the process. This worked out fine and the results 
-got better and were calculated more quickly.
-
-The stress/strain ratio calculations which allowed for small sliding show a higher stress per strain ratio.
+The gained results from the eularian simulation are similar to the lagrangian results from the 
+prvious assignment. Both simulations, with or without friction, lie in the region
+of stress/strain ratio as in assignment 4. 
 
 
 \pagebreak
