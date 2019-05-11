@@ -31,3 +31,71 @@ mdb.models['Model-1'].parts['shape'].BaseShell(sketch=
     mdb.models['Model-1'].sketches['__profile__'])
 del mdb.models['Model-1'].sketches['__profile__']
 # Save by fe1 on 2019_05_11-13.39.02; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].parts['shape'].PartitionEdgeByParam(edges=
+    mdb.models['Model-1'].parts['shape'].edges.getSequenceFromMask(('[#2 ]', ), 
+    ), parameter=0.5)
+mdb.models['Model-1'].ConstrainedSketch(gridSpacing=0.0007, name='__profile__', 
+    sheetSize=0.0305, transform=
+    mdb.models['Model-1'].parts['shape'].MakeSketchTransform(
+    sketchPlane=mdb.models['Model-1'].parts['shape'].faces[0], 
+    sketchPlaneSide=SIDE1, sketchOrientation=RIGHT, origin=(-0.002, 0.000375, 
+    0.0)))
+mdb.models['Model-1'].sketches['__profile__'].sketchOptions.setValues(
+    decimalPlaces=4)
+mdb.models['Model-1'].parts['shape'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+del mdb.models['Model-1'].parts['shape'].features['Partition edge-1']
+mdb.models['Model-1'].parts['shape'].PartitionFaceByShortestPath(faces=
+    mdb.models['Model-1'].parts['shape'].faces.getSequenceFromMask(('[#1 ]', ), 
+    ), point1=mdb.models['Model-1'].parts['shape'].InterestingPoint(
+    mdb.models['Model-1'].parts['shape'].edges[1], MIDDLE), point2=
+    mdb.models['Model-1'].parts['shape'].InterestingPoint(
+    mdb.models['Model-1'].parts['shape'].edges[3], MIDDLE))
+mdb.models['Model-1'].parts['shape'].ReferencePoint(point=
+    mdb.models['Model-1'].parts['shape'].vertices[1])
+mdb.models['Model-1'].parts['shape'].features.changeKey(fromName='RP', toName=
+    'RP-Pull')
+mdb.models['Model-1'].parts['shape'].DatumCsysByThreePoints(coordSysType=
+    CARTESIAN, line1=(1.0, 0.0, 0.0), line2=(0.0, 1.0, 0.0), name='Fiber-CSYS', 
+    origin=(0.0, 0.0, 0.0))
+del mdb.models['Model-1'].parts['shape'].features['Fiber-CSYS']
+mdb.models['Model-1'].parts['shape'].DatumCsysByThreePoints(coordSysType=
+    CARTESIAN, line1=(1.0, 0.0, 0.0), line2=(0.0, 1.0, 0.0), name='Fiber-CSYS', 
+    origin=(0.0, 0.0, 0.0))
+mdb.models['Model-1'].Material(name='Material-1')
+mdb.models['Model-1'].materials['Material-1'].Hyperelastic(anisotropicType=
+    HOLZAPFEL, localDirections=2, materialType=ANISOTROPIC, table=((0.055, 
+    0.01, 65.0, 85.0, 0.2), ))
+mdb.models['Model-1'].HomogeneousSolidSection(material='Material-1', name=
+    'Section-1', thickness=0.5)
+mdb.models['Model-1'].parts['shape'].Set(faces=
+    mdb.models['Model-1'].parts['shape'].faces.getSequenceFromMask(('[#3 ]', ), 
+    ), name='Set-1')
+mdb.models['Model-1'].parts['shape'].SectionAssignment(offset=0.0, offsetField=
+    '', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['shape'].sets['Set-1'], sectionName='Section-1'
+    , thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].parts['shape'].MaterialOrientation(
+    additionalRotationField='', additionalRotationType=ROTATION_NONE, angle=0.0
+    , axis=AXIS_3, fieldName='', localCsys=
+    mdb.models['Model-1'].parts['shape'].datums[6], orientationType=SYSTEM, 
+    region=Region(
+    faces=mdb.models['Model-1'].parts['shape'].faces.getSequenceFromMask(mask=(
+    '[#3 ]', ), )), stackDirection=STACK_3)
+mdb.models['Model-1'].StaticStep(initialInc=0.1, maxInc=0.1, minInc=1e-10, 
+    name='Step-1', nlgeom=ON, previous='Initial')
+# Save by fe1 on 2019_05_11-14.42.28; build 2016 2015_09_24-22.31.09 126547
