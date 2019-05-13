@@ -12,27 +12,6 @@ from job import *
 from sketch import *
 from visualization import *
 from connectorBehavior import *
-<<<<<<< HEAD
-mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=0.02)
-mdb.models['Model-1'].sketches['__profile__'].sketchOptions.setValues(
-    decimalPlaces=4)
-mdb.models['Model-1'].sketches['__profile__'].rectangle(point1=(-0.006, 0.001), 
-    point2=(0.0055, -0.001125))
-mdb.models['Model-1'].sketches['__profile__'].ObliqueDimension(textPoint=(
-    -0.000681932084262371, -0.00157375878188759), value=0.015, vertex1=
-    mdb.models['Model-1'].sketches['__profile__'].vertices[1], vertex2=
-    mdb.models['Model-1'].sketches['__profile__'].vertices[2])
-mdb.models['Model-1'].sketches['__profile__'].ObliqueDimension(textPoint=(
-    -0.00982669182121754, 7.59453396312892e-05), value=0.003, vertex1=
-    mdb.models['Model-1'].sketches['__profile__'].vertices[0], vertex2=
-    mdb.models['Model-1'].sketches['__profile__'].vertices[1])
-mdb.models['Model-1'].Part(dimensionality=TWO_D_PLANAR, name='shape', type=
-    DEFORMABLE_BODY)
-mdb.models['Model-1'].parts['shape'].BaseShell(sketch=
-    mdb.models['Model-1'].sketches['__profile__'])
-del mdb.models['Model-1'].sketches['__profile__']
-# Save by fe1 on 2019_05_11-13.39.02; build 2016 2015_09_24-22.31.09 126547
-=======
 mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=1.0)
 mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 0.0), point2=(
     0.003, 0.0))
@@ -99,7 +78,6 @@ mdb.models['Model-1'].parts['sample'].DatumAxisByRotation(angle=-45.0, line=
 mdb.models['Model-1'].parts['sample'].deleteFeatures(('Datum axis-1', 
     'Datum axis-2'))
 # Save by fe1 on 2019_05_07-09.54.54; build 2016 2015_09_24-22.31.09 126547
->>>>>>> ce63a9bb82179e5b2c7f814a68f0e0603068d1f5
 from part import *
 from material import *
 from section import *
@@ -113,63 +91,6 @@ from job import *
 from sketch import *
 from visualization import *
 from connectorBehavior import *
-<<<<<<< HEAD
-mdb.models['Model-1'].parts['shape'].PartitionEdgeByParam(edges=
-    mdb.models['Model-1'].parts['shape'].edges.getSequenceFromMask(('[#2 ]', ), 
-    ), parameter=0.5)
-mdb.models['Model-1'].ConstrainedSketch(gridSpacing=0.0007, name='__profile__', 
-    sheetSize=0.0305, transform=
-    mdb.models['Model-1'].parts['shape'].MakeSketchTransform(
-    sketchPlane=mdb.models['Model-1'].parts['shape'].faces[0], 
-    sketchPlaneSide=SIDE1, sketchOrientation=RIGHT, origin=(-0.002, 0.000375, 
-    0.0)))
-mdb.models['Model-1'].sketches['__profile__'].sketchOptions.setValues(
-    decimalPlaces=4)
-mdb.models['Model-1'].parts['shape'].projectReferencesOntoSketch(filter=
-    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__profile__'])
-del mdb.models['Model-1'].sketches['__profile__']
-del mdb.models['Model-1'].parts['shape'].features['Partition edge-1']
-mdb.models['Model-1'].parts['shape'].PartitionFaceByShortestPath(faces=
-    mdb.models['Model-1'].parts['shape'].faces.getSequenceFromMask(('[#1 ]', ), 
-    ), point1=mdb.models['Model-1'].parts['shape'].InterestingPoint(
-    mdb.models['Model-1'].parts['shape'].edges[1], MIDDLE), point2=
-    mdb.models['Model-1'].parts['shape'].InterestingPoint(
-    mdb.models['Model-1'].parts['shape'].edges[3], MIDDLE))
-mdb.models['Model-1'].parts['shape'].ReferencePoint(point=
-    mdb.models['Model-1'].parts['shape'].vertices[1])
-mdb.models['Model-1'].parts['shape'].features.changeKey(fromName='RP', toName=
-    'RP-Pull')
-mdb.models['Model-1'].parts['shape'].DatumCsysByThreePoints(coordSysType=
-    CARTESIAN, line1=(1.0, 0.0, 0.0), line2=(0.0, 1.0, 0.0), name='Fiber-CSYS', 
-    origin=(0.0, 0.0, 0.0))
-del mdb.models['Model-1'].parts['shape'].features['Fiber-CSYS']
-mdb.models['Model-1'].parts['shape'].DatumCsysByThreePoints(coordSysType=
-    CARTESIAN, line1=(1.0, 0.0, 0.0), line2=(0.0, 1.0, 0.0), name='Fiber-CSYS', 
-    origin=(0.0, 0.0, 0.0))
-mdb.models['Model-1'].Material(name='Material-1')
-mdb.models['Model-1'].materials['Material-1'].Hyperelastic(anisotropicType=
-    HOLZAPFEL, localDirections=2, materialType=ANISOTROPIC, table=((0.055, 
-    0.01, 65.0, 85.0, 0.2), ))
-mdb.models['Model-1'].HomogeneousSolidSection(material='Material-1', name=
-    'Section-1', thickness=0.5)
-mdb.models['Model-1'].parts['shape'].Set(faces=
-    mdb.models['Model-1'].parts['shape'].faces.getSequenceFromMask(('[#3 ]', ), 
-    ), name='Set-1')
-mdb.models['Model-1'].parts['shape'].SectionAssignment(offset=0.0, offsetField=
-    '', offsetType=MIDDLE_SURFACE, region=
-    mdb.models['Model-1'].parts['shape'].sets['Set-1'], sectionName='Section-1'
-    , thicknessAssignment=FROM_SECTION)
-mdb.models['Model-1'].parts['shape'].MaterialOrientation(
-    additionalRotationField='', additionalRotationType=ROTATION_NONE, angle=0.0
-    , axis=AXIS_3, fieldName='', localCsys=
-    mdb.models['Model-1'].parts['shape'].datums[6], orientationType=SYSTEM, 
-    region=Region(
-    faces=mdb.models['Model-1'].parts['shape'].faces.getSequenceFromMask(mask=(
-    '[#3 ]', ), )), stackDirection=STACK_3)
-mdb.models['Model-1'].StaticStep(initialInc=0.1, maxInc=0.1, minInc=1e-10, 
-    name='Step-1', nlgeom=ON, previous='Initial')
-# Save by fe1 on 2019_05_11-14.42.28; build 2016 2015_09_24-22.31.09 126547
-=======
 del mdb.models['Model-1'].parts['sample'].features['Fiber-CSYS']
 mdb.models['Model-1'].parts['sample'].DatumCsysByTwoLines(CARTESIAN, line1=
     mdb.models['Model-1'].parts['sample'].edges[1], line2=
@@ -212,4 +133,122 @@ mdb.models['Model-1'].parts['sample'].MaterialOrientation(
     faces=mdb.models['Model-1'].parts['sample'].faces.getSequenceFromMask(
     mask=('[#1 ]', ), )), stackDirection=STACK_3)
 # Save by fe1 on 2019_05_07-10.07.22; build 2016 2015_09_24-22.31.09 126547
->>>>>>> ce63a9bb82179e5b2c7f814a68f0e0603068d1f5
+# Save by fe1 on 2019_05_07-10.17.52; build 2016 2015_09_24-22.31.09 126547
+# Save by fe1 on 2019_05_07-14.55.26; build 2016 2015_09_24-22.31.09 126547
+# Save by fe1 on 2019_05_07-14.55.28; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].StaticStep(initialInc=0.1, maxInc=0.1, minInc=1e-10, 
+    name='Step-1', nlgeom=ON, previous='Initial')
+mdb.models['Model-1'].HomogeneousSolidSection(material='sample_material', name=
+    'Section-1', thickness=None)
+mdb.models['Model-1'].parts['sample'].Set(faces=
+    mdb.models['Model-1'].parts['sample'].faces.getSequenceFromMask(('[#1 ]', 
+    ), ), name='Set-3')
+mdb.models['Model-1'].parts['sample'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['sample'].sets['Set-3'], sectionName=
+    'Section-1', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='sample-1', 
+    part=mdb.models['Model-1'].parts['sample'])
+mdb.models['Model-1'].parts['sample'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=0.0015)
+mdb.models['Model-1'].parts['sample'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=0.0005)
+mdb.models['Model-1'].parts['sample'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=0.0002)
+mdb.models['Model-1'].parts['sample'].generateMesh()
+# Save by fe1 on 2019_05_12-10.46.47; build 2016 2015_09_24-22.31.09 126547
+# Save by fe1 on 2019_05_12-10.46.48; build 2016 2015_09_24-22.31.09 126547
+# Save by fe1 on 2019_05_12-10.47.29; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].HistoryOutputRequest(createStepName='Step-1', name=
+    'H-Output-2', variables=PRESELECT)
+del mdb.models['Model-1'].historyOutputRequests['H-Output-2']
+mdb.models['Model-1'].HistoryOutputRequest(createStepName='Step-1', name=
+    'H-Output-2', rebar=EXCLUDE, region=
+    mdb.models['Model-1'].rootAssembly.allInstances['sample-1'].sets['RP-Pull']
+    , sectionPoints=DEFAULT, variables=('U2', 'RF2'))
+mdb.models['Model-1'].rootAssembly.Set(name='m_Set-1', referencePoints=(
+    mdb.models['Model-1'].rootAssembly.instances['sample-1'].referencePoints[2], 
+    ))
+mdb.models['Model-1'].rootAssembly.Set(edges=
+    mdb.models['Model-1'].rootAssembly.instances['sample-1'].edges.getSequenceFromMask(
+    ('[#8 ]', ), ), name='s_Set-1')
+mdb.models['Model-1'].Coupling(controlPoint=
+    mdb.models['Model-1'].rootAssembly.sets['m_Set-1'], couplingType=KINEMATIC, 
+    influenceRadius=WHOLE_SURFACE, localCsys=None, name='Constraint-1', 
+    surface=mdb.models['Model-1'].rootAssembly.sets['s_Set-1'], u1=ON, u2=ON, 
+    ur3=ON)
+mdb.models['Model-1'].rootAssembly.Set(edges=
+    mdb.models['Model-1'].rootAssembly.instances['sample-1'].edges.getSequenceFromMask(
+    ('[#2 ]', ), ), name='Set-3')
+mdb.models['Model-1'].EncastreBC(createStepName='Step-1', localCsys=None, name=
+    'BC-1', region=mdb.models['Model-1'].rootAssembly.sets['Set-3'])
+mdb.models['Model-1'].rootAssembly.Set(name='Set-4', referencePoints=(
+    mdb.models['Model-1'].rootAssembly.instances['sample-1'].referencePoints[2], 
+    ))
+mdb.models['Model-1'].DisplacementBC(amplitude=UNSET, createStepName='Step-1', 
+    distributionType=UNIFORM, fieldName='', fixed=OFF, localCsys=None, name=
+    'BC-2', region=mdb.models['Model-1'].rootAssembly.sets['Set-4'], u1=UNSET, 
+    u2=0.00375, ur3=UNSET)
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Sample-45', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['Sample-45'].submit(consistencyChecking=OFF)
+mdb.jobs['Sample-45']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 
+    'jobName': 'Sample-45'})
+mdb.jobs['Sample-45']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE COMPRESSIBILITY OF THE ANISOTROPIC HYPERELASTIC MATERIAL WILL BE IGNORED IF USED IN COMBINATION WITH ELEMENTS WITH PLANE-STRESS FORMULATION. Abaqus ASSUMES FULLY INCOMPRESSIBLE BEHAVIOR IN THIS SITUATION.', 
+    'jobName': 'Sample-45'})
+mdb.jobs['Sample-45']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'WHENEVER A TRANSLATION (ROTATION) DOF AT A NODE IS CONSTRAINED BY A KINEMATIC COUPLING DEFINITION THE TRANSLATION (ROTATION) DOFS FOR THAT NODE CANNOT BE INCLUDED IN ANY OTHER CONSTRAINT INCLUDING MPCS, RIGID BODIES, ETC.', 
+    'jobName': 'Sample-45'})
+mdb.jobs['Sample-45']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'MPCS (EXTERNAL or INTERNAL, including those generated from rigid body definitions), KINEMATIC COUPLINGS, AND/OR EQUATIONS WILL ACTIVATE ADDITIONAL DEGREES OF FREEDOM', 
+    'jobName': 'Sample-45'})
+mdb.jobs['Sample-45']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': '1125 elements have incorrect orientation. The third axis should be in the hoop direction. The elements have been identified in element set ErrElemIncorrectOrientation.', 
+    'jobName': 'Sample-45'})
+mdb.jobs['Sample-45']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/bme.Finite-Element-Analysis-I/Sample-45.odb', 
+    'jobName': 'Sample-45'})
+mdb.jobs['Sample-45']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Sample-45'})
+mdb.jobs['Sample-45']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Sample-45'})
+mdb.jobs['Sample-45']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Sample-45'})
+# Save by fe1 on 2019_05_12-11.08.15; build 2016 2015_09_24-22.31.09 126547
+# Save by fe1 on 2019_05_13-14.37.28; build 2016 2015_09_24-22.31.09 126547
