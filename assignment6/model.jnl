@@ -252,3 +252,269 @@ mdb.jobs['Sample-45']._Message(JOB_ABORTED, {
     'jobName': 'Sample-45'})
 # Save by fe1 on 2019_05_12-11.08.15; build 2016 2015_09_24-22.31.09 126547
 # Save by fe1 on 2019_05_13-14.37.28; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-1', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE COMPRESSIBILITY OF THE ANISOTROPIC HYPERELASTIC MATERIAL WILL BE IGNORED IF USED IN COMBINATION WITH ELEMENTS WITH PLANE-STRESS FORMULATION. Abaqus ASSUMES FULLY INCOMPRESSIBLE BEHAVIOR IN THIS SITUATION.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'WHENEVER A TRANSLATION (ROTATION) DOF AT A NODE IS CONSTRAINED BY A KINEMATIC COUPLING DEFINITION THE TRANSLATION (ROTATION) DOFS FOR THAT NODE CANNOT BE INCLUDED IN ANY OTHER CONSTRAINT INCLUDING MPCS, RIGID BODIES, ETC.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'MPCS (EXTERNAL or INTERNAL, including those generated from rigid body definitions), KINEMATIC COUPLINGS, AND/OR EQUATIONS WILL ACTIVATE ADDITIONAL DEGREES OF FREEDOM', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': '1125 elements have incorrect orientation. The third axis should be in the hoop direction. The elements have been identified in element set ErrElemIncorrectOrientation.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/Documents/bme.Finite-Element-Analysis-I/assignment6/Job-1.odb', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+mdb.models['Model-1'].historyOutputRequests['H-Output-2'].setValues(variables=(
+    'RF2', 'U2'))
+del mdb.models['Model-1'].historyOutputRequests['H-Output-1']
+# Save by fe1 on 2019_05_13-23.13.53; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE COMPRESSIBILITY OF THE ANISOTROPIC HYPERELASTIC MATERIAL WILL BE IGNORED IF USED IN COMBINATION WITH ELEMENTS WITH PLANE-STRESS FORMULATION. Abaqus ASSUMES FULLY INCOMPRESSIBLE BEHAVIOR IN THIS SITUATION.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'WHENEVER A TRANSLATION (ROTATION) DOF AT A NODE IS CONSTRAINED BY A KINEMATIC COUPLING DEFINITION THE TRANSLATION (ROTATION) DOFS FOR THAT NODE CANNOT BE INCLUDED IN ANY OTHER CONSTRAINT INCLUDING MPCS, RIGID BODIES, ETC.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'MPCS (EXTERNAL or INTERNAL, including those generated from rigid body definitions), KINEMATIC COUPLINGS, AND/OR EQUATIONS WILL ACTIVATE ADDITIONAL DEGREES OF FREEDOM', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': '1125 elements have incorrect orientation. The third axis should be in the hoop direction. The elements have been identified in element set ErrElemIncorrectOrientation.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/naletmeinen/Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+mdb.models['Model-1'].parts['sample'].MaterialOrientation(
+    additionalRotationField='', additionalRotationType=ROTATION_NONE, angle=0.0
+    , axis=AXIS_3, fieldName='', localCsys=
+    mdb.models['Model-1'].parts['sample'].datums[12], orientationType=SYSTEM, 
+    region=Region(
+    faces=mdb.models['Model-1'].parts['sample'].faces.getSequenceFromMask(
+    mask=('[#1 ]', ), )), stackDirection=STACK_3)
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE COMPRESSIBILITY OF THE ANISOTROPIC HYPERELASTIC MATERIAL WILL BE IGNORED IF USED IN COMBINATION WITH ELEMENTS WITH PLANE-STRESS FORMULATION. Abaqus ASSUMES FULLY INCOMPRESSIBLE BEHAVIOR IN THIS SITUATION.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'WHENEVER A TRANSLATION (ROTATION) DOF AT A NODE IS CONSTRAINED BY A KINEMATIC COUPLING DEFINITION THE TRANSLATION (ROTATION) DOFS FOR THAT NODE CANNOT BE INCLUDED IN ANY OTHER CONSTRAINT INCLUDING MPCS, RIGID BODIES, ETC.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'MPCS (EXTERNAL or INTERNAL, including those generated from rigid body definitions), KINEMATIC COUPLINGS, AND/OR EQUATIONS WILL ACTIVATE ADDITIONAL DEGREES OF FREEDOM', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': '1125 elements have incorrect orientation. The third axis should be in the hoop direction. The elements have been identified in element set ErrElemIncorrectOrientation.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/naletmeinen/Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+mdb.models['Model-1'].rootAssembly.DatumCsysByThreePoints(coordSysType=
+    CARTESIAN, line1=(1.0, 0.0, 0.0), line2=(0.0, 1.0, 0.0), name='Fiber-CSYS', 
+    origin=
+    mdb.models['Model-1'].rootAssembly.instances['sample-1'].vertices[1])
+del mdb.models['Model-1'].rootAssembly.features['Datum csys-1']
+mdb.models['Model-1'].parts['sample'].MaterialOrientation(
+    additionalRotationField='', additionalRotationType=ROTATION_NONE, angle=0.0
+    , axis=AXIS_3, fieldName='', localCsys=
+    mdb.models['Model-1'].parts['sample'].datums[12], orientationType=SYSTEM, 
+    region=Region(
+    faces=mdb.models['Model-1'].parts['sample'].faces.getSequenceFromMask(
+    mask=('[#1 ]', ), )), stackDirection=STACK_3)
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE COMPRESSIBILITY OF THE ANISOTROPIC HYPERELASTIC MATERIAL WILL BE IGNORED IF USED IN COMBINATION WITH ELEMENTS WITH PLANE-STRESS FORMULATION. Abaqus ASSUMES FULLY INCOMPRESSIBLE BEHAVIOR IN THIS SITUATION.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'WHENEVER A TRANSLATION (ROTATION) DOF AT A NODE IS CONSTRAINED BY A KINEMATIC COUPLING DEFINITION THE TRANSLATION (ROTATION) DOFS FOR THAT NODE CANNOT BE INCLUDED IN ANY OTHER CONSTRAINT INCLUDING MPCS, RIGID BODIES, ETC.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'MPCS (EXTERNAL or INTERNAL, including those generated from rigid body definitions), KINEMATIC COUPLINGS, AND/OR EQUATIONS WILL ACTIVATE ADDITIONAL DEGREES OF FREEDOM', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': '1125 elements have incorrect orientation. The third axis should be in the hoop direction. The elements have been identified in element set ErrElemIncorrectOrientation.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/naletmeinen/Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'Job-1'})
+del mdb.models['Model-1'].rootAssembly.features['Fiber-CSYS']
+del mdb.models['Model-1'].parts['sample'].materialOrientations[2]
+del mdb.models['Model-1'].parts['sample'].materialOrientations[1]
+del mdb.models['Model-1'].parts['sample'].materialOrientations[0]
+mdb.models['Model-1'].parts['sample'].deleteFeatures(('Fiber-CSYS', 
+    'Datum axis-1', 'Datum axis-2', 'Datum axis-3'))
+mdb.models['Model-1'].parts['sample'].DatumCsysByThreePoints(coordSysType=
+    CARTESIAN, line1=(1.0, 0.0, 0.0), line2=(0.0, 1.0, 0.0), name='Fiber-CSYS', 
+    origin=(0.0, 0.0, 0.0))
+mdb.models['Model-1'].parts['sample'].MaterialOrientation(
+    additionalRotationField='', additionalRotationType=ROTATION_NONE, angle=0.0
+    , axis=AXIS_3, fieldName='', localCsys=
+    mdb.models['Model-1'].parts['sample'].datums[20], orientationType=SYSTEM, 
+    region=Region(
+    faces=mdb.models['Model-1'].parts['sample'].faces.getSequenceFromMask(
+    mask=('[#1 ]', ), )), stackDirection=STACK_3)
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.jobs['Job-1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE COMPRESSIBILITY OF THE ANISOTROPIC HYPERELASTIC MATERIAL WILL BE IGNORED IF USED IN COMBINATION WITH ELEMENTS WITH PLANE-STRESS FORMULATION. Abaqus ASSUMES FULLY INCOMPRESSIBLE BEHAVIOR IN THIS SITUATION.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'WHENEVER A TRANSLATION (ROTATION) DOF AT A NODE IS CONSTRAINED BY A KINEMATIC COUPLING DEFINITION THE TRANSLATION (ROTATION) DOFS FOR THAT NODE CANNOT BE INCLUDED IN ANY OTHER CONSTRAINT INCLUDING MPCS, RIGID BODIES, ETC.', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'MPCS (EXTERNAL or INTERNAL, including those generated from rigid body definitions), KINEMATIC COUPLINGS, AND/OR EQUATIONS WILL ACTIVATE ADDITIONAL DEGREES OF FREEDOM', 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/naletmeinen/Job-1.odb', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-1', 'memory': 26.0})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 0.1, 'attempts': 1, 
+    'timeIncrement': 0.1, 'increment': 1, 'stepTime': 0.1, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 9, 'phase': STANDARD_PHASE, 
+    'equilibrium': 9})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 2, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 0.2, 'attempts': 1, 
+    'timeIncrement': 0.1, 'increment': 2, 'stepTime': 0.2, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 2, 'phase': STANDARD_PHASE, 
+    'equilibrium': 2})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 3, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 0.3, 'attempts': 1, 
+    'timeIncrement': 0.1, 'increment': 3, 'stepTime': 0.3, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 2, 'phase': STANDARD_PHASE, 
+    'equilibrium': 2})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 4, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 0.4, 'attempts': 1, 
+    'timeIncrement': 0.1, 'increment': 4, 'stepTime': 0.4, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 5, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 0.5, 'attempts': 1, 
+    'timeIncrement': 0.1, 'increment': 5, 'stepTime': 0.5, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 6, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 0.6, 'attempts': 1, 
+    'timeIncrement': 0.1, 'increment': 6, 'stepTime': 0.6, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 7, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 0.7, 'attempts': 1, 
+    'timeIncrement': 0.1, 'increment': 7, 'stepTime': 0.7, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 8, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 0.8, 'attempts': 1, 
+    'timeIncrement': 0.1, 'increment': 8, 'stepTime': 0.8, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 9, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 0.9, 'attempts': 1, 
+    'timeIncrement': 0.1, 'increment': 9, 'stepTime': 0.9, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 10, 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 0.1, 'increment': 10, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-1', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-1']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-1'})
+mdb.jobs['Job-1']._Message(JOB_COMPLETED, {'time': 'Mon May 13 23:40:41 2019', 
+    'jobName': 'Job-1'})
+# Save by fe1 on 2019_05_13-23.50.10; build 2016 2015_09_24-22.31.09 126547
