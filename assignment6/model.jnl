@@ -12,6 +12,7 @@ from job import *
 from sketch import *
 from visualization import *
 from connectorBehavior import *
+<<<<<<< HEAD
 mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=0.02)
 mdb.models['Model-1'].sketches['__profile__'].sketchOptions.setValues(
     decimalPlaces=4)
@@ -31,6 +32,74 @@ mdb.models['Model-1'].parts['shape'].BaseShell(sketch=
     mdb.models['Model-1'].sketches['__profile__'])
 del mdb.models['Model-1'].sketches['__profile__']
 # Save by fe1 on 2019_05_11-13.39.02; build 2016 2015_09_24-22.31.09 126547
+=======
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=1.0)
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 0.0), point2=(
+    0.003, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.003, 0.0), point2=
+    (0.015, 0.003))
+mdb.models['Model-1'].sketches['__profile__'].undo()
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=1.0)
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 0.0), point2=(
+    0.003, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.003, 0.0), point2=
+    (0.003, 0.015))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.003, 0.015), 
+    point2=(0.0, 0.015))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 0.015), point2=
+    (0.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].Part(dimensionality=TWO_D_PLANAR, name='sample', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['sample'].BaseShell(sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['sample'].ReferencePoint(point=
+    mdb.models['Model-1'].parts['sample'].InterestingPoint(
+    mdb.models['Model-1'].parts['sample'].edges[3], MIDDLE))
+mdb.models['Model-1'].parts['sample'].Set(name='RP-Pull', referencePoints=(
+    mdb.models['Model-1'].parts['sample'].referencePoints[2], ))
+mdb.models['Model-1'].parts['sample'].DatumCsysByThreePoints(coordSysType=
+    CARTESIAN, line1=(1.0, 0.0, 0.0), line2=(0.0, 1.0, 0.0), name='Fiber-CSYS', 
+    origin=(0.0, 0.0, 0.0))
+mdb.models['Model-1'].parts['sample'].DatumAxisByPrincipalAxis(principalAxis=
+    YAXIS)
+mdb.models['Model-1'].parts['sample'].DatumAxisByRotation(angle=45.0, line=
+    mdb.models['Model-1'].parts['sample'].datums[5], point=
+    mdb.models['Model-1'].parts['sample'].vertices[1])
+del mdb.models['Model-1'].parts['sample'].features['Datum axis-2']
+mdb.models['Model-1'].parts['sample'].DatumAxisByRotation(angle=-45.0, line=
+    mdb.models['Model-1'].parts['sample'].datums[5], point=
+    mdb.models['Model-1'].parts['sample'].vertices[1])
+mdb.models['Model-1'].parts['sample'].deleteFeatures(('Datum axis-1', 
+    'Datum axis-2'))
+# Save by fe1 on 2019_05_07-09.54.54; build 2016 2015_09_24-22.31.09 126547
+>>>>>>> ce63a9bb82179e5b2c7f814a68f0e0603068d1f5
 from part import *
 from material import *
 from section import *
@@ -44,6 +113,7 @@ from job import *
 from sketch import *
 from visualization import *
 from connectorBehavior import *
+<<<<<<< HEAD
 mdb.models['Model-1'].parts['shape'].PartitionEdgeByParam(edges=
     mdb.models['Model-1'].parts['shape'].edges.getSequenceFromMask(('[#2 ]', ), 
     ), parameter=0.5)
@@ -99,3 +169,47 @@ mdb.models['Model-1'].parts['shape'].MaterialOrientation(
 mdb.models['Model-1'].StaticStep(initialInc=0.1, maxInc=0.1, minInc=1e-10, 
     name='Step-1', nlgeom=ON, previous='Initial')
 # Save by fe1 on 2019_05_11-14.42.28; build 2016 2015_09_24-22.31.09 126547
+=======
+del mdb.models['Model-1'].parts['sample'].features['Fiber-CSYS']
+mdb.models['Model-1'].parts['sample'].DatumCsysByTwoLines(CARTESIAN, line1=
+    mdb.models['Model-1'].parts['sample'].edges[1], line2=
+    mdb.models['Model-1'].parts['sample'].edges[0], name='Fiber-CSYS')
+del mdb.models['Model-1'].parts['sample'].features['Fiber-CSYS']
+mdb.models['Model-1'].parts['sample'].DatumAxisByPrincipalAxis(principalAxis=
+    YAXIS)
+mdb.models['Model-1'].parts['sample'].DatumAxisByRotation(angle=45.0, line=
+    mdb.models['Model-1'].parts['sample'].datums[9], point=
+    mdb.models['Model-1'].parts['sample'].vertices[1])
+mdb.models['Model-1'].parts['sample'].DatumAxisByRotation(angle=-45.0, line=
+    mdb.models['Model-1'].parts['sample'].datums[9], point=
+    mdb.models['Model-1'].parts['sample'].vertices[1])
+mdb.models['Model-1'].parts['sample'].DatumCsysByTwoLines(CARTESIAN, line1=
+    mdb.models['Model-1'].parts['sample'].datums[10], line2=
+    mdb.models['Model-1'].parts['sample'].datums[11], name='Fiber-CSYS')
+# Save by fe1 on 2019_05_07-09.57.57; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].Material(name='sample_material')
+mdb.models['Model-1'].materials['sample_material'].Hyperelastic(
+    anisotropicType=HOLZAPFEL, localDirections=2, materialType=ANISOTROPIC, 
+    table=((55000.0, 1e-08, 65000000.0, 85.0, 0.2), ))
+mdb.models['Model-1'].parts['sample'].MaterialOrientation(
+    additionalRotationField='', additionalRotationType=ROTATION_NONE, angle=0.0
+    , axis=AXIS_3, fieldName='', localCsys=
+    mdb.models['Model-1'].parts['sample'].datums[12], orientationType=SYSTEM, 
+    region=Region(
+    faces=mdb.models['Model-1'].parts['sample'].faces.getSequenceFromMask(
+    mask=('[#1 ]', ), )), stackDirection=STACK_3)
+# Save by fe1 on 2019_05_07-10.07.22; build 2016 2015_09_24-22.31.09 126547
+>>>>>>> ce63a9bb82179e5b2c7f814a68f0e0603068d1f5
