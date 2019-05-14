@@ -167,7 +167,7 @@ def optimization():
     D = 1e-2  # Fixed compressibility
     kappa = 0.2  # Fixed dispersion
 
-    name_abaqus_inp = 'Sample-45' #input('Introduce the name of your INP file (e.g., sample-45): ')  # Only in Python 3
+    name_abaqus_inp = 'sample-45' #input('Introduce the name of your INP file (e.g., sample-45): ')  # Only in Python 3
     print('Introduce the name of your INP file (e.g., sample-45): ' + name_abaqus_inp)
     name_abaqus_job = 'Job-1' #input('Introduce the name of your Job file (e.g., Job-1): ')  # Only in Python 3
     print('Introduce the name of your Job file (e.g., Job-1): ' + name_abaqus_job)

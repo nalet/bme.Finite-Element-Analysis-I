@@ -1,0 +1,90 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+del mdb.jobs['Job-1']
+del mdb.jobs['Sample-45']
+del mdb.jobs['x-45']
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='x-45', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['x-45'].submit(consistencyChecking=OFF)
+mdb.jobs['x-45']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'x-45'})
+mdb.jobs['x-45']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE COMPRESSIBILITY OF THE ANISOTROPIC HYPERELASTIC MATERIAL WILL BE IGNORED IF USED IN COMBINATION WITH ELEMENTS WITH PLANE-STRESS FORMULATION. Abaqus ASSUMES FULLY INCOMPRESSIBLE BEHAVIOR IN THIS SITUATION.', 
+    'jobName': 'x-45'})
+mdb.jobs['x-45']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'WHENEVER A TRANSLATION (ROTATION) DOF AT A NODE IS CONSTRAINED BY A KINEMATIC COUPLING DEFINITION THE TRANSLATION (ROTATION) DOFS FOR THAT NODE CANNOT BE INCLUDED IN ANY OTHER CONSTRAINT INCLUDING MPCS, RIGID BODIES, ETC.', 
+    'jobName': 'x-45'})
+mdb.jobs['x-45']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'MPCS (EXTERNAL or INTERNAL, including those generated from rigid body definitions), KINEMATIC COUPLINGS, AND/OR EQUATIONS WILL ACTIVATE ADDITIONAL DEGREES OF FREEDOM', 
+    'jobName': 'x-45'})
+mdb.jobs['x-45']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': '1125 elements have incorrect orientation. The third axis should be in the hoop direction. The elements have been identified in element set ErrElemIncorrectOrientation.', 
+    'jobName': 'x-45'})
+mdb.jobs['x-45']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/naletmeinen/x-45.odb', 'jobName': 'x-45'})
+mdb.jobs['x-45']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'x-45'})
+mdb.jobs['x-45']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'x-45'})
+mdb.jobs['x-45']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'x-45'})
+mdb.models['Model-1'].parts['sample'].setElementType(elemTypes=(ElemType(
+    elemCode=CPS4R, elemLibrary=STANDARD, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT, distortionControl=DEFAULT), ElemType(
+    elemCode=CPS3, elemLibrary=STANDARD)), regions=(
+    mdb.models['Model-1'].parts['sample'].faces.getSequenceFromMask(('[#1 ]', 
+    ), ), ))
+mdb.models['Model-1'].HomogeneousShellSection(idealization=NO_IDEALIZATION, 
+    integrationRule=SIMPSON, material='sample_material', name='Section-2', 
+    numIntPts=5, poissonDefinition=DEFAULT, preIntegrate=OFF, temperature=
+    GRADIENT, thickness=0.5, thicknessField='', thicknessModulus=None, 
+    thicknessType=UNIFORM, useDensity=OFF)
+mdb.models['Model-1'].parts['sample'].sectionAssignments[0].suppress()
+mdb.models['Model-1'].parts['sample'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['sample'].sets['sample'], sectionName=
+    'Section-1', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.jobs['x-45'].submit(consistencyChecking=OFF)
+mdb.jobs['x-45']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'x-45'})
+mdb.jobs['x-45']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE COMPRESSIBILITY OF THE ANISOTROPIC HYPERELASTIC MATERIAL WILL BE IGNORED IF USED IN COMBINATION WITH ELEMENTS WITH PLANE-STRESS FORMULATION. Abaqus ASSUMES FULLY INCOMPRESSIBLE BEHAVIOR IN THIS SITUATION.', 
+    'jobName': 'x-45'})
+mdb.jobs['x-45']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'WHENEVER A TRANSLATION (ROTATION) DOF AT A NODE IS CONSTRAINED BY A KINEMATIC COUPLING DEFINITION THE TRANSLATION (ROTATION) DOFS FOR THAT NODE CANNOT BE INCLUDED IN ANY OTHER CONSTRAINT INCLUDING MPCS, RIGID BODIES, ETC.', 
+    'jobName': 'x-45'})
+mdb.jobs['x-45']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'MPCS (EXTERNAL or INTERNAL, including those generated from rigid body definitions), KINEMATIC COUPLINGS, AND/OR EQUATIONS WILL ACTIVATE ADDITIONAL DEGREES OF FREEDOM', 
+    'jobName': 'x-45'})
+mdb.jobs['x-45']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': '1125 elements have incorrect orientation. The third axis should be in the hoop direction. The elements have been identified in element set ErrElemIncorrectOrientation.', 
+    'jobName': 'x-45'})
+mdb.jobs['x-45']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/naletmeinen/x-45.odb', 'jobName': 'x-45'})
+mdb.jobs['x-45']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'x-45'})
+mdb.jobs['x-45']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'x-45'})
+mdb.jobs['x-45']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'x-45'})
