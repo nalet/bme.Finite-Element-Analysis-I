@@ -167,9 +167,12 @@ def optimization():
     D = 1e-2  # Fixed compressibility
     kappa = 0.2  # Fixed dispersion
 
-    name_abaqus_inp = input('Introduce the name of your INP file (e.g., sample-45): ')  # Only in Python 3
-    name_abaqus_job = input('Introduce the name of your Job file (e.g., Job-1): ')  # Only in Python 3
-    name_exp_data = input('Introduce the name of your experimental data file (e.g., exp_data_control.dat): ')
+    name_abaqus_inp = 'sample-45' #input('Introduce the name of your INP file (e.g., sample-45): ')  # Only in Python 3
+    print('Introduce the name of your INP file (e.g., sample-45): ' + name_abaqus_inp)
+    name_abaqus_job = 'Job-1' #input('Introduce the name of your Job file (e.g., Job-1): ')  # Only in Python 3
+    print('Introduce the name of your Job file (e.g., Job-1): ' + name_abaqus_job)
+    name_exp_data = 'exp_data_control.dat' #input('Introduce the name of your experimental data file (e.g., exp_data_control.dat): ')
+    print('Introduce the name of your experimental data file (e.g., exp_data_control.dat): ' + name_exp_data)
 
     # Initial guess
     parameters0 = np.array([0.5])  # -> It can be modified
