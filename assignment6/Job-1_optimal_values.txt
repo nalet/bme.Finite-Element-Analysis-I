@@ -9,7 +9,7 @@ Number function evaluation:         39
 
 Final value of the cost function:   0.04735110416692518
 
-Execution time (s): 259.466
+Execution time (s): 277.393
 
 Optimal parameters:
 		C10:    0.607836

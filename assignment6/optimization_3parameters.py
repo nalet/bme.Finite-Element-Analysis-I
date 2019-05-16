@@ -65,7 +65,7 @@ def read_odbreport(filename):
 
 
 ########################################################################################################################
-def calculate_cost(parameters, k1, k2, D, kappa, name_abaqus_job, name_abaqus_inp, name_exp_data):
+def calculate_cost(parameters, D, kappa, name_abaqus_job, name_abaqus_inp, name_exp_data):
     """
     Cost function to minimize. Receives the material parameters to optimize, executes Abaqus analysis, Abaqus ODB report
     and calculates the cost
@@ -84,13 +84,13 @@ def calculate_cost(parameters, k1, k2, D, kappa, name_abaqus_job, name_abaqus_in
     model_parameter = np.zeros(5)
     model_parameter[0] = parameters[0]
     model_parameter[1] = D
-    model_parameter[2] = k1
-    model_parameter[3] = k2
+    model_parameter[2] = parameters[1]
+    model_parameter[3] = parameters[2]
     model_parameter[4] = kappa
 
     # Penalize unrealistic values of the parameters and calculate cost function
 
-    if model_parameter[0] < 1e-3:
+    if model_parameter[0] < 1e-3 or model_parameter[1] < 1e-3 or model_parameter[2] < 1e-3:
         cost = 1000000
     else:
         # Clean directory before submitting abaqus simulation
@@ -148,6 +148,9 @@ def calculate_cost(parameters, k1, k2, D, kappa, name_abaqus_job, name_abaqus_in
     print('Current value of the cost: %1.6f\n' % cost)
     print('Optimal parameter:\n')
     print('    C10:    %1.6f\n\n' % model_parameter[0])
+    print('    k1:    %1.6f\n\n' % model_parameter[1])
+    print('    k2:    %1.6f\n\n' % model_parameter[2])
+        
 
     return cost
 
@@ -162,8 +165,6 @@ def optimization():
     start = time.time()
 
     # Fix parameters and user names
-    k1 = 10  # Control
-    k2 = 80  # Control
     D = 1e-2  # Fixed compressibility
     kappa = 0.2  # Fixed dispersion
 
@@ -175,7 +176,7 @@ def optimization():
     print('Introduce the name of your experimental data file (e.g., exp_data_control.dat): ' + name_exp_data)
 
     # Initial guess
-    parameters0 = np.array([5.5e-2])  # change according to parameter c10
+    parameters0 = np.array([5.5e-2,10,80])  # change according to parameter c10
 
     # Optimization
     #  minimize(fun, x0, args=()
@@ -186,7 +187,7 @@ def optimization():
     # (i.e., are not changed by the optimizer)
 
     res_opt = minimize(calculate_cost, parameters0,
-                       args=(k1, k2, D, kappa, name_abaqus_job, name_abaqus_inp, name_exp_data),
+                       args=(D, kappa, name_abaqus_job, name_abaqus_inp, name_exp_data),
                        method='Nelder-Mead',
                        tol=0.001,
                        options={'maxiter': None, 'maxfev': None, 'disp': False, 'return_all': False,
@@ -208,6 +209,8 @@ def optimization():
     optim.write('Execution time (s): %1.3f\n\n' % (time.time() - start))
     optim.write('Optimal parameters:\n')
     optim.write('\t\tC10:    %1.6f\n' % res_opt.x[0])
+    optim.write('\t\tk1:    %1.6f\n' % res_opt.x[1])
+    optim.write('\t\tk2:    %1.6f\n' % res_opt.x[2])
     optim.close()
 
     os.system('cat %s' % log_file)

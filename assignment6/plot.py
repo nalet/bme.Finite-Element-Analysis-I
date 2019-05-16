@@ -75,13 +75,28 @@ def read_odbreport(filename):
 
 exp_data_control = read_dat("exp_data_control.dat") # [:,0] = U(mm), [:,1] = F(N)
 exp_data_cxl = read_dat("exp_data_cxl.dat") # [:,0] = U(mm), [:,1] = F(N)
-sample_45_simple_result = read_odbreport("sample_45_simple_result.csv")
+sample_45_simple_result = read_odbreport("Job-1_results.csv")
+sample_45_3p_result = read_odbreport("Job-2_results.csv")
 
 # Plot
 plt.grid()
 plt.plot(exp_data_control[:,0], exp_data_control[:,1], linewidth=2, label="simple optimization control")
 plt.plot(exp_data_cxl[:,0], exp_data_cxl[:,1], linewidth=2, label="simple optimization CXL")
 plt.plot(sample_45_simple_result['U2'][:, 1], sample_45_simple_result['RF2'][:, 1], linewidth=2, label="simple optimization result 45")
+plt.plot(sample_45_3p_result['U2'][:, 1], sample_45_3p_result['RF2'][:, 1], linewidth=2, linestyle=":", label="simple optimization 3p 45")
+plt.xlabel('Displacement (mm)')
+plt.ylabel('Force(N)')
+plt.ylim(bottom=0)
+plt.legend()
+plt.show()
+
+sample_45_stress_displacement = read_rpt("sample_45_stress_displacement.rpt")
+sample_30_stress_displacement = read_rpt("sample_30_stress_displacement.rpt")
+
+# Plot
+plt.grid()
+plt.plot(sample_45_stress_displacement[:,1], sample_45_stress_displacement[:,2], linewidth=2, label="45° Rotation")
+plt.plot(sample_30_stress_displacement[:,1], sample_30_stress_displacement[:,2], linewidth=2, label="30° Rotation")
 plt.xlabel('Displacement (mm)')
 plt.ylabel('Force(N)')
 plt.ylim(bottom=0)
