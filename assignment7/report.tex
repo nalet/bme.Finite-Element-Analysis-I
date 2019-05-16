@@ -78,7 +78,7 @@ Finite Element Analysis I
 \section*{Abstract}
 In this assignment we investigate the behaviour of a model cornea tissue sample consisitng of fibers at different angles
 respective to the applied force. The resulting foce / displacement relationship is our primary
-matter of interest
+matter of interest.
 
 % \begin{figure}[!htb]
 %   \centering
@@ -89,7 +89,15 @@ matter of interest
 \tableofcontents
 \pagebreak
 \section{Introduction}
-Like in the previous assignment 4, the plate is once more compressed. Eulerian modeling can only be achieved in the 3D. As the previous model was in 2D, in this assignment we remodeled the parts in 3D once again. However, the calculations for the plasticity are the same for the material as before. Actually, the new Model is 2D alike, as we create a 2D model with a small depth so only one mesh unit is needed for the calculations. In the end, we are working with a 2D model except using the 3D Eulerian parts. 
+
+The cornes sample is modelled using abaqus. The fibers are orientated at 45 degrees respective to
+the applied force. The force is applied on the top of the sample, pulling upwards.
+In this simulation, a fixed deformation of factor 1.25 is performed, retrieving the corresponding 
+force values.
+
+In a second simulation, the fibers are orientated  at 30 degrees respective to the line of force,
+while maintaining orthogonality between the fiber sets. We expect a less symmetric behaviour of the sample
+during simulation due to the asymmetric setup.
 
 \begin{figure}[!htb]
   \centering
