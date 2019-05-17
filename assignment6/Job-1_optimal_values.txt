@@ -3,13 +3,13 @@
 Optimization terminated successfully.
 Exit flag:                          1
 
-Number of iterations:                12 
+Number of iterations:                19 
 
-Number function evaluation:         25 
+Number function evaluation:         39 
 
-Final value of the cost function:   0.04735107283347441
+Final value of the cost function:   0.04735110416692518
 
-Execution time (s): 203.669
+Execution time (s): 277.393
 
 Optimal parameters:
-		C10:    0.608203
+		C10:    0.607836

@@ -1,10 +1,10 @@
-ODB Report: -job Job-1_results -odb Job-1 -history -mode csv
+ODB Report: -job Job-2_results -odb Job-2 -history -mode csv
 
 General ODB information
-  name         , Job-1.odb
+  name         , Job-2.odb
   analysisTitle, 
   description  , DDB object
-  path         , /home/fe1/Documents/bme.Finite-Element-Analysis-I/assignment6/Job-1.odb
+  path         , /home/fe1/Documents/bme.Finite-Element-Analysis-I/assignment6/Job-2.odb
 
 -------------------------------------------------------------------------------
 Total number of steps = 1
@@ -36,21 +36,21 @@ Step name 'Pull'
       type         : SCALAR
       Frame value,          Data
               0.0,           0.0
-             0.01,     0.0161486
-             0.02,     0.0323918
-            0.035,     0.0569457
-           0.0575,     0.0942389
-          0.09125,      0.151345
-         0.141875,      0.240073
-         0.217812,      0.381693
-         0.317813,      0.588498
-         0.417812,      0.826805
-         0.517812,       1.10947
-         0.617813,       1.45668
-         0.717812,       1.90208
-         0.817813,       2.50446
-         0.917813,       3.36924
-              1.0,       4.41369
+             0.01,    0.00109278
+             0.02,    0.00221549
+            0.035,    0.00396162
+           0.0575,    0.00674124
+          0.09125,     0.0113572
+         0.141875,     0.0196869
+         0.217812,     0.0377437
+         0.317813,     0.0882351
+         0.417812,      0.236745
+         0.517812,      0.550947
+         0.617813,       1.02574
+         0.717812,       1.68968
+         0.817813,        2.6311
+         0.917813,       4.01389
+              1.0,       5.68201
 
     History Output 'U2'
       description  : Spatial displacement
