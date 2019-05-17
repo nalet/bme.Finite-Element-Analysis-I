@@ -90,7 +90,7 @@ matter of interest.
 \pagebreak
 \section{Introduction}
 
-The cornes sample is modelled using abaqus. The fibers are orientated at 45 degrees respective to
+The cornea sample is modelled using abaqus. The fibers are orientated at 45 degrees respective to
 the applied force. The force is applied on the top of the sample, pulling upwards.
 In this simulation, a fixed deformation of factor 1.25 is performed, retrieving the corresponding 
 force values.
@@ -115,6 +115,13 @@ during simulation due to the asymmetric setup.
 We created a model with CPS4R mesh type. Based on the last assignments, the reduced integration
 gave us the best result, so we stick with that.
 
+\subsection{Holzapfel-Gasser-Ogden Framework}
+
+We use the Holzapfel-Gasser-Ogden approach to model the biomechanical behaviour of our
+sample. This approach targets the anisotropic behaviour of the material with multiple
+layers of fibers at different angles. This is required in order to achieve a relatively
+realistic distribution of forces and strains within the sample. 
+
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=0.9\linewidth]{pics/sexy3Dbild}
@@ -133,14 +140,7 @@ gave us the best result, so we stick with that.
 \pagebreak
 \section{Results and Discussion}
 
-The analytical and the experimental results are similar.
-Logically the experiment with introduced friction (friciton coefficien 0.2) results in a higher
-stress/strain ration, as energy of the compression gets lost in friction. 
-during modelling, we ran into troubles with the simulation due to the sharp corner of the press.
-Thus we introduced a small 1mm fillet to smoothen the process. This worked out fine and the results 
-got better and were calculated more quickly.
-
-The stress/strain ratio calculations which allowed for small sliding show a higher stress per strain ratio.
+The results are 
 
 
 \pagebreak
