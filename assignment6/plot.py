@@ -80,10 +80,10 @@ sample_45_3p_result = read_odbreport("Job-2_results.csv")
 
 # Plot
 plt.grid()
-plt.plot(exp_data_control[:,0], exp_data_control[:,1], linewidth=2, label="simple optimization control")
-plt.plot(exp_data_cxl[:,0], exp_data_cxl[:,1], linewidth=2, label="simple optimization CXL")
+plt.plot(exp_data_control[:,0], exp_data_control[:,1], linewidth=2, label="control")
+plt.plot(exp_data_cxl[:,0], exp_data_cxl[:,1], linewidth=2, label="CXL")
 plt.plot(sample_45_simple_result['U2'][:, 1], sample_45_simple_result['RF2'][:, 1], linewidth=2, label="simple optimization result 45")
-plt.plot(sample_45_3p_result['U2'][:, 1], sample_45_3p_result['RF2'][:, 1], linewidth=2, linestyle=":", label="simple optimization 3p 45")
+plt.plot(sample_45_3p_result['U2'][:, 1], sample_45_3p_result['RF2'][:, 1], linewidth=2, linestyle=":", label="optimization 3p 45")
 plt.xlabel('Displacement (mm)')
 plt.ylabel('Force(N)')
 plt.ylim(bottom=0)
