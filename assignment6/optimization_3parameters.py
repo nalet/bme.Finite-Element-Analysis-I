@@ -170,9 +170,9 @@ def optimization():
 
     name_abaqus_inp = 'sample-45' #input('Introduce the name of your INP file (e.g., sample-45): ')  # Only in Python 3
     print('Introduce the name of your INP file (e.g., sample-45): ' + name_abaqus_inp)
-    name_abaqus_job = 'Job-2' #input('Introduce the name of your Job file (e.g., Job-1): ')  # Only in Python 3
+    name_abaqus_job = 'Job-2-clx' #input('Introduce the name of your Job file (e.g., Job-1): ')  # Only in Python 3
     print('Introduce the name of your Job file (e.g., Job-1): ' + name_abaqus_job)
-    name_exp_data = 'exp_data_control.3p.dat' #input('Introduce the name of your experimental data file (e.g., exp_data_control.dat): ')
+    name_exp_data = 'exp_data_cxl.3p.dat' #input('Introduce the name of your experimental data file (e.g., exp_data_control.dat): ')
     print('Introduce the name of your experimental data file (e.g., exp_data_control.dat): ' + name_exp_data)
 
     # Initial guess
