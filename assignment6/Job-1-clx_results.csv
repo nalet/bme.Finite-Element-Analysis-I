@@ -1,0 +1,76 @@
+ODB Report: -job Job-1-clx_results -odb Job-1-clx -history -mode csv
+
+General ODB information
+  name         , Job-1-clx.odb
+  analysisTitle, 
+  description  , DDB object
+  path         , /home/fe1/Documents/bme.Finite-Element-Analysis-I/assignment6/Job-1-clx.odb
+
+-------------------------------------------------------------------------------
+Total number of steps = 1
+
+-----------------------------------------------------------
+Step name 'Pull'
+  description  , 
+  number       , 1
+  domain       , TIME
+  procedure    , *STATIC
+  timePeriod   , 1.0
+  totalTime    , 0.0
+  previousStep , Initial
+  nlgeom       , Yes
+
+  Number of history regions = 1
+
+  History Region 'Node SAMPLE-1.614'
+    description  : Output at instance SAMPLE-1 node 614
+    History Point
+      position     : NODAL
+      instance     : SAMPLE-1
+      node         : 614
+
+    Number of history outputs = 2
+
+    History Output 'RF2'
+      description  : Reaction force
+      type         : SCALAR
+      Frame value,          Data
+              0.0,           0.0
+             0.01,      0.172711
+             0.02,      0.344804
+            0.035,      0.601814
+           0.0575,      0.984876
+          0.09125,       1.55425
+         0.141875,       2.39759
+         0.217812,       3.64204
+         0.317813,        5.2535
+         0.417812,       6.85049
+         0.517812,        8.4577
+         0.617813,       10.1099
+         0.717812,       11.8608
+         0.817813,        13.797
+         0.917813,        16.066
+              1.0,       18.3448
+
+    History Output 'U2'
+      description  : Spatial displacement
+      type         : SCALAR
+      Frame value,          Data
+              0.0,           0.0
+             0.01,        0.0375
+             0.02,         0.075
+            0.035,       0.13125
+           0.0575,      0.215625
+          0.09125,      0.342187
+         0.141875,      0.532031
+         0.217812,      0.816797
+         0.317813,        1.1918
+         0.417812,        1.5668
+         0.517812,        1.9418
+         0.617813,        2.3168
+         0.717812,        2.6918
+         0.817813,        3.0668
+         0.917813,        3.4418
+              1.0,          3.75
+
+End of ODB Report.

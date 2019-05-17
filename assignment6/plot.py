@@ -76,14 +76,18 @@ def read_odbreport(filename):
 exp_data_control = read_dat("exp_data_control.dat") # [:,0] = U(mm), [:,1] = F(N)
 exp_data_cxl = read_dat("exp_data_cxl.dat") # [:,0] = U(mm), [:,1] = F(N)
 sample_45_simple_result = read_odbreport("Job-1_results.csv")
+sample_45_simple_clx_result = read_odbreport("Job-1-clx_results.csv")
 sample_45_3p_result = read_odbreport("Job-2_results.csv")
+#sample_45_3p_clx_result = read_odbreport("Job-2-clx_results.csv")
 
 # Plot
 plt.grid()
 plt.plot(exp_data_control[:,0], exp_data_control[:,1], linewidth=2, label="control")
 plt.plot(exp_data_cxl[:,0], exp_data_cxl[:,1], linewidth=2, label="CXL")
 plt.plot(sample_45_simple_result['U2'][:, 1], sample_45_simple_result['RF2'][:, 1], linewidth=2, label="simple optimization result 45")
+plt.plot(sample_45_simple_clx_result['U2'][:, 1], sample_45_simple_clx_result['RF2'][:, 1], linewidth=2, label="simple optimization result 45 cxl")
 plt.plot(sample_45_3p_result['U2'][:, 1], sample_45_3p_result['RF2'][:, 1], linewidth=2, linestyle=":", label="optimization 3p 45")
+#plt.plot(sample_45_3p_clx_result['U2'][:, 1], sample_45_3p_clx_result['RF2'][:, 1], linewidth=2, linestyle=":", label="optimization 3p 45 clx")
 plt.xlabel('Displacement (mm)')
 plt.ylabel('Force(N)')
 plt.ylim(bottom=0)

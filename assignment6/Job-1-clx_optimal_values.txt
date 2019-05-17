@@ -1,0 +1,15 @@
+############### FINAL LOG FILE!
+
+Optimization terminated successfully.
+Exit flag:                          1
+
+Number of iterations:                27 
+
+Number function evaluation:         57 
+
+Final value of the cost function:   0.5725208657644817
+
+Execution time (s): 542.521
+
+Optimal parameters:
+		C10:    7.439437
