@@ -69,62 +69,58 @@ Finite Element Analysis I
 \begin{figure}[!htb]
   \centering
   \vspace*{1cm}
-  \includegraphics[trim={2cm 2cm 2cm 2cm},clip,width=1.0\linewidth]{pics/titelbild}
+  \includegraphics[trim={50mm 20mm 50mm 20mm},clip,width=0.35\linewidth]{pics/s_mises_30}
   \label{fig:0}
 \end{figure}
 
 \newpage
 
 \section*{Abstract}
-In this assignment, we examine the behavior of a metal plate under compression.
-A rigid press, modeled as an analytical surface, squeezes the plate together.
-By retrieving the force and displacement values over time, we can determine the plastic behavior of our specimen.
+The objective of this assignment is to determine the material parameters. The data is gathered via an anatomical sample during experimental measurements. However, the material parameters cannot be so easily determined by the experimental data. So further analysis is necessary to get a better numerical model that later can be used for further analyzing.
+This assignment analyzes the material from the cornea, a part of the eye. The numerical model should give a better understanding of the fibers in the cornea and how they are reacting due to exposes of stresses.
 
-In this assignment, we use the findings from the previous assignment 4 and instead of using a Lagrangian 
-formulation we are using a Eulerian.
-
-
-% \begin{figure}[!htb]
-%   \centering
-%   \animategraphics[autoplay,loop,width=0.8\linewidth,trim={1mm 1mm 1mm 1mm}]{4}{pics/out/ani-}{1}{62}
-%   \caption{Animation of frequency on beam}
-% \end{figure}
 
 \tableofcontents
 \pagebreak
 \section{Introduction}
-Like in the previous assignment 4, the plate is once more compressed. Eulerian modeling can only be achieved in the 3D. As the previous model was in 2D, in this assignment we remodeled the parts in 3D once again. However, the calculations for the plasticity are the same for the material as before. Actually, the new Model is 2D alike, as we create a 2D model with a small depth so only one mesh unit is needed for the calculations. In the end, we are working with a 2D model except using the 3D Eulerian parts. 
-
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=1.0\linewidth]{pics/shematics}
-  \caption{Model of the plate with Eulerian formulation}
-  \label{fig:1}
-\end{figure}
-
-\noindent As shown in Figure \ref{fig:1}, the model of the plate has to be segmented. We have to set the distribution of the material, as Abaqus needs us to define where the material will be "flowing". Again, only a 4th of the model has to be sketched.
-
+In this assignment, we will create a model that should mimic a part of the cornea. The material of the model in Abaqus should have anisotropic and hyperelastic properties. A good fit for describing this behavior can be made with the Holzapfel-Gasser-Ogden function, which describes very well the strain energy potential with collagen fibers.
+What we are doing is gathering control data from actual experiments in the lab. Therefore a part of the cornea is exposed to force, which generates stresses on the sample of tissue. we are measuring the displacement which happens on a specific force. with that data, a model can be created in Abaqus with the Holzapfel-Gasser-Ogden function. However, the function is based on parameters which we don't know yet, but can only guess.
+\begin{equation}\label{eq:holzapfel}
+  W=C_{10}(\Bar{I}_{1}-3)+\frac{1}{D}\Big(\frac{J^{2}-1}{2}-\ln J\Big)+\frac{k_{1}}{2k_{2}}\sum_{\alpha=1}^{N}(\exp[k_{2}<E_{\alpha}>^{2}]-1)
+\end{equation}
+\begin{equation}\label{eq:holzapfel_e}
+  E_{\alpha}=\kappa(I_{3}-3)+(1-3\kappa)(I_{4(\alpha)})
+\end{equation}
+\begin{conditions}
+  W                             &  strain energy per unit of reference volume\\
+  C_{10},D,k_{1},k_{1},k        &  are temperature-dependent material parameters\\
+  N                             &  is the number of families of fibers ($N \leq 3$)\\   
+  \Bar{I}_{1}                   &  is the first invariant of $\Bar{C}$ \cite{Holzapfel-Gasser-Ogden} \\
+  J                             &  is the elastic volume ratio\\
+  I_{4(\alpha)}                 &  are pseudo-invariants of $\Bar{C}$
+\end{conditions}
+Giving this information from the Abaqus documentation \cite{Holzapfel-Gasser-Ogden} and knowing that is a good fit for the modeling of collagen fibers, a sample can now be created.
 \newpage
 \section{Methods}
 
-\subsection{Coupled Lagrangian-Eulerian Analysis in Abacus}
+\subsection{Sample and experimental data}
 
 We created a model with CPS4R mesh type. Based on the last assignments, the reduced integration
 gave us the best result, so we stick with that.
 
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=0.9\linewidth]{pics/sexy3Dbild}
-  \caption{Node to node with no sliding}
-  \label{fig:2}
-\end{figure}
+% \begin{figure}[!htb]
+%   \centering
+%   \includegraphics[width=0.9\linewidth]{pics/sexy3Dbild}
+%   \caption{Node to node with no sliding}
+%   \label{fig:2}
+% \end{figure}
 
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=0.9\linewidth]{pics/analytical_compared_euler}
-  \caption{Result of the previous assignment with eulerian result}
-  \label{fig:3}
-\end{figure}
+% \begin{figure}[!htb]
+%   \centering
+%   \includegraphics[width=0.9\linewidth]{pics/analytical_compared_euler}
+%   \caption{Result of the previous assignment with eulerian result}
+%   \label{fig:3}
+% \end{figure}
 
 
 \pagebreak
@@ -142,10 +138,8 @@ The stress/strain ratio calculations which allowed for small sliding show a high
 
 \pagebreak
 \begin{thebibliography}{9}
-  \bibitem{latexcompanion} 
-  Michel Goossens, Frank Mittelbach, and Alexander Samarin. 
-  \textit{The \LaTeX\ Companion}. 
-  Addison-Wesley, Reading, Massachusetts, 1993.
+  \bibitem{Holzapfel-Gasser-Ogden} 
+  https://www.sharcnet.ca/Software/Abaqus610/Documentation/docs/v6.10/books/stm/default.htm?startat=ch04s06ath125.html\#stm-mat-anisohyperelastic-holzapfel
 \end{thebibliography}
 
 
