@@ -76,8 +76,11 @@ Finite Element Analysis I
 \newpage
 
 \section*{Abstract}
-In this assignment we investigate the behaviour of a model cornea tissue sample consisitng of fibers at different angles
-respective to the applied force. The resulting foce / displacement relationship is our primary
+In this assignment we investigate the behaviour of a model cornea tissue sample 
+consisitng of fibers at different angles
+respective to the applied force. Those fibers represent a multi-layer biological
+tissue, as usually found in the cornea, the annulus fibrosus or arterial walls (just to name a few).
+The resulting foce / displacement relationship, after applying a force to the sample is our primary
 matter of interest.
 
 % \begin{figure}[!htb]
@@ -90,7 +93,7 @@ matter of interest.
 \pagebreak
 \section{Introduction}
 
-The cornes sample is modelled using abaqus. The fibers are orientated at 45 degrees respective to
+The cornea sample is modelled using abaqus. The fibers are orientated at 45 degrees respective to
 the applied force. The force is applied on the top of the sample, pulling upwards.
 In this simulation, a fixed deformation of factor 1.25 is performed, retrieving the corresponding 
 force values.
@@ -115,41 +118,37 @@ during simulation due to the asymmetric setup.
 We created a model with CPS4R mesh type. Based on the last assignments, the reduced integration
 gave us the best result, so we stick with that.
 
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=0.9\linewidth]{pics/sexy3Dbild}
-  \caption{Node to node with no sliding}
-  \label{fig:2}
-\end{figure}
+\subsection{Holzapfel-Gasser-Ogden Framework}
 
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=0.9\linewidth]{pics/analytical_compared_euler}
-  \caption{Result of the previous assignment with eulerian result}
-  \label{fig:3}
-\end{figure}
+We use the Holzapfel-Gasser-Ogden approach to model the biomechanical behaviour of our
+sample. This approach targets the anisotropic behaviour of the material with multiple
+layers of fibers at different angles. This is required in order to achieve a relatively
+realistic distribution of forces and strains within the sample.\cite{holzapfel}
+
+
 
 
 \pagebreak
 \section{Results and Discussion}
 
-The analytical and the experimental results are similar.
-Logically the experiment with introduced friction (friciton coefficien 0.2) results in a higher
-stress/strain ration, as energy of the compression gets lost in friction. 
-during modelling, we ran into troubles with the simulation due to the sharp corner of the press.
-Thus we introduced a small 1mm fillet to smoothen the process. This worked out fine and the results 
-got better and were calculated more quickly.
-
-The stress/strain ratio calculations which allowed for small sliding show a higher stress per strain ratio.
+The results are 
 
 
 \pagebreak
 \begin{thebibliography}{9}
-  \bibitem{latexcompanion} 
-  Michel Goossens, Frank Mittelbach, and Alexander Samarin. 
-  \textit{The \LaTeX\ Companion}. 
-  Addison-Wesley, Reading, Massachusetts, 1993.
+\bibitem{latexcompanion} 
+Michel Goossens, Frank Mittelbach, and Alexander Samarin. 
+\textit{The \LaTeX\ Companion}. 
+Addison-Wesley, Reading, Massachusetts, 1993.
+
+\bibitem{holzapfel} 
+ Michel Goossens, Frank Mittelbach, and Alexander Samarin. 
+\textit{On the Use of Biaxial Properties in Modeling Annulus as a Holzapfel–Gasser–Ogden Material}. 
+Sharaki et al., University of Toledo, Toledo, OH, USA, 2015.
+
 \end{thebibliography}
+
+
 
 
 \end{document}
