@@ -15,6 +15,7 @@
 \usepackage{mathabx}
 \usepackage{animate}
 \usepackage{array}
+\usepackage{siunitx}
 % This is to include code
 \usepackage{listings}
 \usepackage{xcolor}
@@ -100,13 +101,28 @@ What we are doing is gathering control data from actual experiments in the lab. 
   I_{4(\alpha)}                 &  are pseudo-invariants of $\Bar{C}$
 \end{conditions}
 Giving this information from the Abaqus documentation \cite{Holzapfel-Gasser-Ogden} and knowing that is a good fit for the modeling of collagen fibers, a sample can now be created.
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{pics/assignment_org}
+   \caption{Shema of the sample in abaqus (a) and result of the experiment (b)}
+    \label{fig:1}
+  \end{figure}
+  In Figure \ref{fig:1} in (b) we have two curves. One (control) shows the results form the experiment of a healthy person and the Other (clx) shows the result from a sample after chemical cross-linking (clx). The chemical cross-linking process should simulate the cornea of an elderly person. So with that data, we can model either a cornea of a healthy or an elderly person.
 \newpage
 \section{Methods}
 
 \subsection{Sample and experimental data}
+We created a model in Abaqus based on the requirements of the assignment as can be seen in Figure 1 in (a). We don't know the parameters of the sample jet. so we are estimating it and try if our sample is running. Therefore we used these parameters C10 = 5.5e-2, D = 1e-2, k1 = 65, k2 = 85, k = 0.2. Also, we rotate the sample as we want the force to be evenly distributed between the collagen strains. These strains are modeled within the formula. With the change of orientation in the \ang{30} direction the force are even on the strains.
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.5\linewidth]{pics/s_mises_45}
+ \caption{Shema of the sample in abaqus (a) and result of the experiment (b)}
+  \label{fig:2}
+\end{figure}
+Here with these parameters and the rotation, the even distribution is good across the sample. Later we will see the sample again with optimized parameters and what impact it has on the stresses of the model.
+\subsection{Optimization of the formula with $C_{10}$}
 
-We created a model with CPS4R mesh type. Based on the last assignments, the reduced integration
-gave us the best result, so we stick with that.
+
 
 % \begin{figure}[!htb]
 %   \centering
