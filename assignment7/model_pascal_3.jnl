@@ -28063,3 +28063,705 @@ mdb.jobs['Job-25']._Message(JOB_COMPLETED, {'time': 'Tue May 21 20:44:31 2019',
 mdb.models['Model-1'].boundaryConditions['t500'].setValues(amplitude='Amp-2', 
     magnitude=500.0)
 # Save by fe1 on 2019_05_21-20.47.01; build 2016 2015_09_24-22.31.09 126547
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].amplitudes['Amp-2'].setValues(data=((0.0, 1.0), (1.0, 
+    0.0)), smooth=SOLVER_DEFAULT, timeSpan=STEP)
+mdb.models['Model-1'].amplitudes['Amp-1'].setValues(data=((0.0, 0.0), (1.0, 
+    1.0)), smooth=SOLVER_DEFAULT, timeSpan=STEP)
+mdb.models['Model-1'].boundaryConditions['t500'].setValues(amplitude='Amp-1')
+mdb.jobs['Job-25'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-25']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'SURFACE INTERACTION INTPROP-1, ASSOCIATED WITH ONE OR MORE CONTACT PAIRS WITH SURFACES HAVING UNDERLYING ELEMENTS WITH TEMPERATURE AND DISPLACEMENT DEGREES OF FREEDOM, DOES NOT HAVE ANY THERMAL INTERACTION DEFINED.  NO THERMAL INTERACTION WILL OCCUR.', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST MOT IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST VF IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE REQUEST FOR CEP OUTPUT WILL BE REPLACED BY A REQUEST FOR CE OUTPUT', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE REQUEST FOR MISES OUTPUT WILL BE REPLACED BY A REQUEST FOR S OUTPUT', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE ALPHAN HAS NO COMPONENTS IN THIS ANALYSIS FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE CFAILURE HAS NO COMPONENTS IN THIS ANALYSIS FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEC IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEFC IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEFT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEMC IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEMT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGESHR IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGET IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST ERPRATIO IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST HSNFCCRT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST HSNFTCRT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST HSNMCCRT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST HSNMTCRT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SDEG IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SEPE IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SHRRATIO IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SPE IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST TRIAX IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST TSHR IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST VE IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST VEEQ IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST VS IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE ALPHAN HAS NO COMPONENTS IN THIS ANALYSIS FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE CFAILURE HAS NO COMPONENTS IN THIS ANALYSIS FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEC IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEFC IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEFT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEMC IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEMT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGESHR IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGET IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST ERPRATIO IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST HSNFCCRT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST HSNFTCRT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST HSNMCCRT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST HSNMTCRT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SDEG IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SEPE IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SHRRATIO IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SPE IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST TRIAX IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST TSHR IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST VE IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST VEEQ IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST VS IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST NFORCSO IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST NFORCSO IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SALPHA IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SEE IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SEP IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SF IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SSAVG IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SALPHA IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SEE IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SEP IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SF IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SSAVG IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SJD IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SJDA IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SJDT IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SJDTA IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OUTPUT VARIABLES CSTRESSETOS, CDISPETOS, CLINELOAD & CPOINTLOAD ARE ONLY SUPPORTED FOR GENERAL CONTACT. THEREFORE, REQUEST TO THE OUTPUT VARIABLE CDISPETOS IS REMOVED FOR CONTACT PAIR: ASSEMBLY_S_SURF-5/ASSEMBLY_M_SURF-5', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE CSDMG IS ONLY AVAILABLE FOR CONTACT WITH COHESIVE BEHAVIOR', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE CSMAXSCRT IS ONLY AVAILABLE FOR CONTACT WITH COHESIVE BEHAVIOR', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE CSMAXUCRT IS ONLY AVAILABLE FOR CONTACT WITH COHESIVE BEHAVIOR', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE CSQUADSCRT IS ONLY AVAILABLE FOR CONTACT WITH COHESIVE BEHAVIOR', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE CSQUADUCRT IS ONLY AVAILABLE FOR CONTACT WITH COHESIVE BEHAVIOR', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE CTANDIR2 IS NOT AVAILABLE IN A 2D ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OUTPUT VARIABLES CSTRESSETOS, CDISPETOS, CLINELOAD & CPOINTLOAD ARE ONLY SUPPORTED FOR GENERAL CONTACT. THEREFORE, REQUEST TO THE OUTPUT VARIABLE CLINELOAD IS REMOVED FOR CONTACT PAIR: ASSEMBLY_S_SURF-5/ASSEMBLY_M_SURF-5', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OUTPUT VARIABLES CSTRESSETOS, CDISPETOS, CLINELOAD & CPOINTLOAD ARE ONLY SUPPORTED FOR GENERAL CONTACT. THEREFORE, REQUEST TO THE OUTPUT VARIABLE CPOINTLOAD IS REMOVED FOR CONTACT PAIR: ASSEMBLY_S_SURF-5/ASSEMBLY_M_SURF-5', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OUTPUT VARIABLES CSTRESSETOS, CDISPETOS, CLINELOAD & CPOINTLOAD ARE ONLY SUPPORTED FOR GENERAL CONTACT. THEREFORE, REQUEST TO THE OUTPUT VARIABLE CSTRESSETOS IS REMOVED FOR CONTACT PAIR: ASSEMBLY_S_SURF-5/ASSEMBLY_M_SURF-5', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OUTPUT VARIABLES CSTRESSETOS, CDISPETOS, CLINELOAD & CPOINTLOAD ARE ONLY SUPPORTED FOR GENERAL CONTACT. THEREFORE, REQUEST TO THE OUTPUT VARIABLE CLINELOAD IS REMOVED FOR CONTACT PAIR: ASSEMBLY_S_SURF-5/ASSEMBLY_M_SURF-5', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OUTPUT VARIABLES CSTRESSETOS, CDISPETOS, CLINELOAD & CPOINTLOAD ARE ONLY SUPPORTED FOR GENERAL CONTACT. THEREFORE, REQUEST TO THE OUTPUT VARIABLE CPOINTLOAD IS REMOVED FOR CONTACT PAIR: ASSEMBLY_S_SURF-5/ASSEMBLY_M_SURF-5', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OUTPUT VARIABLES CSTRESSETOS, CDISPETOS, CLINELOAD & CPOINTLOAD ARE ONLY SUPPORTED FOR GENERAL CONTACT. THEREFORE, REQUEST TO THE OUTPUT VARIABLE CSTRESSETOS IS REMOVED FOR CONTACT PAIR: ASSEMBLY_S_SURF-5/ASSEMBLY_M_SURF-5', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'NO VALID RADIATION OUTPUT REQUESTS HAVE BEEN GENERATED. THIS MAY BE BECAUSE NO VALID CAVITIES EXIST IN THE MODEL.', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SJD IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SJDA IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SJDT IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SJDTA IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE CRSTS13 IS NOT A VALID COMPONENT IN THIS ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE ENRRT13 IS NOT A VALID COMPONENT IN THIS ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'NO VALID RADIATION OUTPUT REQUESTS HAVE BEEN GENERATED. THIS MAY BE BECAUSE NO VALID CAVITIES EXIST IN THE MODEL.', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST MOT IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST VF IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE REQUEST FOR CEP OUTPUT WILL BE REPLACED BY A REQUEST FOR CE OUTPUT', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE REQUEST FOR MISES OUTPUT WILL BE REPLACED BY A REQUEST FOR S OUTPUT', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE ALPHAN HAS NO COMPONENTS IN THIS ANALYSIS FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE CFAILURE HAS NO COMPONENTS IN THIS ANALYSIS FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEC IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEFC IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEFT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEMC IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEMT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGESHR IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGET IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST ERPRATIO IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST HSNFCCRT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST HSNFTCRT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST HSNMCCRT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST HSNMTCRT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SDEG IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SEPE IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SHRRATIO IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SPE IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST TRIAX IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST TSHR IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST VE IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST VEEQ IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST VS IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE ALPHAN HAS NO COMPONENTS IN THIS ANALYSIS FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE CFAILURE HAS NO COMPONENTS IN THIS ANALYSIS FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEC IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEFC IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEFT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEMC IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGEMT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGESHR IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST DAMAGET IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST ERPRATIO IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST HSNFCCRT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST HSNFTCRT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST HSNMCCRT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST HSNMTCRT IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SDEG IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SEPE IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SHRRATIO IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SPE IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST TRIAX IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST TSHR IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST VE IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST VEEQ IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST VS IS NOT AVAILABLE FOR THE MATERIAL FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST NFORCSO IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST NFORCSO IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SALPHA IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SEE IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SEP IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SF IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SSAVG IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SALPHA IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SEE IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SEP IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SF IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SSAVG IS NOT AVAILABLE FOR ELEMENT TYPE CAX4T', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SJD IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SJDA IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SJDT IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SJDTA IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OUTPUT VARIABLES CSTRESSETOS, CDISPETOS, CLINELOAD & CPOINTLOAD ARE ONLY SUPPORTED FOR GENERAL CONTACT. THEREFORE, REQUEST TO THE OUTPUT VARIABLE CDISPETOS IS REMOVED FOR CONTACT PAIR: ASSEMBLY_S_SURF-5/ASSEMBLY_M_SURF-5', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE CSDMG IS ONLY AVAILABLE FOR CONTACT WITH COHESIVE BEHAVIOR', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE CSMAXSCRT IS ONLY AVAILABLE FOR CONTACT WITH COHESIVE BEHAVIOR', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE CSMAXUCRT IS ONLY AVAILABLE FOR CONTACT WITH COHESIVE BEHAVIOR', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE CSQUADSCRT IS ONLY AVAILABLE FOR CONTACT WITH COHESIVE BEHAVIOR', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE CSQUADUCRT IS ONLY AVAILABLE FOR CONTACT WITH COHESIVE BEHAVIOR', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE CTANDIR2 IS NOT AVAILABLE IN A 2D ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OUTPUT VARIABLES CSTRESSETOS, CDISPETOS, CLINELOAD & CPOINTLOAD ARE ONLY SUPPORTED FOR GENERAL CONTACT. THEREFORE, REQUEST TO THE OUTPUT VARIABLE CLINELOAD IS REMOVED FOR CONTACT PAIR: ASSEMBLY_S_SURF-5/ASSEMBLY_M_SURF-5', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OUTPUT VARIABLES CSTRESSETOS, CDISPETOS, CLINELOAD & CPOINTLOAD ARE ONLY SUPPORTED FOR GENERAL CONTACT. THEREFORE, REQUEST TO THE OUTPUT VARIABLE CPOINTLOAD IS REMOVED FOR CONTACT PAIR: ASSEMBLY_S_SURF-5/ASSEMBLY_M_SURF-5', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OUTPUT VARIABLES CSTRESSETOS, CDISPETOS, CLINELOAD & CPOINTLOAD ARE ONLY SUPPORTED FOR GENERAL CONTACT. THEREFORE, REQUEST TO THE OUTPUT VARIABLE CSTRESSETOS IS REMOVED FOR CONTACT PAIR: ASSEMBLY_S_SURF-5/ASSEMBLY_M_SURF-5', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OUTPUT VARIABLES CSTRESSETOS, CDISPETOS, CLINELOAD & CPOINTLOAD ARE ONLY SUPPORTED FOR GENERAL CONTACT. THEREFORE, REQUEST TO THE OUTPUT VARIABLE CLINELOAD IS REMOVED FOR CONTACT PAIR: ASSEMBLY_S_SURF-5/ASSEMBLY_M_SURF-5', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OUTPUT VARIABLES CSTRESSETOS, CDISPETOS, CLINELOAD & CPOINTLOAD ARE ONLY SUPPORTED FOR GENERAL CONTACT. THEREFORE, REQUEST TO THE OUTPUT VARIABLE CPOINTLOAD IS REMOVED FOR CONTACT PAIR: ASSEMBLY_S_SURF-5/ASSEMBLY_M_SURF-5', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE OUTPUT VARIABLES CSTRESSETOS, CDISPETOS, CLINELOAD & CPOINTLOAD ARE ONLY SUPPORTED FOR GENERAL CONTACT. THEREFORE, REQUEST TO THE OUTPUT VARIABLE CSTRESSETOS IS REMOVED FOR CONTACT PAIR: ASSEMBLY_S_SURF-5/ASSEMBLY_M_SURF-5', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'NO VALID RADIATION OUTPUT REQUESTS HAVE BEEN GENERATED. THIS MAY BE BECAUSE NO VALID CAVITIES EXIST IN THE MODEL.', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SJD IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SJDA IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SJDT IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SJDTA IS NOT AVAILABLE FOR THIS TYPE OF ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE CRSTS13 IS NOT A VALID COMPONENT IN THIS ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT VARIABLE ENRRT13 IS NOT A VALID COMPONENT IN THIS ANALYSIS', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'NO VALID RADIATION OUTPUT REQUESTS HAVE BEEN GENERATED. THIS MAY BE BECAUSE NO VALID CAVITIES EXIST IN THE MODEL.', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/naletmeinen/Job-25.odb', 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'THERE ARE 2 UNCONNECTED REGIONS IN THE MODEL.', 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-25', 'memory': 58.0})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-25', 'severe': 0, 'iterations': 3, 'phase': STANDARD_PHASE, 
+    'equilibrium': 3})
+mdb.jobs['Job-25']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 2, 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 0, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-25', 'memory': 59.0})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 1, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.00001, 'attempts': 1, 
+    'timeIncrement': 1e-05, 'increment': 1, 'stepTime': 1e-05, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 1, 'iterations': 3, 'phase': STANDARD_PHASE, 
+    'equilibrium': 2})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 2, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.00002, 'attempts': 1, 
+    'timeIncrement': 1e-05, 'increment': 2, 'stepTime': 2e-05, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 0, 'iterations': 2, 'phase': STANDARD_PHASE, 
+    'equilibrium': 2})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 3, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.00003, 'attempts': 1, 
+    'timeIncrement': 1e-05, 'increment': 3, 'stepTime': 3e-05, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 4, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.00005, 'attempts': 1, 
+    'timeIncrement': 2e-05, 'increment': 4, 'stepTime': 5e-05, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 0, 'iterations': 2, 'phase': STANDARD_PHASE, 
+    'equilibrium': 2})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 5, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.00008, 'attempts': 1, 
+    'timeIncrement': 3e-05, 'increment': 5, 'stepTime': 8e-05, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 6, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.00014, 'attempts': 1, 
+    'timeIncrement': 6e-05, 'increment': 6, 'stepTime': 0.00014, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 7, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.00026, 'attempts': 1, 
+    'timeIncrement': 0.00012, 'increment': 7, 'stepTime': 0.00026, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 8, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.0005, 'attempts': 1, 
+    'timeIncrement': 0.00024, 'increment': 8, 'stepTime': 0.0005, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 9, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.00098, 'attempts': 1, 
+    'timeIncrement': 0.00048, 'increment': 9, 'stepTime': 0.00098, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 10, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.00194, 'attempts': 1, 
+    'timeIncrement': 0.00096, 'increment': 10, 'stepTime': 0.00194, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 11, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.00386, 'attempts': 1, 
+    'timeIncrement': 0.00192, 'increment': 11, 'stepTime': 0.00386, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 12, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.0077, 'attempts': 1, 
+    'timeIncrement': 0.00384, 'increment': 12, 'stepTime': 0.0077, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 13, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.01538, 'attempts': 1, 
+    'timeIncrement': 0.00768, 'increment': 13, 'stepTime': 0.01538, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 14, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.03074, 'attempts': 1, 
+    'timeIncrement': 0.01536, 'increment': 14, 'stepTime': 0.03074, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 15, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.06146, 'attempts': 1, 
+    'timeIncrement': 0.03072, 'increment': 15, 'stepTime': 0.06146, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 16, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.1229, 'attempts': 1, 
+    'timeIncrement': 0.06144, 'increment': 16, 'stepTime': 0.1229, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 17, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.24578, 'attempts': 1, 
+    'timeIncrement': 0.12288, 'increment': 17, 'stepTime': 0.24578, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 3, 'iterations': 4, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 18, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.49154, 'attempts': 1, 
+    'timeIncrement': 0.24576, 'increment': 18, 'stepTime': 0.49154, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 1, 'iterations': 3, 'phase': STANDARD_PHASE, 
+    'equilibrium': 2})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 19, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 1.86018, 'attempts': 1, 
+    'timeIncrement': 0.36864, 'increment': 19, 'stepTime': 0.86018, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-25']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 20, 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(STATUS, {'totalTime': 2.0, 'attempts': 1, 
+    'timeIncrement': 0.13982, 'increment': 20, 'stepTime': 1.0, 'step': 2, 
+    'jobName': 'Job-25', 'severe': 0, 'iterations': 1, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['Job-25']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 2, 
+    'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-25'})
+mdb.jobs['Job-25']._Message(JOB_COMPLETED, {'time': 'Tue May 21 20:50:20 2019', 
+    'jobName': 'Job-25'})
+# Save by fe1 on 2019_05_21-20.52.08; build 2016 2015_09_24-22.31.09 126547
