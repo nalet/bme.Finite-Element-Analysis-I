@@ -60,7 +60,7 @@
 
 %\renewcommand{\qedsymbol}{\filledbox}
 
-\title{Assignment 6}%replace X with the appropriate number
+\title{Assignment 7}%replace X with the appropriate number
 \author{Nalet Meinen and Pascal Wyss\\ %replace with your name
 Finite Element Analysis I
 }
@@ -69,7 +69,7 @@ Finite Element Analysis I
 \begin{figure}[!htb]
   \centering
   \vspace*{1cm}
-  \includegraphics[trim={2cm 2cm 2cm 2cm},clip,width=1.0\linewidth]{pics/titelbild}
+  \includegraphics[trim={1cm 2cm 2cm 2cm},clip,width=1.0\linewidth]{pics/stress3d}
   \label{fig:0}
 \end{figure}
 
@@ -83,11 +83,6 @@ tissue, as usually found in the cornea, the annulus fibrosus or arterial walls (
 The resulting foce / displacement relationship, after applying a force to the sample is our primary
 matter of interest.
 
-% \begin{figure}[!htb]
-%   \centering
-%   \animategraphics[autoplay,loop,width=0.8\linewidth,trim={1mm 1mm 1mm 1mm}]{4}{pics/out/ani-}{1}{62}
-%   \caption{Animation of frequency on beam}
-% \end{figure}
 
 \tableofcontents
 \pagebreak
@@ -101,12 +96,6 @@ In a second simulation, the fibers are orientated  at 30 degrees respective to t
 while maintaining orthogonality between the fiber sets. We expect a less symmetric behaviour of the sample
 during simulation due to the asymmetric setup.
 
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=1.0\linewidth]{pics/shematics}
-  \caption{Model of the plate with Eulerian formulation}
-  \label{fig:1}
-\end{figure}
 
 \noindent As shown in Figure \ref{fig:1}, the fibers are orientated differently in both simulations.
 
@@ -132,6 +121,25 @@ realistic distribution of forces and strains within the sample.\cite{holzapfel}
 \section{Results and Discussion}
 
 The results are 
+
+\begin{figure}[!htb]
+  \centering
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=0.95\linewidth]{pics/stress}
+    \caption{Stresses with }
+  \end{subfigure}%
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=0.95\linewidth]{pics/stress3d}
+    \caption{Stresses with }
+   \end{subfigure}
+  \caption{Stresses on Sample}
+  \label{fig:4}
+\end{figure}
+
+\pagebreak
+\subsection(conclution)
 
 
 \pagebreak
