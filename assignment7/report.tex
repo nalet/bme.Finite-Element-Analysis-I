@@ -113,15 +113,20 @@ instances are clear of each other (after heating up the disc).
 
 
 
+
 \pagebreak
 \section{Results and Discussion}
 
 The results vary greatly with different mesh sizes. Especially when using quilt plots,
 results may differ quite heavily from one mesh to another, as there is no averaging between elements.
 Quilt plots are good for evaluation on an element-by-element basis.
-We reach a maximum mises sstress of arounf 1.2GPa, which is way below the plasic deformation threshold
-for the shaft material, which lies at 200GPa. When thinkin about the real world application, this seems
-reasonable, because the shaft could not be reused after the diss (or bearing) would be removed.
+We reach a maximum mises sstress of around 1.2GPa, which is way below the plasic deformation threshold
+for the shaft material, which lies at 200GPa. 
+However, it is also possible that this maximum value of 1.2GPa comes from the thermal 
+deformation of the part itself during heating up.
+When thinkin about the real world application, it seems
+reasonable that the maximum stresses stay in the elastic
+region of the materials, because the shaft could not be reused after the diss (or bearing) would be removed.
 The simulation with a smaller overlap of the parts shows no smaller stress value at the surface.
 This is qulitatively a questionable result. We would assume, that by having a smaller
 overclosure, lower stress values would result.
