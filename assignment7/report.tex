@@ -76,25 +76,19 @@ Finite Element Analysis I
 \newpage
 
 \section*{Abstract}
-In this assignment we investigate the behaviour of a model cornea tissue sample 
-consisitng of fibers at different angles
-respective to the applied force. Those fibers represent a multi-layer biological
-tissue, as usually found in the cornea, the annulus fibrosus or arterial walls (just to name a few).
-The resulting foce / displacement relationship, after applying a force to the sample is our primary
-matter of interest.
-
+In this assignment we investigate the a cooling disc which is mounted on a shaft.
+The occuring stresses after cooling are then assessed.
 
 \tableofcontents
 \pagebreak
 \section{Introduction}
 
-The cornea sample is modelled using abaqus. The fibers are orientated at 45 degrees respective to
-the applied force. The force is applied on the top of the sample, pulling upwards.
-In this simulation, a fixed deformation of factor 1.25 is performed, retrieving the corresponding 
-force values.
-In a second simulation, the fibers are orientated  at 30 degrees respective to the line of force,
-while maintaining orthogonality between the fiber sets. We expect a less symmetric behaviour of the sample
-during simulation due to the asymmetric setup.
+The disc is heated up to increase its diameter, then cooled down to form an interference fit.
+This is a common procedure in mechanics to fit parts together (e.g. bearings on shafts).
+It is therefore interesting to know, by how much the disc has to be heated in order to
+get an inside diameter which fits over the shaft. In a practical application, this could be used
+to specify manufactoring tolerances.
+
 
 
 \noindent As shown in Figure \ref{fig:1}, the fibers are orientated differently in both simulations.
@@ -102,10 +96,10 @@ during simulation due to the asymmetric setup.
 \newpage
 \section{Methods}
 
-\subsection{Analyzing the data with Python}
+\subsection{Modelling}
 
-We created a model with CPS4R mesh type. Based on the last assignments, the reduced integration
-gave us the best result, so we stick with that.
+It is important to sequence the model into different steps. Contacts are only activated after both
+instances are clear of each other (after heating up the disc). 
 
 \subsection{Holzapfel-Gasser-Ogden Framework}
 
@@ -120,7 +114,7 @@ realistic distribution of forces and strains within the sample.\cite{holzapfel}
 \pagebreak
 \section{Results and Discussion}
 
-The results are 
+The results vary greatly with different mesh sizes. 
 
 \begin{figure}[!htb]
   \centering
