@@ -76,7 +76,7 @@ Finite Element Analysis I
 \newpage
 
 \section*{Abstract}
-In this assignment we investigate the a cooling disc which is mounted on a shaft.
+In this assignment we investigate a cooling disc which is mounted on a shaft.
 The occuring stresses after cooling are then assessed.
 
 \tableofcontents
@@ -89,9 +89,6 @@ It is therefore interesting to know, by how much the disc has to be heated in or
 get an inside diameter which fits over the shaft. In a practical application, this could be used
 to specify manufactoring tolerances.
 
-
-
-\noindent As shown in Figure \ref{fig:1}, the fibers are orientated differently in both simulations.
 
 \newpage
 \section{Methods}
@@ -106,8 +103,10 @@ depends on the thermal heat expansion coefficient.
 
 \subsection{Modelling}
 
-It is important to sequence the model into different steps. Contacts are only activated after both
-instances are clear of each other (after heating up the disc). 
+It is important to sequence the model into different steps. 
+Contacts are only activated after both
+instances are clear of each other (after heating up the disc).
+
 
 
 
@@ -122,7 +121,16 @@ results may differ quite heavily from one mesh to another, as there is no averag
 Quilt plots are good for evaluation on an element-by-element basis.
 We reach a maximum mises sstress of arounf 1.2GPa, which is way below the plasic deformation threshold
 for the shaft material, which lies at 200GPa. When thinkin about the real world application, this seems
-reasonable, because the shaft could not be reused after the diss (or bearing) would be removed. 
+reasonable, because the shaft could not be reused after the diss (or bearing) would be removed.
+The simulation with a smaller overlap of the parts shows no smaller stress value at the surface.
+This is qulitatively a questionable result. We would assume, that by having a smaller
+overclosure, lower stress values would result.
+From a practical perspective, by dimensioning the overclosure to a certain
+value (during manufacturing of the parts), engineers can influence the behaviour of the 
+assembly, mainly its ability to withstand axial loads. 
+We assume that there might be errors in the selection of the respective nodes for plotting,
+or possibly in the material characteristics. However, due to lack of time we were not able to 
+fully investigate further. Corrected results may follow in an appendix to this report.
 
 
 
@@ -141,9 +149,6 @@ reasonable, because the shaft could not be reused after the diss (or bearing) wo
   \caption{Stresses on Sample}
   \label{fig:4}
 \end{figure}
-
-\pagebreak
-\subsection(conclution)
 
 
 \pagebreak
