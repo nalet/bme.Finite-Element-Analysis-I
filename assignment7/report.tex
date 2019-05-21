@@ -78,6 +78,9 @@ Finite Element Analysis I
 \section*{Abstract}
 In this assignment we investigate a cooling disc which is mounted on a shaft.
 The occuring stresses after cooling are then assessed.
+We are not entirely certain about the quality and correctness
+of the ackquired results. Nevertheless we checked for plausibility at various steps
+along the way.
 
 \tableofcontents
 \pagebreak
@@ -111,7 +114,10 @@ Assuming the disc is uniform and isotropic (the same in different directions), t
 \subsection{Diameter as Function of Temperature}
 
 The inside diameter of the disc changes with temperature. The rate of change 
-depends on the thermal heat expansion coefficient.
+depends on the thermal heat expansion coefficient as described above. 
+It is important to sequence the model into different steps. 
+Contacts are only activated after both
+instances are clear of each other (after heating up the disc).
 
 
 
@@ -133,9 +139,6 @@ depends on the thermal heat expansion coefficient.
   \caption{Compason of overlap}
 \end{figure}
 
-It is important to sequence the model into different steps. 
-Contacts are only activated after both
-instances are clear of each other (after heating up the disc).
 
 
 
@@ -155,13 +158,13 @@ instances are clear of each other (after heating up the disc).
 The results vary greatly with different mesh sizes. Especially when using quilt plots,
 results may differ quite heavily from one mesh to another, as there is no averaging between elements.
 Quilt plots are good for evaluation on an element-by-element basis.
-We reach a maximum mises sstress of around 1.2GPa, which is way below the plasic deformation threshold
+We reach a maximum mises stress of around 1.2GPa, which is way below the plastic deformation threshold
 for the shaft material, which lies at 200GPa. 
 However, it is also possible that this maximum value of 1.2GPa comes from the thermal 
 deformation of the part itself during heating up.
 When thinkin about the real world application, it seems
 reasonable that the maximum stresses stay in the elastic
-region of the materials, because the shaft could not be reused after the diss (or bearing) would be removed.
+region of the materials, because the shaft could not be reused after the disc (or bearing) would be removed.
 The simulation with a smaller overlap of the parts shows no smaller stress value at the surface.
 This is qulitatively a questionable result. We would assume, that by having a smaller
 overclosure, lower stress values would result.
