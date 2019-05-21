@@ -69,7 +69,7 @@ Finite Element Analysis I
 \begin{figure}[!htb]
   \centering
   \vspace*{1cm}
-  \includegraphics[trim={1cm 2cm 2cm 2cm},clip,width=1.0\linewidth]{pics/stress3d}
+  \includegraphics[trim={-3cm 2cm 2cm 2cm},clip,width=1.0\linewidth]{pics/titelbild}
   \label{fig:0}
 \end{figure}
 
@@ -83,11 +83,26 @@ The occuring stresses after cooling are then assessed.
 \pagebreak
 \section{Introduction}
 
-The disc is heated up to increase its diameter, then cooled down to form an interference fit.
-This is a common procedure in mechanics to fit parts together (e.g. bearings on shafts).
-It is therefore interesting to know, by how much the disc has to be heated in order to
-get an inside diameter which fits over the shaft. In a practical application, this could be used
-to specify manufactoring tolerances.
+This assignment should show an introduction in thermo-mechanical simulations. With a numerical model of a disk and shaft,  the disc is heated up to increase its diameter, then cooled down to form an interference fit. This is a common procedure in mechanics to fit parts together (e.g. bearings on shafts). It is therefore interesting to know, by how much the disc has to be heated in order to get an inside diameter which fits over the shaft. In a practical application, this could be used to specify manufacturing tolerances.
+Assuming the disc is uniform and isotropic (the same in different directions), the hole will expand in the same ratio as the metal. You can see this because of the thermal expansion equation.
+
+\begin{equation}\label{eq:1}
+  \delta l = l \cdot \alpha \cdot \delta t
+\end{equation}
+\begin{conditions}
+  l         &  original length\\
+  \delta l  &  thermal expansion\\
+  \alpha    &  coefficient for heat expansion\\
+  \delta t  &  temperature difference
+\end{conditions}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.9\linewidth]{pics/overclosure_temperature}
+ \caption{overclosure}
+  \label{fig:1}
+\end{figure}
+
 
 
 \newpage
@@ -103,13 +118,33 @@ depends on the thermal heat expansion coefficient.
 
 \subsection{Modelling}
 
+\begin{figure}[!htb]
+  \centering
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=0.95\linewidth]{pics/stress10}
+    \caption{Overlap of 0.01 mm}
+  \end{subfigure}%
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=0.95\linewidth]{pics/stress50}
+    \caption{Overlap of 0.05 mm}
+   \end{subfigure}
+  \caption{Compason of overlap}
+\end{figure}
+
 It is important to sequence the model into different steps. 
 Contacts are only activated after both
 instances are clear of each other (after heating up the disc).
 
 
 
-
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.9\linewidth]{pics/result10and50}
+ \caption{overclosure}
+  \label{fig:1}
+\end{figure}
 
 
 
@@ -137,37 +172,10 @@ We assume that there might be errors in the selection of the respective nodes fo
 or possibly in the material characteristics. However, due to lack of time we were not able to 
 fully investigate further. Corrected results may follow in an appendix to this report.
 
-
-
-\begin{figure}[!htb]
-  \centering
-  \begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[width=0.95\linewidth]{pics/stress}
-    \caption{Stresses with }
-  \end{subfigure}%
-  \begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[width=0.95\linewidth]{pics/stress3d}
-    \caption{Stresses with }
-   \end{subfigure}
-  \caption{Stresses on Sample}
-  \label{fig:4}
-\end{figure}
-
-
 \pagebreak
 \begin{thebibliography}{9}
-\bibitem{latexcompanion} 
-Michel Goossens, Frank Mittelbach, and Alexander Samarin. 
-\textit{The \LaTeX\ Companion}. 
-Addison-Wesley, Reading, Massachusetts, 1993.
-
-\bibitem{holzapfel} 
- Michel Goossens, Frank Mittelbach, and Alexander Samarin. 
-\textit{On the Use of Biaxial Properties in Modeling Annulus as a Holzapfel–Gasser–Ogden Material}. 
-Sharaki et al., University of Toledo, Toledo, OH, USA, 2015.
-
+  \bibitem{Thin Circular Ring - Temperature and Expanding Radius} 
+  https://www.engineeringtoolbox.com/thin-circular-ring-radius-temperature-change-d\_1612.html
 \end{thebibliography}
 
 
