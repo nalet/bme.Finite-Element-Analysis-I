@@ -1,0 +1,449 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+del mdb.jobs['job_05']
+mdb.models['Model-1'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['Model-1'].parts['Part-1'].features['Shell planar-1'].sketch)
+mdb.models['Model-1'].parts['Part-1'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['Model-1'].parts['Part-1'].features['Shell planar-1'])
+mdb.models['Model-1'].sketches['__edit__'].dimensions[0].setValues(value=10)
+mdb.models['Model-1'].parts['Part-1'].features['Shell planar-1'].setValues(
+    sketch=mdb.models['Model-1'].sketches['__edit__'])
+del mdb.models['Model-1'].sketches['__edit__']
+mdb.models['Model-1'].parts['Part-1'].regenerate()
+mdb.models['Model-1'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['Model-1'].parts['Part-2'].features['Shell planar-1'].sketch)
+mdb.models['Model-1'].parts['Part-2'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['Model-1'].parts['Part-2'].features['Shell planar-1'])
+mdb.models['Model-1'].sketches['__edit__'].dimensions[2].setValues(value=20.05)
+mdb.models['Model-1'].parts['Part-2'].features['Shell planar-1'].setValues(
+    sketch=mdb.models['Model-1'].sketches['__edit__'])
+del mdb.models['Model-1'].sketches['__edit__']
+mdb.models['Model-1'].parts['Part-2'].regenerate()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='job_05', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['job_05'].submit(consistencyChecking=OFF)
+mdb.jobs['job_05']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'in keyword *BOUNDARY, file "job_05.inp", line 55: Unknown assembly node set SYMMETRY1STAB', 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'in keyword *BOUNDARY, file "job_05.inp", line 58: Unknown assembly node set SYMMETRY2STAB', 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'in keyword *BOUNDARY, file "job_05.inp", line 61: Unknown assembly node set SYMMETRYDISC', 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'in keyword *BOUNDARY, file "job_05.inp", line 80: Unknown assembly node set HEATPLATE', 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE SLAVE SURFACE ASSEMBLY_PART-1-1_SURF-1 DOES NOT EXIST.', 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE SLAVE SURFACE ASSEMBLY_PART-1-1_SURF-1 DOES NOT EXIST.', 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE SLAVE SURFACE ASSEMBLY_PART-1-1_SURF-1 DOES NOT EXIST.', 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'THIS MODEL HAS EITHER INCORRECT OR NO ELEMENT DEFINITIONS.', 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'job_05'})
+mdb.models['Model-1'].parts['Part-1'].generateMesh()
+mdb.models['Model-1'].parts['Part-2'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.jobs['job_05'].submit(consistencyChecking=OFF)
+mdb.jobs['job_05']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'SURFACE INTERACTION INTPROP-1, ASSOCIATED WITH ONE OR MORE CONTACT PAIRS WITH SURFACES HAVING UNDERLYING ELEMENTS WITH TEMPERATURE AND DISPLACEMENT DEGREES OF FREEDOM, DOES NOT HAVE ANY THERMAL INTERACTION DEFINED.  NO THERMAL INTERACTION WILL OCCUR.', 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'Boundary conditions are specified on inactive dof of 2676 nodes. The nodes have been identified in node set WarnNodeBCInactiveDof.', 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'Boundary conditions are specified on inactive dof of 2676 nodes. The nodes have been identified in node set WarnNodeBCInactiveDof.', 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/job_05.odb', 'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'job_05', 'memory': 116.0})
+mdb.jobs['job_05']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'There is zero HEAT FLUX everywhere in the model based on the default criterion. please check the value of the average HEAT FLUX during the current iteration to verify that the HEAT FLUX is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero HEAT FLUX.', 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'There is zero FORCE everywhere in the model based on the default criterion. please check the value of the average FORCE during the current iteration to verify that the FORCE is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero FORCE.', 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'There is zero HEAT FLUX everywhere in the model based on the default criterion. please check the value of the average HEAT FLUX during the current iteration to verify that the HEAT FLUX is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero HEAT FLUX.', 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'job_05', 'severe': 1, 'iterations': 2, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['job_05']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 2, 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 0, 'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'job_05', 'memory': 113.0})
+mdb.jobs['job_05']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 1, 'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(STATUS, {'totalTime': 2.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 2, 
+    'jobName': 'job_05', 'severe': 2, 'iterations': 3, 'phase': STANDARD_PHASE, 
+    'equilibrium': 1})
+mdb.jobs['job_05']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 2, 
+    'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'job_05'})
+mdb.jobs['job_05']._Message(JOB_COMPLETED, {'time': 'Tue Jun  4 15:07:26 2019', 
+    'jobName': 'job_05'})
+mdb.models['Model-1'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['Model-1'].parts['Part-2'].features['Shell planar-1'].sketch)
+mdb.models['Model-1'].parts['Part-2'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['Model-1'].parts['Part-2'].features['Shell planar-1'])
+mdb.models['Model-1'].sketches['__edit__'].dimensions[2].setValues(value=
+    20.025)
+mdb.models['Model-1'].parts['Part-2'].features['Shell planar-1'].setValues(
+    sketch=mdb.models['Model-1'].sketches['__edit__'])
+del mdb.models['Model-1'].sketches['__edit__']
+mdb.models['Model-1'].parts['Part-2'].regenerate()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='job_025', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['job_025'].submit(consistencyChecking=OFF)
+mdb.jobs['job_025']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'in keyword *BOUNDARY, file "job_025.inp", line 12889: Unknown assembly node set SYMMETRYDISC', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'in keyword *BOUNDARY, file "job_025.inp", line 12908: Unknown assembly node set HEATPLATE', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE MASTER SURFACE ASSEMBLY_PART-2-1_SURF-1 DOES NOT EXIST.', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE MASTER SURFACE ASSEMBLY_PART-2-1_SURF-1 DOES NOT EXIST.', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE MASTER SURFACE ASSEMBLY_PART-2-1_SURF-1 DOES NOT EXIST.', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE MASTER SURFACE ASSEMBLY_PART-2-1_SURF-1 DOES NOT EXIST.', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SYMMETRYDISC HAS NOT BEEN DEFINED', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_HEATPLATE HAS NOT BEEN DEFINED', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SYMMETRYDISC HAS NOT BEEN DEFINED', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_HEATPLATE HAS NOT BEEN DEFINED', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_SYMMETRYDISC BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'A BOUNDARY CONDITION HAS BEEN SPECIFIED ON NODE SET ASSEMBLY_HEATPLATE BUT THIS NODE SET IS NOT ACTIVE IN THE MODEL', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SYMMETRYDISC HAS NOT BEEN DEFINED', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_HEATPLATE HAS NOT BEEN DEFINED', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_SYMMETRYDISC HAS NOT BEEN DEFINED', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_HEATPLATE HAS NOT BEEN DEFINED', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/job_025.odb', 'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ABORTED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(JOB_ABORTED, {
+    'message': 'Analysis Input File Processor exited with an error.', 
+    'jobName': 'job_025'})
+mdb.models['Model-1'].parts['Part-2'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.jobs['job_025'].submit(consistencyChecking=OFF)
+mdb.jobs['job_025']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'SURFACE INTERACTION INTPROP-1, ASSOCIATED WITH ONE OR MORE CONTACT PAIRS WITH SURFACES HAVING UNDERLYING ELEMENTS WITH TEMPERATURE AND DISPLACEMENT DEGREES OF FREEDOM, DOES NOT HAVE ANY THERMAL INTERACTION DEFINED.  NO THERMAL INTERACTION WILL OCCUR.', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'Boundary conditions are specified on inactive dof of 2676 nodes. The nodes have been identified in node set WarnNodeBCInactiveDof.', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'Boundary conditions are specified on inactive dof of 2676 nodes. The nodes have been identified in node set WarnNodeBCInactiveDof.', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/job_025.odb', 'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'job_025', 'memory': 116.0})
+mdb.jobs['job_025']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'There is zero HEAT FLUX everywhere in the model based on the default criterion. please check the value of the average HEAT FLUX during the current iteration to verify that the HEAT FLUX is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero HEAT FLUX.', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'There is zero FORCE everywhere in the model based on the default criterion. please check the value of the average FORCE during the current iteration to verify that the FORCE is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero FORCE.', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'There is zero HEAT FLUX everywhere in the model based on the default criterion. please check the value of the average HEAT FLUX during the current iteration to verify that the HEAT FLUX is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero HEAT FLUX.', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'job_025', 'severe': 1, 'iterations': 2, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['job_025']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 2, 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 0, 'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'job_025', 'memory': 113.0})
+mdb.jobs['job_025']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 1, 'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(STATUS, {'totalTime': 2.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 2, 
+    'jobName': 'job_025', 'severe': 2, 'iterations': 3, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['job_025']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 2, 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {'phase': STANDARD_PHASE, 
+    'message': 'An error occurred during a write access to <rank=0,arg_name=tmpdir>job_025.cps file. Check the disk space on your system.', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ABORTED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase failed due to errors', 'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(ERROR, {
+    'message': 'MFS->SFS and SIM cleanup exited with an error.', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(JOB_ABORTED, {
+    'message': 'MFS->SFS and SIM cleanup exited with an error.', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025'].submit(consistencyChecking=OFF)
+mdb.jobs['job_025']._Message(ERROR, {
+    'message': 'Detected lock file job_025.lck. Please confirm that no other applications are attempting to write to the output database associated with this job before removing the lock file and resubmitting.', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(JOB_ABORTED, {
+    'message': 'Detected lock file job_025.lck. Please confirm that no other applications are attempting to write to the output database associated with this job before removing the lock file and resubmitting.', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025'].submit(consistencyChecking=OFF)
+mdb.jobs['job_025']._Message(ERROR, {
+    'message': 'Detected lock file job_025.lck. Please confirm that no other applications are attempting to write to the output database associated with this job before removing the lock file and resubmitting.', 
+    'jobName': 'job_025'})
+mdb.jobs['job_025']._Message(JOB_ABORTED, {
+    'message': 'Detected lock file job_025.lck. Please confirm that no other applications are attempting to write to the output database associated with this job before removing the lock file and resubmitting.', 
+    'jobName': 'job_025'})
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-025', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['Job-025'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-025']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'SURFACE INTERACTION INTPROP-1, ASSOCIATED WITH ONE OR MORE CONTACT PAIRS WITH SURFACES HAVING UNDERLYING ELEMENTS WITH TEMPERATURE AND DISPLACEMENT DEGREES OF FREEDOM, DOES NOT HAVE ANY THERMAL INTERACTION DEFINED.  NO THERMAL INTERACTION WILL OCCUR.', 
+    'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'Boundary conditions are specified on inactive dof of 2676 nodes. The nodes have been identified in node set WarnNodeBCInactiveDof.', 
+    'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'Boundary conditions are specified on inactive dof of 2676 nodes. The nodes have been identified in node set WarnNodeBCInactiveDof.', 
+    'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/Job-025.odb', 'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-025', 'memory': 116.0})
+mdb.jobs['Job-025']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'There is zero HEAT FLUX everywhere in the model based on the default criterion. please check the value of the average HEAT FLUX during the current iteration to verify that the HEAT FLUX is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero HEAT FLUX.', 
+    'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'There is zero FORCE everywhere in the model based on the default criterion. please check the value of the average FORCE during the current iteration to verify that the FORCE is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero FORCE.', 
+    'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'There is zero HEAT FLUX everywhere in the model based on the default criterion. please check the value of the average HEAT FLUX during the current iteration to verify that the HEAT FLUX is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero HEAT FLUX.', 
+    'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-025', 'severe': 1, 'iterations': 2, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+del mdb.jobs['job_025']
+mdb.jobs['Job-025']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 2, 
+    'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 0, 'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-025', 'memory': 113.0})
+mdb.jobs['Job-025']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 1, 'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(STATUS, {'totalTime': 2.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 2, 
+    'jobName': 'Job-025', 'severe': 2, 'iterations': 3, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Job-025']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 2, 
+    'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-025'})
+mdb.jobs['Job-025']._Message(JOB_COMPLETED, {
+    'time': 'Tue Jun  4 15:17:43 2019', 'jobName': 'Job-025'})
+mdb.models['Model-1'].ConstrainedSketch(name='__edit__', objectToCopy=
+    mdb.models['Model-1'].parts['Part-2'].features['Shell planar-1'].sketch)
+mdb.models['Model-1'].parts['Part-2'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__edit__'], 
+    upToFeature=
+    mdb.models['Model-1'].parts['Part-2'].features['Shell planar-1'])
+mdb.models['Model-1'].sketches['__edit__'].dimensions[2].setValues(value=20.01)
+mdb.models['Model-1'].parts['Part-2'].features['Shell planar-1'].setValues(
+    sketch=mdb.models['Model-1'].sketches['__edit__'])
+del mdb.models['Model-1'].sketches['__edit__']
+mdb.models['Model-1'].parts['Part-2'].regenerate()
+mdb.models['Model-1'].parts['Part-2'].generateMesh()
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-001', nodalOutputPrecision=SINGLE, 
+    numCpus=1, numGPUs=0, queue=None, resultsFormat=ODB, scratch='', type=
+    ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['Job-001'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-001']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'SURFACE INTERACTION INTPROP-1, ASSOCIATED WITH ONE OR MORE CONTACT PAIRS WITH SURFACES HAVING UNDERLYING ELEMENTS WITH TEMPERATURE AND DISPLACEMENT DEGREES OF FREEDOM, DOES NOT HAVE ANY THERMAL INTERACTION DEFINED.  NO THERMAL INTERACTION WILL OCCUR.', 
+    'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'Boundary conditions are specified on inactive dof of 2676 nodes. The nodes have been identified in node set WarnNodeBCInactiveDof.', 
+    'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'Boundary conditions are specified on inactive dof of 2676 nodes. The nodes have been identified in node set WarnNodeBCInactiveDof.', 
+    'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': '/home/fe1/Job-001.odb', 'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'localhost.localdomain', 'handle': 0, 'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-001', 'memory': 116.0})
+mdb.jobs['Job-001']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'There is zero HEAT FLUX everywhere in the model based on the default criterion. please check the value of the average HEAT FLUX during the current iteration to verify that the HEAT FLUX is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero HEAT FLUX.', 
+    'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'There is zero FORCE everywhere in the model based on the default criterion. please check the value of the average FORCE during the current iteration to verify that the FORCE is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero FORCE.', 
+    'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(WARNING, {'phase': STANDARD_PHASE, 
+    'message': 'There is zero HEAT FLUX everywhere in the model based on the default criterion. please check the value of the average HEAT FLUX during the current iteration to verify that the HEAT FLUX is small enough to be treated as zero. if not, please use the solution controls to reset the criterion for zero HEAT FLUX.', 
+    'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'Job-001', 'severe': 1, 'iterations': 2, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Job-001']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 2, 
+    'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 0, 'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Job-001', 'memory': 113.0})
+mdb.jobs['Job-001']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 1, 
+    'frame': 1, 'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(STATUS, {'totalTime': 2.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 2, 
+    'jobName': 'Job-001', 'severe': 2, 'iterations': 3, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Job-001']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 2, 
+    'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-001'})
+mdb.jobs['Job-001']._Message(JOB_COMPLETED, {
+    'time': 'Tue Jun  4 15:20:27 2019', 'jobName': 'Job-001'})
