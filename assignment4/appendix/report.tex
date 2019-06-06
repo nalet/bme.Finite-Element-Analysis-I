@@ -140,8 +140,10 @@ The fillet helps to smooth the surface. This adds more normals to the surface an
 \subsection{No Fillet}
 With no filet, only one normal is present. The slave surface can only use one point in the masters surface. As the surface is not smoothed, the results are also more edged.
 \subsection{Mesh and Thickness}
+CPE4 mesh type is used as this title of the assignment speaks for itself. These elements are made for strain forces. The documentation speaks about the sheer locking issue in CPE4 elements. But this should not be a problem as the elements will not be bent in the analysis.
+
 As previously mentioned the mesh size has an impact on the normals and so on the surfaces, nodes, and analysis. Creating a model which runs in every configuration is difficult. Increasing the mesh size leads to more accurate solutions but also the job is more likely to fail because many nodes are focusing on one master node in the no fillet approach. The convergence is also likely to fail. With the thickness, the force on the node can be distributed on the nodes. Either one can adjust the boundaries of the solver, or in our case, change the thickness for getting to a similar result.
 \section{Conclusion}
-Contact problems are rather difficult to model. Especially if one wants to implement a fillet in the model. Even the Abaqus documentation mentions that this approach is likely to fail, with the reasons mentioned above. For this appendix, the Abaqus documentations was used.
+Contact problems are rather difficult to model. Especially if one wants to implement a fillet in the model. Even the Abaqus documentation mentions that this approach is likely to fail, with the reasons mentioned above. For this appendix, the Abaqus documentation was used.
 
 \end{document}
