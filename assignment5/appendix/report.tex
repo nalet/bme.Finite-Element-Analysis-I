@@ -100,7 +100,7 @@ One can observe that the curve overshoots much more as with the Lagrangian analy
 
 In general, the explicit dynamics procedure performs many small time increments in a short time. Every time step is dynamically evaluated in order to come forward in the analysis. Also, there is an explicit central-difference operator that tries to satisfy the dynamic equilibrium. Using this approach gives good results in a relatively short time. As we are using a Eulerian model we must also consider the internal forces like in the liquid. Depending on the amplitude of the force this will echo back later, leading in an overshoot or drop in the curve over the time of the curve. The documentation says that this can lead to a problem when the solver is trying to solve for a equilibrium.
 
-
+\newpage
 \section{Conclusion}
 
 For simulations with large displacement, especially including liquid and gases, the Eulerian analysis is the way to go. In Eulerian analysis, the element can only consist of one material which is good for liquids, as there is only one material necessary, but bad for other model modalities when a part consisting of multiple partitions should also have multiple materials assigned to each partition. Also the documentation of Abaqus many limitations occur in Eulerian analysis, however, a workaround can be found for achieving the same as in Lagrangian in most cases.
