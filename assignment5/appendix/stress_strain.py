@@ -6,81 +6,147 @@ import matplotlib.pyplot as plt
 import sys
 
 plt.rcParams['figure.dpi'] = 120
-plt.rcParams['font.size'] = 15
+plt.rcParams['font.size'] = 9
 
 
-h = 0.010 / 2
-h_max = 0.005 / 2
-step_size = 0.0001
+
 
 sigma_start = 0
-sigma_step = 10e6
-sigma0 = 220e6
-B = 3e9
-E = 70e9
+sigma_step = 10
+sigma0 = 220
+B = 3e3
+E = 70e3
 n = 3.2
 
-w = 0.2
-b = 0.03 / 2
+w = 20
+b = 0.030 / 2 # symmetric
+h = 0.010
 
-h_x = np.arange(h, h_max, step_size)
+eh = 0.005
+ew = 0.0007
+eb = 0.030 / 2 # symmetric
 
 x = []
 y = []
 
 current = sigma_start
-c_y = 0
-while c_y <= 1:
-    c_y = 0
-    c_x = current
+c_x = 0
+while c_x <= 1:
+    c_x = 0
+    c_y = current
     current = current + sigma_step
 
-    if c_x == 0:
+    if c_y == 0:
         x.append(0)
         y.append(0)
         print('{:.4e}'.format(0),'{:.4e}'.format(0),sep="\t")
         continue
 
-    if c_x >= sigma0:
-        c_y = sigma0 / E + sigma0 / B * ( c_x / sigma0 - 1 ) ** n
+    if c_y >= sigma0:
+        c_x = sigma0 / E + sigma0 / B * ( c_y / sigma0 - 1 ) ** n
     else:
-        c_y = c_x / E
+        c_x = c_y / E
 
     x.append(c_x)
     y.append(c_y)
-    print('{:.4e}'.format(c_x),'{:.4e}'.format(c_y),sep="\t")
+    print('{:.4e}'.format(c_y),'{:.4e}'.format(c_x),sep="\t")
     
 def read_data(filename) :
-    # Import data using Pandas. Using report I XY data, this line should work
-    data = pd.read_csv(os.path.dirname(os.path.abspath(__file__)) + '/' + filename,
-                    skiprows=5, header=None, delim_whitespace=True)
+    try:
+        # Import data using Pandas. Using report I XY data, this line should work
+        data = pd.read_csv(os.path.dirname(os.path.abspath(__file__)) + '/' + filename,
+                        skiprows=5, header=None, delim_whitespace=True)
+    except:
+        print('File ' + filename + ' not found')
     data = data.values
 
-    x_f = []
-    y_f = []
-
+    x_f = [0]
+    y_f = [0]
+    print(filename)
     for line in data:
-        current3 = line[1]
-        current2 = line[2]
-        calc2 = h - current2
-        c_epsilon2 = (2/np.sqrt(3))*np.log(h/calc2)
-        c_sigma2 = (current3 / w * b) * (np.sqrt(3)/2) * (1e4 / 2)
-        x_f.append(c_sigma2)
-        y_f.append(c_epsilon2)
+        rf2 = abs(line[1]) # force
+        u2 = abs(line[2]) # displacement
+    
+        epsilon2 = np.log(h/(h-u2))
+        sigma2 = rf2 / ( w * b )
+
+        epsilon_bar = 2 / np.sqrt(3) * epsilon2
+        sigma_bar = np.sqrt(3) / 2 * sigma2
+
+        x_f.append(epsilon_bar)
+        y_f.append(sigma_bar)
+        
+        print('{:.4e}'.format(sigma_bar),'{:.4e}'.format(epsilon_bar),sep="\t")
+        
 
     return [x_f, y_f]
 
-no_fillet_friction_less_finite_sliding_surface_to_surface = read_data("no_fillet_friction_less_finite_sliding_surface_to_surface.rpt")
+def read_data_e(filename) :
+    try:
+        # Import data using Pandas. Using report I XY data, this line should work
+        data = pd.read_csv(os.path.dirname(os.path.abspath(__file__)) + '/' + filename,
+                        skiprows=5, header=None, delim_whitespace=True)
+    except:
+        print('File ' + filename + ' not found')
+    data = data.values
 
+    x_f = [0]
+    y_f = [0]
+    print(filename)
+    for line in data:
+        rf2 = abs(line[1]) # force
+        u2 = abs(line[2]) # displacement
+    
+        epsilon2 = np.log(eh/(eh-u2))
+        sigma2 = rf2 / ( ew * eb )
+
+        epsilon_bar = 2 / np.sqrt(3) * epsilon2
+        sigma_bar = np.sqrt(3) / 2 * sigma2
+
+        x_f.append(epsilon_bar)
+        y_f.append(sigma_bar)
+        
+        print('{:.4e}'.format(sigma_bar),'{:.4e}'.format(epsilon_bar),sep="\t")
+        
+
+    return [x_f, y_f]
+
+no_fillet_friction_less_finite_sliding_surface_to_surface = read_data("../../assignment4/appendix/no_fillet_friction_less_finite_sliding_surface_to_surface.rpt")
+no_fillet_friction_less_finite_sliding_node_to_surface = read_data("../../assignment4/appendix/no_fillet_friction_less_finite_sliding_node_to_surface.rpt")
+no_fillet_friction_less_small_sliding_surface_to_surface = read_data("../../assignment4/appendix/no_fillet_friction_less_small_sliding_surface_to_surface.rpt")
+no_fillet_friction_less_small_sliding_node_to_surface = read_data("../../assignment4/appendix/no_fillet_friction_less_small_sliding_node_to_surface.rpt")
+
+no_fillet_friction_02_finite_sliding_surface_to_surface = read_data("../../assignment4/appendix/no_fillet_friction_02_finite_sliding_surface_to_surface.rpt")
+no_fillet_friction_02_finite_sliding_node_to_surface = read_data("../../assignment4/appendix/no_fillet_friction_02_finite_sliding_node_to_surface.rpt")
+no_fillet_friction_02_small_sliding_surface_to_surface = read_data("../../assignment4/appendix/no_fillet_friction_02_small_sliding_surface_to_surface.rpt")
+no_fillet_friction_02_small_sliding_node_to_surface = read_data("../../assignment4/appendix/no_fillet_friction_02_small_sliding_node_to_surface.rpt")
+
+eulerian = read_data_e("eulerian.rpt")
+eulerian_friction = read_data_e("eulerian_friction.rpt")
 
 # Plot
 plt.grid()
-plt.plot(x, y, linewidth=2, label="Analytical Solution")
-plt.plot(no_fillet_friction_less_finite_sliding_surface_to_surface[0],no_fillet_friction_less_finite_sliding_surface_to_surface[1], linewidth=1, label="Finite Sliding - Surface to Surface - No Friction")
-plt.ylabel('Strain')
-plt.xlabel('Stress (Pa)')
-plt.title('No Fillet')
+plt.plot(x, y, linewidth=1, alpha=0.5, label="Analytical Solution")
+
+
+plt.plot(no_fillet_friction_less_finite_sliding_surface_to_surface[0],no_fillet_friction_less_finite_sliding_surface_to_surface[1], linewidth=1, alpha=0.5, label="friction less - finite sliding - surface to surface")
+plt.plot(no_fillet_friction_less_finite_sliding_node_to_surface[0],no_fillet_friction_less_finite_sliding_node_to_surface[1], linewidth=1, alpha=0.5, label="friction less - finite sliding - node to surface")
+plt.plot(no_fillet_friction_less_small_sliding_surface_to_surface[0],no_fillet_friction_less_small_sliding_surface_to_surface[1], linewidth=1, alpha=0.5, label="friction less - small sliding - surface to surface")
+plt.plot(no_fillet_friction_less_small_sliding_node_to_surface[0],no_fillet_friction_less_small_sliding_node_to_surface[1], linewidth=1, alpha=0.5, label="friction less - small sliding - node to surface")
+
+plt.plot(no_fillet_friction_02_finite_sliding_surface_to_surface[0],no_fillet_friction_02_finite_sliding_surface_to_surface[1], linewidth=1, alpha=0.5, label="with friction - finite sliding - surface to surface")
+plt.plot(no_fillet_friction_02_finite_sliding_node_to_surface[0],no_fillet_friction_02_finite_sliding_node_to_surface[1], linewidth=1, alpha=0.5, label="with friction - finite sliding - node to surface")
+plt.plot(no_fillet_friction_02_small_sliding_surface_to_surface[0],no_fillet_friction_02_small_sliding_surface_to_surface[1], linewidth=1, alpha=0.5, label="with friction - small sliding - surface to surface")
+plt.plot(no_fillet_friction_02_small_sliding_node_to_surface[0],no_fillet_friction_02_small_sliding_node_to_surface[1], linewidth=1, alpha=0.5, label="with friction - small sliding - node to surface")
+
+plt.plot(eulerian[0],eulerian[1], linewidth=2, alpha=1, linestyle='dashed', label="friction less - eulerian")
+plt.plot(eulerian_friction[0],eulerian_friction[1], linewidth=2, alpha=1, linestyle='dashed', label="with friction - eulerian")
+
+
+
+plt.xlabel('Strain')
+plt.ylabel('Stress (Pa)')
+plt.title('Compare Eulerian Approach with Assignment 4 No Fillet Approach')
 plt.ylim(bottom=0)
 plt.legend()
 plt.show()
-
