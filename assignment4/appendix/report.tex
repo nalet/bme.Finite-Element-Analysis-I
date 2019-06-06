@@ -60,158 +60,90 @@
 
 %\renewcommand{\qedsymbol}{\filledbox}
 
-\title{Assignment 4}%replace X with the appropriate number
+\title{Assignment 4 - Appendix}%replace X with the appropriate number
 \author{Nalet Meinen and Pascal Wyss\\ %replace with your name
 Finite Element Analysis I
 }
 \maketitle
 
-\begin{figure}[!htb]
-  \centering
-  \vspace*{1cm}
-  \includegraphics[trim={10cm 4cm 12cm 1cm},clip,width=1.0\linewidth]{pics/titelbild}
-\end{figure}
-
-\newpage
-
-\section*{Abstract}
-In this assignment we examine the behaviour of a metal plate under compression.
-A rigid press, modelled as an analytical surface, squeezes the plate together.
-By retrieving the force and displacement values over time, we can determine the plastic 
-behaviour of our specimen. 
-This experimental data is then compared to the analytical solution,
-which was calculated with given material constants.
-Several different simulation methods were used, e.g. prohibiting the plate from sliding or allowing friction.
-The experimental results are overall similar to the analytical ones.
-
-
-
-% \begin{figure}[!htb]
-%   \centering
-%   \animategraphics[autoplay,loop,width=0.8\linewidth,trim={1mm 1mm 1mm 1mm}]{4}{pics/out/ani-}{1}{62}
-%   \caption{Animation of frequency on beam}
-% \end{figure}
-
-\tableofcontents
-\pagebreak
-\section{Introduction}
-The plate is mounted in a setup shown in \ref(figure1). The press then compresses the plate to half its
-original height. 
-
-
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=0.6\linewidth]{pics/shematics}
-  \caption{Compression of the aluminum plate}
-  \label{fig:1}
-\end{figure}
-\newpage
 \section{Methods}
 
-\subsection{Analytical solution}
-In order to ensure the validity of the plane strain assumption, the following relationships have to
-be fulfilled:
-\begin{equation}\label{eq:1}
-  w > 5h, \, w > 5b,\, 2h < b < 4h
-\end{equation}
-The variables in (\ref{eq:1}) are the same as in Figure \ref{fig:1}
-
-With thouse constraints we assume the following proportions for our model in the analytical solution and later with abaqus:
-
-\begin{equation}\label{eq:2}
-  w = 0.2m, b = 0.03m, h = 0.01m
-\end{equation}
-
-In our situation, the true stress and true strain are given by:
-\begin{equation}\label{eq:3}
-  \varepsilon_{1}=-\varepsilon_{2},\,\varepsilon_{2}=ln(\frac{h}{h_{x}}),\,\varepsilon_{3}=0,\,
-  \sigma_{1}=0,\,\sigma_{2}=\frac{P}{wb},\,\sigma_{3}=\frac{\sigma_{2}}{2}
-\end{equation}
-And the equivalent (Mises) stress and strain are defined as:
-\begin{equation}\label{eq:4}
-  \bar{\varepsilon}=\frac{2}{\sqrt{3}}\varepsilon_{2},\,\bar{\sigma}=\frac{\sqrt{3}}{2}\sigma_{2}
-\end{equation}
-Plastic deformation of aluminium. In this case, the stress-strain relation is given by:
-\begin{equation}\label{eq:5}
-  \bar{\varepsilon} = 
-  \begin{cases} 
-    \frac{\bar{\sigma}}{E} & ,\bar{\sigma} < \sigma_{0} \\
-    \frac{\sigma_{0}}{E}+\frac{\sigma_{0}}{B}(\frac{\bar{\sigma}}{\sigma_{0}}-1)^{n} & ,\bar{\sigma} >= \sigma_{0}
-  \end{cases}
-\end{equation}
-Where:
-\begin{conditions}
-  E           & 70 GPa \\
-  \sigma_{0}  & 220 MPa \\   
-  B           & 3 GPa \\
-  n           & 3.2 \\
-  v           & 0.3
-\end{conditions}
-\noindent Using our values for $\bar{\sigma} >= \sigma_{0}$ in equation \ref{eq:5}:
-\begin{equation}
-  \frac{2}{\sqrt{3}}ln(\frac{200 \cdot 10^{-3}m}{h_{x}}) = \frac{220 \cdot 10^6 Pa}{70 \cdot 10^9 Pa}+\frac{220 \cdot 10^6 Pa}{3 \cdot 10^9 Pa}(\frac{\bar{\sigma}}{220 \cdot 10^6 Pa}-1)^{3.2}
-\end{equation}
-Or more simple:
-\begin{equation}
-  (\sqrt[n]{(\bar{\varepsilon}-\frac{\sigma_{0}}{E})\frac{B}{\sigma_{0}}}+1)\sigma_{0}=\bar{\sigma}
-\end{equation}
-
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=0.9\linewidth]{pics/analytical}
-  \caption{Result of the analytical calculations}
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[trim={0cm 1cm 20cm 3.5cm},clip,width=0.4\linewidth]{pics/normals_corner}
+    \caption{normals with a 1mm fillet}
+  \end{subfigure}%
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[trim={0cm 1cm 20cm 4cm},clip,width=0.4\linewidth]{pics/normals_no_corner}
+    \caption{normals with no fillet}
+   \end{subfigure}
+  \caption{Comparsion of normals with fillet and no fillet}
+  \label{fig:1}
+\end{figure}
+Figure 1 describes the relationship of the surface with the corresponding normals. Contact problems in Abaqus are hard to model as convergence problems can mess up the simulations. When a surface-to-surface approach is used, the discretization can lead to tangential motion in the salve surface in some cases. The motion can lead to unwanted effects and to the abortion of the report.
+\begin{figure}[!htb]
+  \centering
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[trim={0cm 7cm 20cm 7cm},clip,width=0.7\linewidth]{pics/mesh_small}
+    \caption{mesh with 1500 elements}
+  \end{subfigure}%
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[trim={0cm 7cm 20cm 7cm},clip,width=0.7\linewidth]{pics/mesh_large}
+    \caption{mesh with 375 elements}
+   \end{subfigure}
+  \caption{Global model with no fillet}
   \label{fig:2}
 \end{figure}
 
-In the end we used the calculated vales for the platisity in abaqus.
+The mesh size has an impact on the normals, regardless of the surface-to-surface or node-to-surface approach. So finding the correct mesh size is important for a successful job. With the running analysis, in each iteration, the nodes and surfaces are tracked when using small sliding. With finite sliding, the relationship with node and surfaces are established in every increment. So finite sliding is, therefore, more prone to failure of the job than small sliding, as it can stuck and loose itself.
+\newpage
+
+\section{Results}
+The plots of the result are divided into no fillet and fillet. The frictionless approach is created using 1500 elements displayed in figure 2. The with friction approach was only successful with a smaller mesh size, resulting in a less apparent view of the sawtooth properties in the plot of the curve.
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[trim={4cm 1cm 4cm 1.8cm},clip,width=0.9\linewidth]{pics/no_fillet}
+  \caption{Results of the no fillet model}
+  \label{fig:3}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[trim={4cm 1cm 4cm 1.8cm},clip,width=0.9\linewidth]{pics/fillet}
+  \caption{Results of the fillet model}
+  \label{fig:4}
+\end{figure}
 
 \newpage
-\subsection{Plain Stress Compression Test in Abacus}
 
-We created a model with CPS4R mesh type. Based on the last assignments, the reduced integration
-gave us the best result, so we stick with that.
+\section{Discussion}
 
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=0.9\linewidth]{pics/node_to_node_no_sliding}
-  \caption{Node to node with no sliding}
-  \label{fig:2}
-\end{figure}
+\subsection{Surface to Surface}
+The surface-to-surface method uses an average of the slave nodes nearby instead of individual slave nodes. This can also be seen in the curve as for the frictionless and finite sliding approach the surface-to-surface curve is much smoother in general. This discretization provides more accurate stress and pressure results compared to the node-to-surface approach
+\subsection{Node to Surface}
+With the node-to-surface method, the relationship between every slave node interacts with the closest master point. This approach simply resists penetrations of slave nodes into the master surface and the curve shows that by the good characteristic sawtooth properties of the curve.
+\subsection{Finite sliding}
+Finite sliding track the contact of the master and slave node in every incrementation. This leads to a large computational effort but to a more accurate solution.
+\subsection{Small sliding}
+Small sliding established the relationship between the nodes at the beginning of the analysis. This saves lots of computational time but also leading in a less accurate solution.
+\subsection{Frictionless}
+Usually, surfaces transmit shear and normal forces across the interface of the surfaces. The relationship between this to forces is called friction. The Frictionless behavior speaks for itself, not including this phenomenon into the analysis. Using no friction leads to a more equally distributed forces among the nodes and leads to a closer result to the analytical approach.
+\subsection{With Friction}
+With friction, the relationship between the shear and normal forces are taken into account. This leads in our case to a more inaccurate solution as the analytical version of the curve does not take this into account. The friction is an additional parameter which adds force to the interaction in the contact and so leads to a higher positive distance from the analytical curve.
+\subsection{Fillet}
+The fillet helps to smooth the surface. This adds more normals to the surface and leading to smoother output as can be seen in figure 4. 
+\subsection{No Fillet}
+With no filet, only one normal is present. The slave surface can only use one point in the masters surface. As the surface is not smoothed, the results are also more edged.
+\subsection{Mesh and Thickness}
+CPE4 mesh type is used as this title of the assignment speaks for itself. These elements are made for strain forces. The documentation speaks about the sheer locking issue in CPE4 elements. But this should not be a problem as the elements will not be bent in the analysis.
 
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=0.9\linewidth]{pics/analytical_compared}
-  \caption{Result of the analytical calculations compared with the results form abacus}
-  \label{fig:2}
-\end{figure}
-
-
-\pagebreak
-\section{Results and Discussion}
-
-The analytical and the experimental results are similar.
-Logically the experiment with introduced friction (friciton coefficien 0.2) results in a higher
-stress/strain ration, as energy of the compression gets lost in friction. 
-during modelling, we ran into troubles with the simulation due to the sharp corner of the press.
-Thus we introduced a small 1mm fillet to smoothen the process. This worked out fine and the results 
-got better and were calculated more quickly.
-The stress/strain ratio calculations which allowed for small sliding show a 
-higher stress per strain ratio. By allowing sliding of the plate, we would expect the stress value to be 
-higher for a given strain, as the material is more free to move away under compression.
-This is therefore a reasonable result. 
-Finite sliding / Surface-to-Surface is the most accurate (accoring to our analytical solution).
-The surface-to-surface simulation is the preferrable one in this case, as we actually make contact
-between two surfaces.
-
-
-
-\pagebreak
-\begin{thebibliography}{9}
-  \bibitem{latexcompanion} 
-  Michel Goossens, Frank Mittelbach, and Alexander Samarin. 
-  \textit{The \LaTeX\ Companion}. 
-  Addison-Wesley, Reading, Massachusetts, 1993.
-\end{thebibliography}
-
+As previously mentioned the mesh size has an impact on the normals and so on the surfaces, nodes, and analysis. Creating a model which runs in every configuration is difficult. Increasing the mesh size leads to more accurate solutions but also the job is more likely to fail because many nodes are focusing on one master node in the no fillet approach. The convergence is also likely to fail. With the thickness, the force on the node can be distributed on the nodes. Either one can adjust the boundaries of the solver, or in our case, change the thickness for getting to a similar result.
+\section{Conclusion}
+Contact problems are rather difficult to model. Especially if one wants to implement a fillet in the model. Even the Abaqus documentation mentions that this approach is likely to fail, with the reasons mentioned above. For this appendix, the Abaqus documentation was used.
 
 \end{document}

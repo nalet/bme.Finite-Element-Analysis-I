@@ -92,14 +92,14 @@ plt.grid()
 plt.plot(x, y, linewidth=1, label="Analytical Solution")
 
 
-plt.plot(no_fillet_friction_less_finite_sliding_node_to_surface[0],no_fillet_friction_less_finite_sliding_node_to_surface[1], linewidth=1, label="friction less - finite sliding - surface to surface")
-plt.plot(no_fillet_friction_less_finite_sliding_surface_to_surface[0],no_fillet_friction_less_finite_sliding_surface_to_surface[1], linewidth=1, label="friction less - finite sliding - node to surface")
-plt.plot(no_fillet_friction_less_small_sliding_surface_to_surface[0],no_fillet_friction_less_small_sliding_surface_to_surface[1], linewidth=1, label="friction less - small sliding - node to surface")
+plt.plot(no_fillet_friction_less_finite_sliding_surface_to_surface[0],no_fillet_friction_less_finite_sliding_surface_to_surface[1], linewidth=1, label="friction less - finite sliding - surface to surface")
+plt.plot(no_fillet_friction_less_finite_sliding_node_to_surface[0],no_fillet_friction_less_finite_sliding_node_to_surface[1], linewidth=1, label="friction less - finite sliding - node to surface")
+plt.plot(no_fillet_friction_less_small_sliding_surface_to_surface[0],no_fillet_friction_less_small_sliding_surface_to_surface[1], linewidth=1, label="friction less - small sliding - surface to surface")
 plt.plot(no_fillet_friction_less_small_sliding_node_to_surface[0],no_fillet_friction_less_small_sliding_node_to_surface[1], linewidth=1, label="friction less - small sliding - node to surface")
 
 plt.plot(no_fillet_friction_02_finite_sliding_surface_to_surface[0],no_fillet_friction_02_finite_sliding_surface_to_surface[1], linewidth=1, label="with friction - finite sliding - surface to surface")
 plt.plot(no_fillet_friction_02_finite_sliding_node_to_surface[0],no_fillet_friction_02_finite_sliding_node_to_surface[1], linewidth=1, label="with friction - finite sliding - node to surface")
-plt.plot(no_fillet_friction_02_small_sliding_surface_to_surface[0],no_fillet_friction_02_small_sliding_surface_to_surface[1], linewidth=1, label="with friction - small sliding - node to surface")
+plt.plot(no_fillet_friction_02_small_sliding_surface_to_surface[0],no_fillet_friction_02_small_sliding_surface_to_surface[1], linewidth=1, label="with friction - small sliding - surface to surface")
 plt.plot(no_fillet_friction_02_small_sliding_node_to_surface[0],no_fillet_friction_02_small_sliding_node_to_surface[1], linewidth=1, label="with friction - small sliding - node to surface")
 
 
@@ -126,14 +126,14 @@ plt.grid()
 plt.plot(x, y, linewidth=1, label="Analytical Solution")
 
 
-plt.plot(fillet_friction_less_finite_sliding_node_to_surface[0],fillet_friction_less_finite_sliding_node_to_surface[1], linewidth=1, label="friction less - finite sliding - surface to surface")
-plt.plot(fillet_friction_less_finite_sliding_surface_to_surface[0],fillet_friction_less_finite_sliding_surface_to_surface[1], linewidth=1, label="friction less - finite sliding - node to surface")
-plt.plot(fillet_friction_less_small_sliding_surface_to_surface[0],fillet_friction_less_small_sliding_surface_to_surface[1], linewidth=1, label="friction less - small sliding - node to surface")
+plt.plot(fillet_friction_less_finite_sliding_surface_to_surface[0],fillet_friction_less_finite_sliding_surface_to_surface[1], linewidth=1, label="friction less - finite sliding - surface to surface")
+plt.plot(fillet_friction_less_finite_sliding_node_to_surface[0],fillet_friction_less_finite_sliding_node_to_surface[1], linewidth=1, label="friction less - finite sliding - node to surface")
+plt.plot(fillet_friction_less_small_sliding_surface_to_surface[0],fillet_friction_less_small_sliding_surface_to_surface[1], linewidth=1, label="friction less - small sliding - surface to surface")
 plt.plot(fillet_friction_less_small_sliding_node_to_surface[0],fillet_friction_less_small_sliding_node_to_surface[1], linewidth=1, label="friction less - small sliding - node to surface")
 
 plt.plot(fillet_friction_02_finite_sliding_surface_to_surface[0],fillet_friction_02_finite_sliding_surface_to_surface[1], linewidth=1, label="with friction - finite sliding - surface to surface")
 plt.plot(fillet_friction_02_finite_sliding_node_to_surface[0],fillet_friction_02_finite_sliding_node_to_surface[1], linewidth=1, label="with friction - finite sliding - node to surface")
-plt.plot(fillet_friction_02_small_sliding_surface_to_surface[0],fillet_friction_02_small_sliding_surface_to_surface[1], linewidth=1, label="with friction - small sliding - node to surface")
+plt.plot(fillet_friction_02_small_sliding_surface_to_surface[0],fillet_friction_02_small_sliding_surface_to_surface[1], linewidth=1, label="with friction - small sliding - surface to surface")
 plt.plot(fillet_friction_02_small_sliding_node_to_surface[0],fillet_friction_02_small_sliding_node_to_surface[1], linewidth=1, label="with friction - small sliding - node to surface")
 
 
