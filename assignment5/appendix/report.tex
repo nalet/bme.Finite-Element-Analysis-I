@@ -68,70 +68,44 @@ Finite Element Analysis I
 
 \section{Methods}
 
-
-Figure 1 describes the relationship of the surface with the corresponding normals. Contact problems in Abaqus are hard to model as convergence problems can mess up the simulations. When a surface-to-surface approach is used, the discretization can lead to tangential motion in the salve surface in some cases. The motion can lead to unwanted effects and to the abortion of the report.
-
-
-The mesh size has an impact on the normals, regardless of the surface-to-surface or node-to-surface approach. So finding the correct mesh size is important for a successful job. With the running analysis, in each iteration, the nodes and surfaces are tracked when using small sliding. With finite sliding, the relationship with node and surfaces are established in every increment. So finite sliding is, therefore, more prone to failure of the job than small sliding, as it can stuck and loose itself.
-\newpage
+In the previous version of this assignment false dimensions were used, resulting in different forces on the plate on the overshooting as commented in the last report. With the correct values and dimension, a better result could be found.
 
 \section{Results}
 
-\begin{figure}[!htb]
-  \centering
-  \begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.4\linewidth]{pics/eulerian}
-    \caption{normals with a 1mm fillet}
-  \end{subfigure}%
-  \begin{subfigure}{.5\textwidth}
-    \centering
-    \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.4\linewidth]{pics/eulerian_friction}
-    \caption{normals with no fillet}
-   \end{subfigure}
-  \caption{Comparsion of normals with fillet and no fillet}
-  \label{fig:1}
-\end{figure}
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[trim={4cm 1cm 4cm 1.8cm},clip,width=0.9\linewidth]{pics/no_fillet}
+  \includegraphics[trim={4cm 1cm 4cm 1.8cm},clip,width=0.9\linewidth]{pics/eulerian_compared}
   \caption{Results of the no fillet model}
   \label{fig:3}
-\end{figure}
-
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[trim={4cm 1cm 4cm 1.8cm},clip,width=0.9\linewidth]{pics/fillet}
-  \caption{Results of the fillet model}
-  \label{fig:4}
 \end{figure}
 
 \newpage
 
 \section{Discussion}
 
-\subsection{Surface to Surface}
-The surface-to-surface method uses an average of the slave nodes nearby instead of individual slave nodes. This can also be seen in the curve as for the frictionless and finite sliding approach the surface-to-surface curve is much smoother in general. This discretization provides more accurate stress and pressure results compared to the node-to-surface approach
-\subsection{Node to Surface}
-With the node-to-surface method, the relationship between every slave node interacts with the closest master point. This approach simply resists penetrations of slave nodes into the master surface and the curve shows that by the good characteristic sawtooth properties of the curve.
-\subsection{Finite sliding}
-Finite sliding track the contact of the master and slave node in every incrementation. This leads to a large computational effort but to a more accurate solution.
-\subsection{Small sliding}
-Small sliding established the relationship between the nodes at the beginning of the analysis. This saves lots of computational time but also leading in a less accurate solution.
-\subsection{Frictionless}
-Usually, surfaces transmit shear and normal forces across the interface of the surfaces. The relationship between this to forces is called friction. The Frictionless behavior speaks for itself, not including this phenomenon into the analysis. Using no friction leads to a more equally distributed forces among the nodes and leads to a closer result to the analytical approach.
-\subsection{With Friction}
-With friction, the relationship between the shear and normal forces are taken into account. This leads in our case to a more inaccurate solution as the analytical version of the curve does not take this into account. The friction is an additional parameter which adds force to the interaction in the contact and so leads to a higher positive distance from the analytical curve.
-\subsection{Fillet}
-The fillet helps to smooth the surface. This adds more normals to the surface and leading to smoother output as can be seen in figure 4. 
-\subsection{No Fillet}
-With no filet, only one normal is present. The slave surface can only use one point in the masters surface. As the surface is not smoothed, the results are also more edged.
-\subsection{Mesh and Thickness}
-CPE4 mesh type is used as this title of the assignment speaks for itself. These elements are made for strain forces. The documentation speaks about the sheer locking issue in CPE4 elements. But this should not be a problem as the elements will not be bent in the analysis.
+The Eulerian analysis is for simulations with large displacements. The documentation mentions that it can be used effectively with liquid sloshing, gas flow, and penetration problems. Lagrangian elements are easily distorted and lose accuracy, as we saw in the last assignment. For success in the last assignment, tricks have been used, like implementing a fillet and so on.
 
-As previously mentioned the mesh size has an impact on the normals and so on the surfaces, nodes, and analysis. Creating a model which runs in every configuration is difficult. Increasing the mesh size leads to more accurate solutions but also the job is more likely to fail because many nodes are focusing on one master node in the no fillet approach. The convergence is also likely to fail. With the thickness, the force on the node can be distributed on the nodes. Either one can adjust the boundaries of the solver, or in our case, change the thickness for getting to a similar result.
+This is not necessary anymore, in Eulerian analysis, there is no relationship created between the nodes and the surfaces. In fact, the grid stays the same and no deformation of it can be observed. The analysis nodes are fixed in space, the material flows through the elements.
+
+\subsection{No Friction Compairson}
+
+With no friction, the results are similar as in the previous assignment. However, there is a small oscillation visible around the analytical curve. As previously mentioned, the Eulerian analysis is created for simulations with large displacements like water or other liquids. The oscillation is actually the inner forces of the material. The higher the forces, the more likely the forces and displacement are likely to oscillate.
+
+\subsection{Friction Compairson}
+
+One can observe that the curve overshoots much more as with the Lagrangian analysis. Actually, the solution with the Eulerian method is much more accurate. Of course, the mesh density is much higher with the Eulerian method as with the Lagrangian one. As mentioned in the last assignment, the friction property of 0.2 adds additional forces to the simulation. Therefore the additional forces are added to the curve.
+
+\subsection{Explicit Dynamic Analysis}
+
+In general, the explicit dynamics procedure performs many small time increments in a short time. Every time step is dynamically evaluated in order to come forward in the analysis. Also, there is an explicit central-difference operator that tries to satisfy the dynamic equilibrium. Using this approach gives good results in a relatively short time. As we are using a Eulerian model we must also consider the internal forces like in the liquid. Depending on the amplitude of the force this will echo back later, leading in an overshoot or drop in the curve over the time of the curve. The documentation says that this can lead to a problem when the solver is trying to solve for a equilibrium.
+
+
 \section{Conclusion}
-Contact problems are rather difficult to model. Especially if one wants to implement a fillet in the model. Even the Abaqus documentation mentions that this approach is likely to fail, with the reasons mentioned above. For this appendix, the Abaqus documentation was used.
+
+For simulations with large displacement, especially including liquid and gases, the Eulerian analysis is the way to go. In Eulerian analysis, the element can only consist of one material which is good for liquids, as there is only one material necessary, but bad for other model modalities when a part consisting of multiple partitions should also have multiple materials assigned to each partition. Also the documentation of Abaqus many limitations occur in Eulerian analysis, however, a workaround can be found for achieving the same as in Lagrangian in most cases.
+
+\vspace{5mm}
+\noindent All information is used from the Abaqus documentation. 
 
 \end{document}
